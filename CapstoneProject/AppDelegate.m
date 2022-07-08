@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
 
 @interface AppDelegate ()
 
@@ -16,9 +17,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [FBSDKApplicationDelegate.sharedInstance application:application didFinishLaunchingWithOptions:launchOptions];
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    
+    BOOL handled;
+    
+    if ([options[UIApplicationOpenURLOptionsSourceApplicationKey] isKindOfClass:[NSString class]]) {
+        handled = [FBSDKApplicationDelegate.sharedInstance application:application openURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+    } else {
+        handled = [FBSDKApplicationDelegate.sharedInstance application:application openURL:url sourceApplication:nil annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+    }
+    
+    return handled;
+}
 
 #pragma mark - UISceneSession lifecycle
 
