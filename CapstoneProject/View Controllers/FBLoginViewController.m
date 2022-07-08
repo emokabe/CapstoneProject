@@ -11,6 +11,7 @@
 
 @interface FBLoginViewController ()
 
+
 @end
 
 @implementation FBLoginViewController
@@ -18,10 +19,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //self.loginButton = [[FBSDKLoginButton alloc] init];
+    
+    /*
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
         // Optional: Place the button in the center of your view.
         loginButton.center = self.view.center;
         [self.view addSubview:loginButton];
+    */
+    
+}
+
+- (IBAction)didTapLogin:(id)sender {
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    
+    [login logInWithPermissions:@[@"public_profile", @"email"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult * _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else if (result.declinedPermissions.count != 0) {
+            NSLog(@"Permissions declined by user");
+        } else {
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        }
+    }];
+    
+}
+
+
+/*
+-(void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+    
+    if (error) {
+        NSLog(@"%@", error.localizedDescription);
+    }
+    if (result.isCancelled) {
+        NSLog(@"Login cancelled by user");
+    } else if (result.declinedPermissions.count != 0) {
+        NSLog(@"Permissions declined by user");
+    } else {
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+    }
+    
+}
+ */
+
+-(void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    
 }
 
 /*
