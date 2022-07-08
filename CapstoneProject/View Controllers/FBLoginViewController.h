@@ -12,7 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FBLoginViewController : UIViewController
-/*<FBSDKLoginButtonDelegate>*/
 
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 

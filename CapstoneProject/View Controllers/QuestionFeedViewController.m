@@ -6,6 +6,8 @@
 //
 
 #import "QuestionFeedViewController.h"
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "FBSDKLoginKit/FBSDKLoginKit.h"
 
 @interface QuestionFeedViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *successMessage;
@@ -18,6 +20,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+- (IBAction)didTapLogout:(id)sender {
+    
+}
+
 
 /*
 #pragma mark - Navigation
