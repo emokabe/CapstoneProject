@@ -8,6 +8,7 @@
 #import "QuestionFeedViewController.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "FBSDKLoginKit/FBSDKLoginKit.h"
+#import "FBLoginViewController.h"
 
 @interface QuestionFeedViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *successMessage;
@@ -21,8 +22,18 @@
     // Do any additional setup after loading the view.
 }
 
+
+
 - (IBAction)didTapLogout:(id)sender {
+    FBSDKLoginManager *logoutManager = [[FBSDKLoginManager alloc] init];
+    [logoutManager logOut];
     
+    NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
+
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    FBLoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"FBLoginViewController"];
+    self.view.window.rootViewController = loginViewController; // substitute, less elegant
 }
 
 
