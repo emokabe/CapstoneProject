@@ -8,11 +8,11 @@
 		<string>fb-messenger-share-api</string>
 	</array>
 	<key>FacebookDisplayName</key>
-	<string>CapstoneApp</string>
+	<string>CapstoneApp - Test1</string>
 	<key>FacebookClientToken</key>
 	<string>d230f9435ab78ce63d0d186c45eddd3a</string>
 	<key>FacebookAppID</key>
-	<string>1022859238434917</string>
+	<string>395373522442407</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -20,7 +20,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1022859238434917</string>
+				<string>fb395373522442407</string>
 			</array>
 		</dict>
 	</array>

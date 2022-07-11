@@ -6,6 +6,7 @@
 //
 
 #import "ComposeViewController.h"
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *postText;
@@ -24,6 +25,20 @@
 }
 
 - (IBAction)didTapPost:(id)sender {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+        initWithGraphPath:@"/425184976239857/feed"
+               parameters:@{ @"message": self.postText.text,}
+               HTTPMethod:@"POST"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+        }
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
