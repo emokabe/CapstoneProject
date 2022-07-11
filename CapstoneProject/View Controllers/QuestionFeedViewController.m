@@ -10,7 +10,7 @@
 #import "FBSDKLoginKit/FBSDKLoginKit.h"
 #import "FBLoginViewController.h"
 
-@interface QuestionFeedViewController ()
+@interface QuestionFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 
 @end
@@ -36,7 +36,6 @@
 }
 
 
-
 - (IBAction)didTapLogout:(id)sender {
     FBSDKLoginManager *logoutManager = [[FBSDKLoginManager alloc] init];
     [logoutManager logOut];
@@ -59,5 +58,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    // TODO
+    return NULL;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // TODO
+    return 0;
+}
+
 
 @end
