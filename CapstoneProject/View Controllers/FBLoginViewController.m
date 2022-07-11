@@ -30,13 +30,16 @@
     
     [login logInWithPermissions:@[@"public_profile", @"email"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult * _Nullable result, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         } else if (result.declinedPermissions.count != 0) {
             NSLog(@"Permissions declined by user");
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];
+    
+    // if press cancel instead of continue at login
+    // continues with segue, not getting right error
     
 }
 

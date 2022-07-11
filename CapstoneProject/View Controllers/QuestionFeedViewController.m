@@ -11,7 +11,7 @@
 #import "FBLoginViewController.h"
 
 @interface QuestionFeedViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *successMessage;
+
 
 @end
 
@@ -20,6 +20,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+        initWithGraphPath:@"/me"
+               parameters:@{ @"fields": @"name"}
+               HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+        }
+    }];
+    NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
 }
 
 
