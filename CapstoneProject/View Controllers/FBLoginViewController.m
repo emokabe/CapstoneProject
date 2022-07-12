@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view.
     
     self.loginButton.delegate = self;
-    self.loginButton.permissions = @[@"public_profile", @"email", @"user_frields"];
+    self.loginButton.permissions = @[@"public_profile", @"email", @"user_friends"];
     
 }
 
@@ -63,8 +63,15 @@
     
     if (result.token) {
         // Get user access token
-        FBSDKAccessToken *token = result.token;
-        NSLog(@"Token = %@", token);
+        //FBSDKAccessToken *token = result.token;
+        
+        // or NSLog(@"Token = %@", token);
+        NSLog(@"Token = %@", [FBSDKAccessToken currentAccessToken].tokenString);
+        NSLog(@"User ID = %@", [FBSDKAccessToken currentAccessToken].userID);
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UITabBarController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginSuccessPage"];
+        self.view.window.rootViewController = rootViewController;
     }
 }
 
