@@ -21,18 +21,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-        initWithGraphPath:@"/me"
-               parameters:@{ @"fields": @"name"}
-               HTTPMethod:@"GET"];
-    
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"%@", result);
-        } else {
-            NSLog(@"Error posting to feed: %@", error.localizedDescription);
-        }
-    }];
-    NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
+            initWithGraphPath:@"/425184976239857/feed"
+            parameters:@{ @"fields": @"from, message"}
+            HTTPMethod:@"GET"];
+        
+        [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+            if (!error) {
+                NSLog(@"%@", result[@"data"][0]);
+            } else {
+                NSLog(@"Error posting to feed: %@", error.localizedDescription);
+            }
+        }];
+        NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
 }
 
 
