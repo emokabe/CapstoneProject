@@ -28,9 +28,8 @@
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"%@", result[@"data"][0]);
-//            if ([result[@"id"] isKindOfClass:[NSString class]]) {
-//                NSLog(@"Hi!");
-//            }
+            NSLog(@"%@",
+                  [result[@"data"][0] class]);
         } else {
             NSLog(@"Error posting to feed: %@", error.localizedDescription);
         }
