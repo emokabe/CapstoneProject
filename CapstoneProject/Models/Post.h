@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Post : NSObject
 
 @property (nonatomic, strong) NSString *textContent; // Text content of post
-
+@property (nonatomic, strong) NSString *user_id; // App-scoped id of user
 
 @end
 
