@@ -28,6 +28,8 @@
     
 }
 
+// TODO: write viewWillAppear method
+
 - (IBAction)didTapLogin:(id)sender {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     
