@@ -1,5 +1,5 @@
 //
-//  FBLoginViewController.h
+//  QuestionFeedViewController.h
 //  CapstoneProject
 //
 //  Created by Emily Ito Okabe on 7/8/22.
@@ -11,10 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FBLoginViewController : UIViewController
+@interface QuestionFeedViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIButton *loginButton;
-
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 
 @end
 

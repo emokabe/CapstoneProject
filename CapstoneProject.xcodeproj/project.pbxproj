@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		0DD0EF32807DCAD0A1620E3D /* Pods_CapstoneProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76E1444D957C3582942E6D2 /* Pods_CapstoneProject.framework */; };
 		76A39FE0FECDB0E40A1CB644 /* Pods_CapstoneProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646B9531342764967FC8DCA9 /* Pods_CapstoneProjectTests.framework */; };
+		BE1762E3287BDE0300B7DD03 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */; };
+		BE8277D7287C8DDD0059B509 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8277D6287C8DDD0059B509 /* PostCell.m */; };
+		BE8277DB287C91230059B509 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8277DA287C91230059B509 /* Post.m */; };
 		BEA4666B28781C1F00D57C23 /* FBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA4666A28781C1F00D57C23 /* FBLoginViewController.m */; };
+		BEA4666E2878CF2500D57C23 /* QuestionFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA4666D2878CF2500D57C23 /* QuestionFeedViewController.m */; };
 		BEDF114F2874FA0A00B080A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF114E2874FA0A00B080A4 /* AppDelegate.m */; };
 		BEDF11522874FA0A00B080A4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF11512874FA0A00B080A4 /* SceneDelegate.m */; };
 		BEDF11552874FA0A00B080A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF11542874FA0A00B080A4 /* ViewController.m */; };
@@ -47,9 +51,17 @@
 		646B9531342764967FC8DCA9 /* Pods_CapstoneProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapstoneProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82FAADA8062714733CF4DD2B /* Pods-CapstoneProject-CapstoneProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapstoneProject-CapstoneProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		853EA4DD722796AA0D889F4D /* Pods-CapstoneProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapstoneProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-CapstoneProjectTests/Pods-CapstoneProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BE1762E1287BDE0300B7DD03 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		BE8277D5287C8DDD0059B509 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		BE8277D6287C8DDD0059B509 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		BE8277D9287C91230059B509 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		BE8277DA287C91230059B509 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		BEA4666728781ADB00D57C23 /* CapstoneProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CapstoneProject.entitlements; sourceTree = "<group>"; };
 		BEA4666928781C1F00D57C23 /* FBLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBLoginViewController.h; sourceTree = "<group>"; };
 		BEA4666A28781C1F00D57C23 /* FBLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController.m; sourceTree = "<group>"; };
+		BEA4666C2878CF2500D57C23 /* QuestionFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionFeedViewController.h; sourceTree = "<group>"; };
+		BEA4666D2878CF2500D57C23 /* QuestionFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionFeedViewController.m; sourceTree = "<group>"; };
 		BEDF114A2874FA0A00B080A4 /* CapstoneProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDF114D2874FA0A00B080A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BEDF114E2874FA0A00B080A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -123,11 +135,33 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE8277D4287C8DAB0059B509 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE8277D5287C8DDD0059B509 /* PostCell.h */,
+				BE8277D6287C8DDD0059B509 /* PostCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BE8277D8287C91040059B509 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BE8277D9287C91230059B509 /* Post.h */,
+				BE8277DA287C91230059B509 /* Post.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BEA4666828781C0400D57C23 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				BEA4666928781C1F00D57C23 /* FBLoginViewController.h */,
 				BEA4666A28781C1F00D57C23 /* FBLoginViewController.m */,
+				BEA4666C2878CF2500D57C23 /* QuestionFeedViewController.h */,
+				BEA4666D2878CF2500D57C23 /* QuestionFeedViewController.m */,
+				BE1762E1287BDE0300B7DD03 /* ComposeViewController.h */,
+				BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -164,6 +198,8 @@
 				BEDF11512874FA0A00B080A4 /* SceneDelegate.m */,
 				BEDF11532874FA0A00B080A4 /* ViewController.h */,
 				BEDF11542874FA0A00B080A4 /* ViewController.m */,
+				BE8277D8287C91040059B509 /* Models */,
+				BE8277D4287C8DAB0059B509 /* Views */,
 				BEA4666828781C0400D57C23 /* View Controllers */,
 				BEDF11562874FA0A00B080A4 /* Main.storyboard */,
 				BEDF11592874FA0A00B080A4 /* Assets.xcassets */,
@@ -432,7 +468,11 @@
 				BEDF11552874FA0A00B080A4 /* ViewController.m in Sources */,
 				BEDF114F2874FA0A00B080A4 /* AppDelegate.m in Sources */,
 				BEDF11602874FA0A00B080A4 /* main.m in Sources */,
+				BE8277D7287C8DDD0059B509 /* PostCell.m in Sources */,
+				BE8277DB287C91230059B509 /* Post.m in Sources */,
 				BEDF11522874FA0A00B080A4 /* SceneDelegate.m in Sources */,
+				BE1762E3287BDE0300B7DD03 /* ComposeViewController.m in Sources */,
+				BEA4666E2878CF2500D57C23 /* QuestionFeedViewController.m in Sources */,
 				BEA4666B28781C1F00D57C23 /* FBLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
