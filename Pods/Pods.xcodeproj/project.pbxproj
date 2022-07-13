@@ -14,7 +14,7 @@
 				427658F3E294DB5EF79EE37BA04E64E1 /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
-				A9EE837649E2B6FE214F990788596C62 /* PBXTargetDependency */,
+				D6AD9F3E14DFB3605FB5D7B6CC3CE313 /* PBXTargetDependency */,
 			);
 			name = FBSDKLoginKit;
 		};
@@ -25,8 +25,8 @@
 				C05801FB1115AB56CF9E73BB6786A73A /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
-				B0CD437C0BBA8546E54637443F048F6A /* PBXTargetDependency */,
-				847FDCB19BF8828CA239B562DEC3B644 /* PBXTargetDependency */,
+				1ADEAE29B427039CB828979D75CDF70E /* PBXTargetDependency */,
+				16BD57D80B7C6F53DB7D342753E4B57B /* PBXTargetDependency */,
 			);
 			name = FBSDKCoreKit;
 		};
@@ -37,15 +37,15 @@
 				A261CEA870C48433C3575F1CCC2BB166 /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
-				8017335E7BE5E4F2AA7C704D34F729C7 /* PBXTargetDependency */,
+				7363E3F63C3FB93AEE83B3EE61E0719C /* PBXTargetDependency */,
 			);
 			name = FBAEMKit;
 		};
 		8EA62FEAB23070050EFD4D4508D659E5 /* FBSDKCoreKit_Basics */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 035656960A067353649EA423EF370480 /* Build configuration list for PBXAggregateTarget "FBSDKCoreKit_Basics" */;
+			buildConfigurationList = 28FAA9EF63E852885EA13552FAC1BAAD /* Build configuration list for PBXAggregateTarget "FBSDKCoreKit_Basics" */;
 			buildPhases = (
-				71CD0B926100C36B517BE2052E600140 /* [CP] Copy XCFrameworks */,
+				EED7F5DE4C30C92F8CBFEB92D3E024AF /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
 			);
@@ -54,170 +54,219 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		016DE69FE28CB1D4947462784BC80913 /* Pods-CapstoneProject-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3165DD252FD773C916CC8DE2E6C93CC7 /* Pods-CapstoneProject-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BAC176E2D474B42889C3ACE70CA7450 /* Pods-CapstoneProject-CapstoneProjectUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F69DCE8C65D620D6EB47BD95BC65F54C /* Pods-CapstoneProject-CapstoneProjectUITests-dummy.m */; };
-		1E66240847DE9025FFE74627C2163BA6 /* Pods-CapstoneProject-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AB072DDD02E5A502BC72E340DB86B821 /* Pods-CapstoneProject-dummy.m */; };
+		01A759BFA12BB949FF8A7CF52AFEB6E4 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E71EFB025962CBB0E63747458A19876 /* DTError.m */; };
+		200B314634FEDF16DF796244B841CB61 /* DTError.h in Headers */ = {isa = PBXBuildFile; fileRef = 63634E2C710E4BAF37721BC510DE206B /* DTError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20C460EE1C8D167897231C81D9ADD4B3 /* DTTimePeriodCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3771FD39F9D483580D7E0D96FA4CD828 /* DTTimePeriodCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E421DBAA9EDC4AE8907CCF36FCF5BBB /* Pods-CapstoneProjectTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 322BB1003A1142B96193F92EB197EC34 /* Pods-CapstoneProjectTests-dummy.m */; };
-		5256BFC708D839759F92AFE634BDC73A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		7A5AB29865BB07C0964987AAD7707C54 /* Pods-CapstoneProject-CapstoneProjectUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3922A859F4A91B982F794E846425E9D3 /* Pods-CapstoneProject-CapstoneProjectUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		563047727B7678C9710F5B9624EED406 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E4BEF29B64D496A9EEF42C7FE8561C8 /* DateTools.bundle */; };
+		5D3F0A44893B7E6CBEFD7112B49D245E /* DateTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B7867F9DC47BF6465F9E2738433A02 /* DateTools-dummy.m */; };
+		67772609BF7DD95D27F0CF992EC3CEB9 /* DTTimePeriodGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C2F331876AB9E69C8815D59DEB3F581 /* DTTimePeriodGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A7A528AD3A830353834C9A892A66319 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 45292AE52DB3288254811FEBD7DD580C /* DTTimePeriod.m */; };
+		7CC2632C1AC6753DBFF8B9BB8E560BD7 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CABBD2F0FE54A410FD37D5B4E8F5F5 /* DTTimePeriodCollection.m */; };
+		90D5D0D165F0AD97AC48871DD99D0F61 /* DTConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B7DC9AEC3B8B79A7460062AA37BB89 /* DTConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95498D702C97F1FB1C6283606BC0428C /* DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B606D92425A87B099A775C696E455FC /* DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C52F522F38ED75488F74373D130D698 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 082AFA1F5862D215E742092EF7615A27 /* NSDate+DateTools.m */; };
+		A3136D3C60FDD07B86D28AD76621B8AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		AE7DF63E565B14769433FD67E41864E7 /* DTTimePeriodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = F9AAC61C0940605B391985DAB0B11B48 /* DTTimePeriodChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AED26DB9994500005093B1B7E4E69641 /* NSDate+DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = F86072890C47CCCCF54D532F08776020 /* NSDate+DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AF061BF9EF751EB393F6681AA6B67E2D /* Pods-CapstoneProject-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AB072DDD02E5A502BC72E340DB86B821 /* Pods-CapstoneProject-dummy.m */; };
+		B57763528946464DF4F9FEA9581DEB28 /* Pods-CapstoneProject-CapstoneProjectUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3922A859F4A91B982F794E846425E9D3 /* Pods-CapstoneProject-CapstoneProjectUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B61E0ACA4A1EBCE1D362BB4CFEBDAF68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		BD8D708CDE65F627B60F6F5035176E29 /* DateTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A2F163AF036BB094A734BDDEE2B7217B /* DateTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9337CC57405866B0E2A220C70688D97 /* DTTimePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ACA611937F6C57E3F1A732565560FCA /* DTTimePeriod.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE41B593EF93E54143F16C2EBFF5A3FA /* Pods-CapstoneProjectTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB77414BB3096C4B52C28E9FCB7E1AED /* Pods-CapstoneProjectTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E469415CC2DB29606FCBC93B2642ECB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		D7DB40E8F61A23AF5CAEA316E3D74937 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		DF70D6EDABDA7725EDFAD47C1A1C0696 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 969DC18840AF34CD6D0CA37DE3DC4036 /* DTConstants.m */; };
+		E65398AEE59C720BDA95B832522E0AC3 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F6FDD145E3714B9EB7AA482109562F /* DTTimePeriodGroup.m */; };
+		EDC207DEF02EC27A9BC15D5BCCDA3BDE /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = F71F89E26AB573AFAC23ACAC57C8DFE5 /* DTTimePeriodChain.m */; };
+		F3BC9DBA5642B1BB4AAC571BA06F5216 /* Pods-CapstoneProject-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3165DD252FD773C916CC8DE2E6C93CC7 /* Pods-CapstoneProject-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3D9945F25DFA4191479DEFDADD433F4 /* Pods-CapstoneProject-CapstoneProjectUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F69DCE8C65D620D6EB47BD95BC65F54C /* Pods-CapstoneProject-CapstoneProjectUITests-dummy.m */; };
 		F7DD4AF28B9AFE67419FB9265A234BCE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		02A4BE5D668F3B5CEA0FBEEE1CF2E5CD /* PBXContainerItemProxy */ = {
+		1A6B9860F6C3C302C2561E9CD691BAF0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8EA62FEAB23070050EFD4D4508D659E5;
-			remoteInfo = FBSDKCoreKit_Basics;
+			remoteGlobalIDString = 28907903AF6DD0AD321D92CD660E7E23;
+			remoteInfo = FBSDKCoreKit;
 		};
-		1E5D0F345BF77A993AB858F35A88972D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 10C5885FCB0908EF785774EE52473DAB;
-			remoteInfo = FBSDKLoginKit;
-		};
-		676EDF880B3AC8C97E0CB472A92D0498 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 479BDBD165CD08E2159181E58CD2078F;
-			remoteInfo = FBAEMKit;
-		};
-		845FD893570F2F203A4F2C7AC8E2389B /* PBXContainerItemProxy */ = {
+		1B07B1F6A561BC0B27B407E5712771B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5F1246A1039FE9B0CC8AA4C6FD969748;
 			remoteInfo = "Pods-CapstoneProject";
 		};
-		8C0EEE1B06433AB252380EB7D24866E2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 479BDBD165CD08E2159181E58CD2078F;
-			remoteInfo = FBAEMKit;
-		};
-		AA1EB519B9C48A6B55227C7A27B70B75 /* PBXContainerItemProxy */ = {
+		1CBF66BA3C532C60A9895D0E19F40AE4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8EA62FEAB23070050EFD4D4508D659E5;
 			remoteInfo = FBSDKCoreKit_Basics;
 		};
-		AB66561EAC7008E1423C4A8E98E29B22 /* PBXContainerItemProxy */ = {
+		1D5D670105FDDA3C27D2311A0842CA43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 28907903AF6DD0AD321D92CD660E7E23;
 			remoteInfo = FBSDKCoreKit;
 		};
-		B4B596AFAD6406CBFBD4F7B5E4E0B35E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 479BDBD165CD08E2159181E58CD2078F;
-			remoteInfo = FBAEMKit;
-		};
-		C27DF907624CA8E5E932D188FDCE76FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 28907903AF6DD0AD321D92CD660E7E23;
-			remoteInfo = FBSDKCoreKit;
-		};
-		C59C6E8B3308D042FC87FF994BFD41F9 /* PBXContainerItemProxy */ = {
+		2D3ADFE2BC64DCA85C15475FCF511B6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8EA62FEAB23070050EFD4D4508D659E5;
 			remoteInfo = FBSDKCoreKit_Basics;
 		};
-		D07C7B655671DE8630227210B5B55854 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8EA62FEAB23070050EFD4D4508D659E5;
-			remoteInfo = FBSDKCoreKit_Basics;
-		};
-		F735B2EEDB12318549AE3AB0C1FD9B1F /* PBXContainerItemProxy */ = {
+		40802C4B0FB14849AB7BAEC6B968C0AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 10C5885FCB0908EF785774EE52473DAB;
 			remoteInfo = FBSDKLoginKit;
 		};
-		FCABB065035E5FAF2E3A00046BDEFF1F /* PBXContainerItemProxy */ = {
+		4F54198F750CB6CE2F1FB8447E207A74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EA62FEAB23070050EFD4D4508D659E5;
+			remoteInfo = FBSDKCoreKit_Basics;
+		};
+		59959583D0E4FADF9DEBC794864EADDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B1A4F9261E8F421732B6CB1319CCC3E;
+			remoteInfo = DateTools;
+		};
+		815C3155B219040E9F991E3993EC53C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 28907903AF6DD0AD321D92CD660E7E23;
 			remoteInfo = FBSDKCoreKit;
 		};
+		8353652BC71F1767839BB90A8276B30F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 479BDBD165CD08E2159181E58CD2078F;
+			remoteInfo = FBAEMKit;
+		};
+		B532923B46CB49895A0DFE7714EE5593 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 479BDBD165CD08E2159181E58CD2078F;
+			remoteInfo = FBAEMKit;
+		};
+		BCBFB07956BF95FA583ECE85282B5AA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EA62FEAB23070050EFD4D4508D659E5;
+			remoteInfo = FBSDKCoreKit_Basics;
+		};
+		CF40BBC33552739B49863C07192F3D42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10C5885FCB0908EF785774EE52473DAB;
+			remoteInfo = FBSDKLoginKit;
+		};
+		D8AF8DF114F34E21AC13F866C75E08C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 479BDBD165CD08E2159181E58CD2078F;
+			remoteInfo = FBAEMKit;
+		};
+		E5B7991AD57A8B67599BC19C2F2B9B46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B1A4F9261E8F421732B6CB1319CCC3E;
+			remoteInfo = DateTools;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		021C119046339CA3FD4779A57310693A /* FBSDKCoreKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = FBSDKCoreKit.xcframework; path = XCFrameworks/FBSDKCoreKit.xcframework; sourceTree = "<group>"; };
 		0336BF8536FB86611758276AE2EFE328 /* Pods-CapstoneProject-CapstoneProjectUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CapstoneProject-CapstoneProjectUITests-Info.plist"; sourceTree = "<group>"; };
-		03DB54D6C6E018A44014308ED558AB17 /* FBAEMKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = FBAEMKit.xcframework; path = XCFrameworks/FBAEMKit.xcframework; sourceTree = "<group>"; };
-		055F35A855A46DE8568050DBDA4F3215 /* FBSDKLoginKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKLoginKit.release.xcconfig; sourceTree = "<group>"; };
+		07A3EF0FB4029DB57B11DFE671126BF1 /* FBSDKCoreKit_Basics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit_Basics.debug.xcconfig; sourceTree = "<group>"; };
+		082AFA1F5862D215E742092EF7615A27 /* NSDate+DateTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DateTools.m"; path = "DateTools/DateTools/NSDate+DateTools.m"; sourceTree = "<group>"; };
+		0ACA611937F6C57E3F1A732565560FCA /* DTTimePeriod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = DateTools/DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
+		0BF3D3F91348BBB5E9A8955D28A44939 /* DateTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DateTools.debug.xcconfig; sourceTree = "<group>"; };
 		0BFC2823CD283CE35260634A24C687CE /* Pods-CapstoneProject-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CapstoneProject-frameworks.sh"; sourceTree = "<group>"; };
+		0F6DB6B5E7AFD97F55E1AAEE3A1A04FE /* FBSDKCoreKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = FBSDKCoreKit.xcframework; path = XCFrameworks/FBSDKCoreKit.xcframework; sourceTree = "<group>"; };
 		18789A300BB986F20A7C85CDB550371E /* Pods-CapstoneProject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CapstoneProject.modulemap"; sourceTree = "<group>"; };
-		24072D45ECBFFF10571F8DE7E0A29780 /* FBSDKCoreKit_Basics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit_Basics.debug.xcconfig; sourceTree = "<group>"; };
+		25B9DB4C231B3C69BF2E7D1011F33278 /* DateTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DateTools.modulemap; sourceTree = "<group>"; };
+		26CDAAEFA371AA9DC06D94DA9CB1883E /* FBSDKLoginKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FBSDKLoginKit-xcframeworks.sh"; sourceTree = "<group>"; };
+		2B606D92425A87B099A775C696E455FC /* DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = DateTools/DateTools/DateTools.h; sourceTree = "<group>"; };
+		2E71EFB025962CBB0E63747458A19876 /* DTError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTError.m; path = DateTools/DateTools/DTError.m; sourceTree = "<group>"; };
 		3165DD252FD773C916CC8DE2E6C93CC7 /* Pods-CapstoneProject-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CapstoneProject-umbrella.h"; sourceTree = "<group>"; };
 		322BB1003A1142B96193F92EB197EC34 /* Pods-CapstoneProjectTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CapstoneProjectTests-dummy.m"; sourceTree = "<group>"; };
 		338A0CDD73FE82E53F67851A6A27C737 /* Pods-CapstoneProject-CapstoneProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CapstoneProject-CapstoneProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3771FD39F9D483580D7E0D96FA4CD828 /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodCollection.h; path = DateTools/DateTools/DTTimePeriodCollection.h; sourceTree = "<group>"; };
 		38FE1D5A4DEB711AB74CA798B0C8863B /* Pods-CapstoneProjectTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CapstoneProjectTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		3922A859F4A91B982F794E846425E9D3 /* Pods-CapstoneProject-CapstoneProjectUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CapstoneProject-CapstoneProjectUITests-umbrella.h"; sourceTree = "<group>"; };
-		3E8E69D7C40373EB7C9AAA8C31C6561E /* FBSDKCoreKit_Basics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit_Basics.release.xcconfig; sourceTree = "<group>"; };
 		40107238A1A9BA349255038970B72C57 /* Pods-CapstoneProject-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CapstoneProject-acknowledgements.markdown"; sourceTree = "<group>"; };
+		44F6FDD145E3714B9EB7AA482109562F /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = DateTools/DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
+		45292AE52DB3288254811FEBD7DD580C /* DTTimePeriod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriod.m; path = DateTools/DateTools/DTTimePeriod.m; sourceTree = "<group>"; };
+		4AF171581392AD234F23BE913F0C22FE /* DateTools */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DateTools; path = DateTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C2F331876AB9E69C8815D59DEB3F581 /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodGroup.h; path = DateTools/DateTools/DTTimePeriodGroup.h; sourceTree = "<group>"; };
 		4EA631F54627F6D3CA0FA40A0D8189A7 /* Pods-CapstoneProject-CapstoneProjectUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CapstoneProject-CapstoneProjectUITests.modulemap"; sourceTree = "<group>"; };
-		56EF0EFC931B00CC98D40430A90194AE /* FBSDKCoreKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit.debug.xcconfig; sourceTree = "<group>"; };
+		500532840A0D9B4E2383233EB0CBB1A8 /* FBAEMKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBAEMKit.debug.xcconfig; sourceTree = "<group>"; };
+		55994A3A5A2BC6C295985CAC5D10F20C /* DateTools.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DateTools.release.xcconfig; sourceTree = "<group>"; };
 		5DA138B40B766406B8716621C75BE5C2 /* Pods-CapstoneProject-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CapstoneProject-acknowledgements.plist"; sourceTree = "<group>"; };
+		5E4BEF29B64D496A9EEF42C7FE8561C8 /* DateTools.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = DateTools/DateTools/DateTools.bundle; sourceTree = "<group>"; };
 		61F3FB56E7CA3300FACD1DFA3293285E /* Pods-CapstoneProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CapstoneProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6BE5213F5B774A01C96833B6D3087C6D /* FBSDKCoreKit_Basics-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FBSDKCoreKit_Basics-xcframeworks.sh"; sourceTree = "<group>"; };
+		63634E2C710E4BAF37721BC510DE206B /* DTError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = DateTools/DateTools/DTError.h; sourceTree = "<group>"; };
 		6D6AF9477E1245C447AA849ACA2B2482 /* Pods-CapstoneProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CapstoneProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		79CABBD2F0FE54A410FD37D5B4E8F5F5 /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodCollection.m; path = DateTools/DateTools/DTTimePeriodCollection.m; sourceTree = "<group>"; };
 		7BC876B549CD9ED09D6D583F714F354C /* Pods-CapstoneProject-CapstoneProjectUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CapstoneProject-CapstoneProjectUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		801E164FEC5D4FB901637693081ABF9B /* FBSDKLoginKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FBSDKLoginKit-xcframeworks.sh"; sourceTree = "<group>"; };
+		8160081F65A3AC7D2B1F9A0A29D9F9C1 /* DateTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-prefix.pch"; sourceTree = "<group>"; };
 		81BC19CB72296DD4EF036ED9D10F4CD2 /* Pods-CapstoneProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CapstoneProject.debug.xcconfig"; sourceTree = "<group>"; };
+		87BB24072ED71EB495F8171126A17D95 /* FBAEMKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBAEMKit.release.xcconfig; sourceTree = "<group>"; };
 		8BB79A31D8DC96FA905D552F533DCB02 /* Pods-CapstoneProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CapstoneProject.release.xcconfig"; sourceTree = "<group>"; };
+		92EEE18645ED41330FC256A8B2A86276 /* FBSDKLoginKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKLoginKit.debug.xcconfig; sourceTree = "<group>"; };
+		94B7DC9AEC3B8B79A7460062AA37BB89 /* DTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = DateTools/DateTools/DTConstants.h; sourceTree = "<group>"; };
+		958E2751382183942665D483E2F0C564 /* FBSDKCoreKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FBSDKCoreKit-xcframeworks.sh"; sourceTree = "<group>"; };
+		9599FB49AB6F3A08E21F6C394F2DE665 /* FBSDKCoreKit_Basics.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = FBSDKCoreKit_Basics.xcframework; path = XCFrameworks/FBSDKCoreKit_Basics.xcframework; sourceTree = "<group>"; };
+		969DC18840AF34CD6D0CA37DE3DC4036 /* DTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = DateTools/DateTools/DTConstants.m; sourceTree = "<group>"; };
 		96E68E6CE860132C0037124A6393AA7B /* Pods-CapstoneProject-CapstoneProjectUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CapstoneProject-CapstoneProjectUITests"; path = Pods_CapstoneProject_CapstoneProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99C5BF1FC61E01352B9A7C2013C9FEEB /* FBSDKLoginKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = FBSDKLoginKit.xcframework; path = XCFrameworks/FBSDKLoginKit.xcframework; sourceTree = "<group>"; };
 		9CF3CB378D67D08E2E4D1657F40BDE9C /* Pods-CapstoneProjectTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CapstoneProjectTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A2F163AF036BB094A734BDDEE2B7217B /* DateTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-umbrella.h"; sourceTree = "<group>"; };
 		A7F8DA18CAFD929D7A386A71C12F32AE /* Pods-CapstoneProject-CapstoneProjectUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CapstoneProject-CapstoneProjectUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		AB072DDD02E5A502BC72E340DB86B821 /* Pods-CapstoneProject-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CapstoneProject-dummy.m"; sourceTree = "<group>"; };
-		AC271F4651EE6ECD3590EC600A95B9A9 /* FBAEMKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBAEMKit.release.xcconfig; sourceTree = "<group>"; };
 		AF1FDCAFE203D66F488DDD5D9A6AF5DE /* Pods-CapstoneProjectTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CapstoneProjectTests-Info.plist"; sourceTree = "<group>"; };
-		AFA210CDA57FBFF5AB1CAC3A2B6D897E /* FBAEMKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FBAEMKit-xcframeworks.sh"; sourceTree = "<group>"; };
+		B393C2642F3C0BBA76042B0F3F1E56AE /* DateTools-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DateTools-Info.plist"; sourceTree = "<group>"; };
 		BB77414BB3096C4B52C28E9FCB7E1AED /* Pods-CapstoneProjectTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CapstoneProjectTests-umbrella.h"; sourceTree = "<group>"; };
-		BD89167A35A6A57EA6B1B9B9F3F26032 /* FBSDKLoginKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKLoginKit.debug.xcconfig; sourceTree = "<group>"; };
 		BE40BA21E34E2C29789B4FA681C89340 /* Pods-CapstoneProject-CapstoneProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CapstoneProject-CapstoneProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C5A94D78FDED39E5CD118A05A986D707 /* FBSDKCoreKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit.release.xcconfig; sourceTree = "<group>"; };
 		C65C7ED9C0C1E86E1FCE1DBD3AB9B2D6 /* Pods-CapstoneProject */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CapstoneProject"; path = Pods_CapstoneProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8C6F8D9A91E61295CE1F306C7255804 /* FBSDKCoreKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit.release.xcconfig; sourceTree = "<group>"; };
-		D2E7697D962BA32517093D8AF288AA77 /* FBSDKCoreKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FBSDKCoreKit-xcframeworks.sh"; sourceTree = "<group>"; };
+		C81F4C45F639F02047CE849FF9E803E4 /* FBSDKCoreKit_Basics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit_Basics.release.xcconfig; sourceTree = "<group>"; };
+		CAD57AF632FE0D1635C93BAA2022A7AA /* FBSDKCoreKit_Basics-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FBSDKCoreKit_Basics-xcframeworks.sh"; sourceTree = "<group>"; };
+		D43218712D980D898C805DC29E79C22D /* FBAEMKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FBAEMKit-xcframeworks.sh"; sourceTree = "<group>"; };
 		DCFE927FF4A1809C598583EA14B3D82A /* Pods-CapstoneProjectTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CapstoneProjectTests"; path = Pods_CapstoneProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B26FCFDC63C14F70100A40620C508E /* Pods-CapstoneProjectTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CapstoneProjectTests.modulemap"; sourceTree = "<group>"; };
-		E7B318545F108D862B8F30BBF07138B7 /* FBSDKLoginKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = FBSDKLoginKit.xcframework; path = XCFrameworks/FBSDKLoginKit.xcframework; sourceTree = "<group>"; };
 		E90891CD40286441BC7DBF5182D91658 /* Pods-CapstoneProject-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CapstoneProject-Info.plist"; sourceTree = "<group>"; };
-		EC70EC629D3D1E824E5D47E7961853C0 /* FBAEMKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBAEMKit.debug.xcconfig; sourceTree = "<group>"; };
+		EA4F0074683E24D294F1138D2759E824 /* FBAEMKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = FBAEMKit.xcframework; path = XCFrameworks/FBAEMKit.xcframework; sourceTree = "<group>"; };
+		F1C2E35BD9CB501D74F49947233B58FA /* FBSDKLoginKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKLoginKit.release.xcconfig; sourceTree = "<group>"; };
+		F698E3F80CFA81D02F2994CB3E2DCC57 /* FBSDKCoreKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit.debug.xcconfig; sourceTree = "<group>"; };
 		F69DCE8C65D620D6EB47BD95BC65F54C /* Pods-CapstoneProject-CapstoneProjectUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CapstoneProject-CapstoneProjectUITests-dummy.m"; sourceTree = "<group>"; };
 		F6AF813A9DBAD8C5C214DD9CB547878B /* Pods-CapstoneProject-CapstoneProjectUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CapstoneProject-CapstoneProjectUITests-frameworks.sh"; sourceTree = "<group>"; };
-		F99B0F40D87BE2F52589B9B52F134E2B /* FBSDKCoreKit_Basics.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = FBSDKCoreKit_Basics.xcframework; path = XCFrameworks/FBSDKCoreKit_Basics.xcframework; sourceTree = "<group>"; };
+		F71F89E26AB573AFAC23ACAC57C8DFE5 /* DTTimePeriodChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodChain.m; path = DateTools/DateTools/DTTimePeriodChain.m; sourceTree = "<group>"; };
+		F86072890C47CCCCF54D532F08776020 /* NSDate+DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+DateTools.h"; path = "DateTools/DateTools/NSDate+DateTools.h"; sourceTree = "<group>"; };
+		F9AAC61C0940605B391985DAB0B11B48 /* DTTimePeriodChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodChain.h; path = DateTools/DateTools/DTTimePeriodChain.h; sourceTree = "<group>"; };
+		F9B7867F9DC47BF6465F9E2738433A02 /* DateTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DateTools-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		058254F9372A05551E2A9F33DCF75C0E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E469415CC2DB29606FCBC93B2642ECB6 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		12B1C8A3E99E180AE54C4A0F1F718245 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,53 +275,82 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D067CF64C9ABA7D2903639563C3042A /* Frameworks */ = {
+		5752144C74C95FD6B2E76122C3FD5083 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5256BFC708D839759F92AFE634BDC73A /* Foundation.framework in Frameworks */,
+				D7DB40E8F61A23AF5CAEA316E3D74937 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		792BD62F9C42B9F6DC389C6ACC28BA54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3136D3C60FDD07B86D28AD76621B8AF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A018AC0AE98C36111E1BC1F5EB3380FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B61E0ACA4A1EBCE1D362BB4CFEBDAF68 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		09D3C43B690561F0D90D1630485C6E27 /* Frameworks */ = {
+		016F9A01E0A9AAA8386DB237EDD4A53F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F99B0F40D87BE2F52589B9B52F134E2B /* FBSDKCoreKit_Basics.xcframework */,
+				EA4F0074683E24D294F1138D2759E824 /* FBAEMKit.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		244E1277BE62D22EEC2BACC7BBB5CA62 /* Support Files */ = {
+		029143742F7BBBF2F12FFA9676191083 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				801E164FEC5D4FB901637693081ABF9B /* FBSDKLoginKit-xcframeworks.sh */,
-				BD89167A35A6A57EA6B1B9B9F3F26032 /* FBSDKLoginKit.debug.xcconfig */,
-				055F35A855A46DE8568050DBDA4F3215 /* FBSDKLoginKit.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FBSDKLoginKit";
-			sourceTree = "<group>";
-		};
-		2C58D0B4869E299587DC419752182C37 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D2E7697D962BA32517093D8AF288AA77 /* FBSDKCoreKit-xcframeworks.sh */,
-				56EF0EFC931B00CC98D40430A90194AE /* FBSDKCoreKit.debug.xcconfig */,
-				C8C6F8D9A91E61295CE1F306C7255804 /* FBSDKCoreKit.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FBSDKCoreKit";
-			sourceTree = "<group>";
-		};
-		3AEB5A0D846B0E5B32E1BECB4F05DF12 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E7B318545F108D862B8F30BBF07138B7 /* FBSDKLoginKit.xcframework */,
+				0F6DB6B5E7AFD97F55E1AAEE3A1A04FE /* FBSDKCoreKit.xcframework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1AF6580861CED8346A56D1C917B18397 /* DateTools */ = {
+			isa = PBXGroup;
+			children = (
+				2B606D92425A87B099A775C696E455FC /* DateTools.h */,
+				94B7DC9AEC3B8B79A7460062AA37BB89 /* DTConstants.h */,
+				969DC18840AF34CD6D0CA37DE3DC4036 /* DTConstants.m */,
+				63634E2C710E4BAF37721BC510DE206B /* DTError.h */,
+				2E71EFB025962CBB0E63747458A19876 /* DTError.m */,
+				0ACA611937F6C57E3F1A732565560FCA /* DTTimePeriod.h */,
+				45292AE52DB3288254811FEBD7DD580C /* DTTimePeriod.m */,
+				F9AAC61C0940605B391985DAB0B11B48 /* DTTimePeriodChain.h */,
+				F71F89E26AB573AFAC23ACAC57C8DFE5 /* DTTimePeriodChain.m */,
+				3771FD39F9D483580D7E0D96FA4CD828 /* DTTimePeriodCollection.h */,
+				79CABBD2F0FE54A410FD37D5B4E8F5F5 /* DTTimePeriodCollection.m */,
+				4C2F331876AB9E69C8815D59DEB3F581 /* DTTimePeriodGroup.h */,
+				44F6FDD145E3714B9EB7AA482109562F /* DTTimePeriodGroup.m */,
+				F86072890C47CCCCF54D532F08776020 /* NSDate+DateTools.h */,
+				082AFA1F5862D215E742092EF7615A27 /* NSDate+DateTools.m */,
+				E40B2C5D9B44789C5F699D144D3BBB78 /* Resources */,
+				EB621F6CA7792A009D7ACE848489F329 /* Support Files */,
+			);
+			name = DateTools;
+			path = DateTools;
+			sourceTree = "<group>";
+		};
+		2E0C70714BD68A7DF019C7B2D37B9676 /* FBSDKCoreKit_Basics */ = {
+			isa = PBXGroup;
+			children = (
+				91E93280860D500DFE284BF00321AA26 /* Frameworks */,
+				47BC5EA09C26E5EED8BEE6A6BC97CF76 /* Support Files */,
+			);
+			name = FBSDKCoreKit_Basics;
+			path = FBSDKCoreKit_Basics;
 			sourceTree = "<group>";
 		};
 		454D1772C15C47599954749477F81CDC /* Pods-CapstoneProject-CapstoneProjectUITests */ = {
@@ -292,23 +370,35 @@
 			path = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests";
 			sourceTree = "<group>";
 		};
+		47BC5EA09C26E5EED8BEE6A6BC97CF76 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CAD57AF632FE0D1635C93BAA2022A7AA /* FBSDKCoreKit_Basics-xcframeworks.sh */,
+				07A3EF0FB4029DB57B11DFE671126BF1 /* FBSDKCoreKit_Basics.debug.xcconfig */,
+				C81F4C45F639F02047CE849FF9E803E4 /* FBSDKCoreKit_Basics.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FBSDKCoreKit_Basics";
+			sourceTree = "<group>";
+		};
+		4DB5A36D6377C2CF038EA723E72DB64F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1AF6580861CED8346A56D1C917B18397 /* DateTools */,
+				BAE61137FDEDEB2E7916D6D2EB878C73 /* FBAEMKit */,
+				77B3A2626FD6B7FB411737DEB89E6A3A /* FBSDKCoreKit */,
+				2E0C70714BD68A7DF019C7B2D37B9676 /* FBSDKCoreKit_Basics */,
+				C8939B505630871CB9B16B4E1E6920A5 /* FBSDKLoginKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		5F251279E7EBFC16DAD82263B660B227 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AFA210CDA57FBFF5AB1CAC3A2B6D897E /* FBAEMKit-xcframeworks.sh */,
-				EC70EC629D3D1E824E5D47E7961853C0 /* FBAEMKit.debug.xcconfig */,
-				AC271F4651EE6ECD3590EC600A95B9A9 /* FBAEMKit.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FBAEMKit";
 			sourceTree = "<group>";
 		};
 		652E5410F79BEB36E8D8C397BB7ABAA4 /* Pods-CapstoneProject */ = {
@@ -328,33 +418,22 @@
 			path = "Target Support Files/Pods-CapstoneProject";
 			sourceTree = "<group>";
 		};
-		6D4448CE022842FFC47BDD61F8CE2E50 /* Frameworks */ = {
+		77B3A2626FD6B7FB411737DEB89E6A3A /* FBSDKCoreKit */ = {
 			isa = PBXGroup;
 			children = (
-				021C119046339CA3FD4779A57310693A /* FBSDKCoreKit.xcframework */,
+				029143742F7BBBF2F12FFA9676191083 /* Frameworks */,
+				B05044D5BF2EC96FF12560D8DD8423A5 /* Support Files */,
+			);
+			name = FBSDKCoreKit;
+			path = FBSDKCoreKit;
+			sourceTree = "<group>";
+		};
+		783B76C4C267856A44B150382A6832A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				99C5BF1FC61E01352B9A7C2013C9FEEB /* FBSDKLoginKit.xcframework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6DD9324788C70DE6E1D2F553E03E7D30 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6BE5213F5B774A01C96833B6D3087C6D /* FBSDKCoreKit_Basics-xcframeworks.sh */,
-				24072D45ECBFFF10571F8DE7E0A29780 /* FBSDKCoreKit_Basics.debug.xcconfig */,
-				3E8E69D7C40373EB7C9AAA8C31C6561E /* FBSDKCoreKit_Basics.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FBSDKCoreKit_Basics";
-			sourceTree = "<group>";
-		};
-		6F61346BD432118ABE3FC9922D808BFB /* FBSDKLoginKit */ = {
-			isa = PBXGroup;
-			children = (
-				3AEB5A0D846B0E5B32E1BECB4F05DF12 /* Frameworks */,
-				244E1277BE62D22EEC2BACC7BBB5CA62 /* Support Files */,
-			);
-			name = FBSDKLoginKit;
-			path = FBSDKLoginKit;
 			sourceTree = "<group>";
 		};
 		78BF84647BA01317AC09F41DC29FBB36 /* Pods-CapstoneProjectTests */ = {
@@ -373,22 +452,33 @@
 			path = "Target Support Files/Pods-CapstoneProjectTests";
 			sourceTree = "<group>";
 		};
-		B244ACAFADCAA2004439D0342D3E5603 /* FBSDKCoreKit_Basics */ = {
+		91E93280860D500DFE284BF00321AA26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09D3C43B690561F0D90D1630485C6E27 /* Frameworks */,
-				6DD9324788C70DE6E1D2F553E03E7D30 /* Support Files */,
-			);
-			name = FBSDKCoreKit_Basics;
-			path = FBSDKCoreKit_Basics;
-			sourceTree = "<group>";
-		};
-		BAF55A8CB508B9869BC21897687EC403 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				03DB54D6C6E018A44014308ED558AB17 /* FBAEMKit.xcframework */,
+				9599FB49AB6F3A08E21F6C394F2DE665 /* FBSDKCoreKit_Basics.xcframework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B05044D5BF2EC96FF12560D8DD8423A5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				958E2751382183942665D483E2F0C564 /* FBSDKCoreKit-xcframeworks.sh */,
+				F698E3F80CFA81D02F2994CB3E2DCC57 /* FBSDKCoreKit.debug.xcconfig */,
+				C5A94D78FDED39E5CD118A05A986D707 /* FBSDKCoreKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FBSDKCoreKit";
+			sourceTree = "<group>";
+		};
+		BAE61137FDEDEB2E7916D6D2EB878C73 /* FBAEMKit */ = {
+			isa = PBXGroup;
+			children = (
+				016F9A01E0A9AAA8386DB237EDD4A53F /* Frameworks */,
+				E8322E110DA693BAEF6A4EDF775B9BE1 /* Support Files */,
+			);
+			name = FBAEMKit;
+			path = FBAEMKit;
 			sourceTree = "<group>";
 		};
 		C3704583F20DF5F06B7366CE9A4E7589 /* Targets Support Files */ = {
@@ -401,14 +491,14 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		CC2DD7D7FCD91DCCD84F4928A5128B38 /* FBSDKCoreKit */ = {
+		C8939B505630871CB9B16B4E1E6920A5 /* FBSDKLoginKit */ = {
 			isa = PBXGroup;
 			children = (
-				6D4448CE022842FFC47BDD61F8CE2E50 /* Frameworks */,
-				2C58D0B4869E299587DC419752182C37 /* Support Files */,
+				783B76C4C267856A44B150382A6832A8 /* Frameworks */,
+				F948BCBA76ACB2AC036DB248B3607189 /* Support Files */,
 			);
-			name = FBSDKCoreKit;
-			path = FBSDKCoreKit;
+			name = FBSDKLoginKit;
+			path = FBSDKLoginKit;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -416,8 +506,8 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				FA9D709ADCFE9F2286C39E4049A18205 /* Pods */,
-				D8BBB2A46C08512B1CFC244F01E9D828 /* Products */,
+				4DB5A36D6377C2CF038EA723E72DB64F /* Pods */,
+				FD91A8749BE695CEE94B592F8A317A2B /* Products */,
 				C3704583F20DF5F06B7366CE9A4E7589 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -430,9 +520,55 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D8BBB2A46C08512B1CFC244F01E9D828 /* Products */ = {
+		E40B2C5D9B44789C5F699D144D3BBB78 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5E4BEF29B64D496A9EEF42C7FE8561C8 /* DateTools.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E8322E110DA693BAEF6A4EDF775B9BE1 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D43218712D980D898C805DC29E79C22D /* FBAEMKit-xcframeworks.sh */,
+				500532840A0D9B4E2383233EB0CBB1A8 /* FBAEMKit.debug.xcconfig */,
+				87BB24072ED71EB495F8171126A17D95 /* FBAEMKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FBAEMKit";
+			sourceTree = "<group>";
+		};
+		EB621F6CA7792A009D7ACE848489F329 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				25B9DB4C231B3C69BF2E7D1011F33278 /* DateTools.modulemap */,
+				F9B7867F9DC47BF6465F9E2738433A02 /* DateTools-dummy.m */,
+				B393C2642F3C0BBA76042B0F3F1E56AE /* DateTools-Info.plist */,
+				8160081F65A3AC7D2B1F9A0A29D9F9C1 /* DateTools-prefix.pch */,
+				A2F163AF036BB094A734BDDEE2B7217B /* DateTools-umbrella.h */,
+				0BF3D3F91348BBB5E9A8955D28A44939 /* DateTools.debug.xcconfig */,
+				55994A3A5A2BC6C295985CAC5D10F20C /* DateTools.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DateTools";
+			sourceTree = "<group>";
+		};
+		F948BCBA76ACB2AC036DB248B3607189 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				26CDAAEFA371AA9DC06D94DA9CB1883E /* FBSDKLoginKit-xcframeworks.sh */,
+				92EEE18645ED41330FC256A8B2A86276 /* FBSDKLoginKit.debug.xcconfig */,
+				F1C2E35BD9CB501D74F49947233B58FA /* FBSDKLoginKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FBSDKLoginKit";
+			sourceTree = "<group>";
+		};
+		FD91A8749BE695CEE94B592F8A317A2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4AF171581392AD234F23BE913F0C22FE /* DateTools */,
 				C65C7ED9C0C1E86E1FCE1DBD3AB9B2D6 /* Pods-CapstoneProject */,
 				96E68E6CE860132C0037124A6393AA7B /* Pods-CapstoneProject-CapstoneProjectUITests */,
 				DCFE927FF4A1809C598583EA14B3D82A /* Pods-CapstoneProjectTests */,
@@ -440,35 +576,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8D635C0E36113A84379F9823F5AFE87 /* FBAEMKit */ = {
-			isa = PBXGroup;
-			children = (
-				BAF55A8CB508B9869BC21897687EC403 /* Frameworks */,
-				5F251279E7EBFC16DAD82263B660B227 /* Support Files */,
-			);
-			name = FBAEMKit;
-			path = FBAEMKit;
-			sourceTree = "<group>";
-		};
-		FA9D709ADCFE9F2286C39E4049A18205 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E8D635C0E36113A84379F9823F5AFE87 /* FBAEMKit */,
-				CC2DD7D7FCD91DCCD84F4928A5128B38 /* FBSDKCoreKit */,
-				B244ACAFADCAA2004439D0342D3E5603 /* FBSDKCoreKit_Basics */,
-				6F61346BD432118ABE3FC9922D808BFB /* FBSDKLoginKit */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C437CFD7EF8C905A8308E5D0751439DA /* Headers */ = {
+		060F3B7E451081C9C89076E4F65A34A0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A5AB29865BB07C0964987AAD7707C54 /* Pods-CapstoneProject-CapstoneProjectUITests-umbrella.h in Headers */,
+				F3BC9DBA5642B1BB4AAC571BA06F5216 /* Pods-CapstoneProject-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51689948CD5F51E40E27E4E39D505D71 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B57763528946464DF4F9FEA9581DEB28 /* Pods-CapstoneProject-CapstoneProjectUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7603F910D03C1BD4B7C577C97D898459 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95498D702C97F1FB1C6283606BC0428C /* DateTools.h in Headers */,
+				BD8D708CDE65F627B60F6F5035176E29 /* DateTools-umbrella.h in Headers */,
+				90D5D0D165F0AD97AC48871DD99D0F61 /* DTConstants.h in Headers */,
+				200B314634FEDF16DF796244B841CB61 /* DTError.h in Headers */,
+				C9337CC57405866B0E2A220C70688D97 /* DTTimePeriod.h in Headers */,
+				AE7DF63E565B14769433FD67E41864E7 /* DTTimePeriodChain.h in Headers */,
+				20C460EE1C8D167897231C81D9ADD4B3 /* DTTimePeriodCollection.h in Headers */,
+				67772609BF7DD95D27F0CF992EC3CEB9 /* DTTimePeriodGroup.h in Headers */,
+				AED26DB9994500005093B1B7E4E69641 /* NSDate+DateTools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,17 +619,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5A0EC1A9BE23C8F8E284E829840A43C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				016DE69FE28CB1D4947462784BC80913 /* Pods-CapstoneProject-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		2B1A4F9261E8F421732B6CB1319CCC3E /* DateTools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79E33D1A5E434AD8B81AB8028FA07869 /* Build configuration list for PBXNativeTarget "DateTools" */;
+			buildPhases = (
+				7603F910D03C1BD4B7C577C97D898459 /* Headers */,
+				C444098FB10D525E0B0999A7CCDFE062 /* Sources */,
+				792BD62F9C42B9F6DC389C6ACC28BA54 /* Frameworks */,
+				EA5E23A87A7A4723F66A0216C6E9EE0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DateTools;
+			productName = DateTools;
+			productReference = 4AF171581392AD234F23BE913F0C22FE /* DateTools */;
+			productType = "com.apple.product-type.framework";
+		};
 		5502895F8146B9C36ABC0F89763EB066 /* Pods-CapstoneProjectTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5ADFBA69845C04B47960DA17E067DEE /* Build configuration list for PBXNativeTarget "Pods-CapstoneProjectTests" */;
@@ -503,7 +652,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B935F39993DB26DAA52BC0C72E89D857 /* PBXTargetDependency */,
+				95273ACAC31BF8F1372DE13E3A0BBA14 /* PBXTargetDependency */,
 			);
 			name = "Pods-CapstoneProjectTests";
 			productName = Pods_CapstoneProjectTests;
@@ -512,20 +661,21 @@
 		};
 		5F1246A1039FE9B0CC8AA4C6FD969748 /* Pods-CapstoneProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 99327D799DC4EB81E30CF17FE82F3622 /* Build configuration list for PBXNativeTarget "Pods-CapstoneProject" */;
+			buildConfigurationList = 15077E78D11AAC7EE67A979E5C2B83DA /* Build configuration list for PBXNativeTarget "Pods-CapstoneProject" */;
 			buildPhases = (
-				E5A0EC1A9BE23C8F8E284E829840A43C /* Headers */,
-				B5953A091A27429267C1C3AC3A6EE648 /* Sources */,
-				058254F9372A05551E2A9F33DCF75C0E /* Frameworks */,
-				F5D1B2851C8A0AF080141B69675A0D3E /* Resources */,
+				060F3B7E451081C9C89076E4F65A34A0 /* Headers */,
+				4DC474FA6DE7FDAE3651A7D498719439 /* Sources */,
+				5752144C74C95FD6B2E76122C3FD5083 /* Frameworks */,
+				DD5479107B5326868DA3A6D8E43CFC62 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				56C658273FF0EAC5C2753E8772266249 /* PBXTargetDependency */,
-				2B77FB219466AC014DE1CFD023DB0184 /* PBXTargetDependency */,
-				2AFACC45B96E49F9437C614802627C00 /* PBXTargetDependency */,
-				DC738324C8AB5CC83815D7B1B5FFBB45 /* PBXTargetDependency */,
+				CB8F836DE710D62121661A7CE83418A2 /* PBXTargetDependency */,
+				240CB4465040E1EABD82B917E7237ED3 /* PBXTargetDependency */,
+				45CCF4F4863E0B8071E9ACA0CE790A7D /* PBXTargetDependency */,
+				31D5047E6E85EBB29EF6023BE9CFD3F9 /* PBXTargetDependency */,
+				6734DDF9305AA8201F6A69A4CEC302B2 /* PBXTargetDependency */,
 			);
 			name = "Pods-CapstoneProject";
 			productName = Pods_CapstoneProject;
@@ -534,20 +684,21 @@
 		};
 		DF9296F5CFE4B9E8DA2102F4BDC6AD66 /* Pods-CapstoneProject-CapstoneProjectUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EFAF95EDB6304237B7A6254913043660 /* Build configuration list for PBXNativeTarget "Pods-CapstoneProject-CapstoneProjectUITests" */;
+			buildConfigurationList = 5FDF7CF2B148EBF222893185551A8F4D /* Build configuration list for PBXNativeTarget "Pods-CapstoneProject-CapstoneProjectUITests" */;
 			buildPhases = (
-				C437CFD7EF8C905A8308E5D0751439DA /* Headers */,
-				25154D80AB96AD6BADFBE147453D2BAE /* Sources */,
-				1D067CF64C9ABA7D2903639563C3042A /* Frameworks */,
-				D98934D1EAA9014B56E1AE287602AAF6 /* Resources */,
+				51689948CD5F51E40E27E4E39D505D71 /* Headers */,
+				9DA9B8201BEC3D75D52FD337358B7AAE /* Sources */,
+				A018AC0AE98C36111E1BC1F5EB3380FA /* Frameworks */,
+				CF2EED4DF52FE4D45EC99074DFC27186 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BE1F54CB436A0E4D30A286EA615B2566 /* PBXTargetDependency */,
-				3EEFAEC4E11BA7973311EFAC2DCFC658 /* PBXTargetDependency */,
-				0196538FE573855D96E2A8C1DA113EE2 /* PBXTargetDependency */,
-				DA28CAA5841FDF67BCBE610997340875 /* PBXTargetDependency */,
+				ACBDFA6E842CC8C28B36BFDD5D55F916 /* PBXTargetDependency */,
+				FDD15414624244E0499E8D77A6C9DE2B /* PBXTargetDependency */,
+				0FCFE048B30E3EDCD82AA44401FFAB87 /* PBXTargetDependency */,
+				0A83C023DBA075DFC2525DC7D57A6109 /* PBXTargetDependency */,
+				2DA1DBB723DA8420F4493E30986EBAD9 /* PBXTargetDependency */,
 			);
 			name = "Pods-CapstoneProject-CapstoneProjectUITests";
 			productName = Pods_CapstoneProject_CapstoneProjectUITests;
@@ -572,10 +723,11 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = D8BBB2A46C08512B1CFC244F01E9D828 /* Products */;
+			productRefGroup = FD91A8749BE695CEE94B592F8A317A2B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				2B1A4F9261E8F421732B6CB1319CCC3E /* DateTools */,
 				479BDBD165CD08E2159181E58CD2078F /* FBAEMKit */,
 				28907903AF6DD0AD321D92CD660E7E23 /* FBSDKCoreKit */,
 				8EA62FEAB23070050EFD4D4508D659E5 /* FBSDKCoreKit_Basics */,
@@ -595,17 +747,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D98934D1EAA9014B56E1AE287602AAF6 /* Resources */ = {
+		CF2EED4DF52FE4D45EC99074DFC27186 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F5D1B2851C8A0AF080141B69675A0D3E /* Resources */ = {
+		DD5479107B5326868DA3A6D8E43CFC62 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA5E23A87A7A4723F66A0216C6E9EE0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				563047727B7678C9710F5B9624EED406 /* DateTools.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,23 +787,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/FBSDKLoginKit/FBSDKLoginKit-xcframeworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		71CD0B926100C36B517BE2052E600140 /* [CP] Copy XCFrameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics-xcframeworks-input-files.xcfilelist",
-			);
-			name = "[CP] Copy XCFrameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics-xcframeworks-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics-xcframeworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A261CEA870C48433C3575F1CCC2BB166 /* [CP] Copy XCFrameworks */ = {
@@ -680,14 +823,31 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/FBSDKCoreKit/FBSDKCoreKit-xcframeworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EED7F5DE4C30C92F8CBFEB92D3E024AF /* [CP] Copy XCFrameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics-xcframeworks-input-files.xcfilelist",
+			);
+			name = "[CP] Copy XCFrameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics-xcframeworks-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics-xcframeworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		25154D80AB96AD6BADFBE147453D2BAE /* Sources */ = {
+		4DC474FA6DE7FDAE3651A7D498719439 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BAC176E2D474B42889C3ACE70CA7450 /* Pods-CapstoneProject-CapstoneProjectUITests-dummy.m in Sources */,
+				AF061BF9EF751EB393F6681AA6B67E2D /* Pods-CapstoneProject-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,94 +859,121 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5953A091A27429267C1C3AC3A6EE648 /* Sources */ = {
+		9DA9B8201BEC3D75D52FD337358B7AAE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E66240847DE9025FFE74627C2163BA6 /* Pods-CapstoneProject-dummy.m in Sources */,
+				F3D9945F25DFA4191479DEFDADD433F4 /* Pods-CapstoneProject-CapstoneProjectUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C444098FB10D525E0B0999A7CCDFE062 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D3F0A44893B7E6CBEFD7112B49D245E /* DateTools-dummy.m in Sources */,
+				DF70D6EDABDA7725EDFAD47C1A1C0696 /* DTConstants.m in Sources */,
+				01A759BFA12BB949FF8A7CF52AFEB6E4 /* DTError.m in Sources */,
+				7A7A528AD3A830353834C9A892A66319 /* DTTimePeriod.m in Sources */,
+				EDC207DEF02EC27A9BC15D5BCCDA3BDE /* DTTimePeriodChain.m in Sources */,
+				7CC2632C1AC6753DBFF8B9BB8E560BD7 /* DTTimePeriodCollection.m in Sources */,
+				E65398AEE59C720BDA95B832522E0AC3 /* DTTimePeriodGroup.m in Sources */,
+				9C52F522F38ED75488F74373D130D698 /* NSDate+DateTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0196538FE573855D96E2A8C1DA113EE2 /* PBXTargetDependency */ = {
+		0A83C023DBA075DFC2525DC7D57A6109 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FBSDKCoreKit_Basics;
 			target = 8EA62FEAB23070050EFD4D4508D659E5 /* FBSDKCoreKit_Basics */;
-			targetProxy = D07C7B655671DE8630227210B5B55854 /* PBXContainerItemProxy */;
+			targetProxy = 2D3ADFE2BC64DCA85C15475FCF511B6C /* PBXContainerItemProxy */;
 		};
-		2AFACC45B96E49F9437C614802627C00 /* PBXTargetDependency */ = {
+		0FCFE048B30E3EDCD82AA44401FFAB87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKCoreKit;
+			target = 28907903AF6DD0AD321D92CD660E7E23 /* FBSDKCoreKit */;
+			targetProxy = 1D5D670105FDDA3C27D2311A0842CA43 /* PBXContainerItemProxy */;
+		};
+		16BD57D80B7C6F53DB7D342753E4B57B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FBSDKCoreKit_Basics;
 			target = 8EA62FEAB23070050EFD4D4508D659E5 /* FBSDKCoreKit_Basics */;
-			targetProxy = AA1EB519B9C48A6B55227C7A27B70B75 /* PBXContainerItemProxy */;
+			targetProxy = 1CBF66BA3C532C60A9895D0E19F40AE4 /* PBXContainerItemProxy */;
 		};
-		2B77FB219466AC014DE1CFD023DB0184 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FBSDKCoreKit;
-			target = 28907903AF6DD0AD321D92CD660E7E23 /* FBSDKCoreKit */;
-			targetProxy = AB66561EAC7008E1423C4A8E98E29B22 /* PBXContainerItemProxy */;
-		};
-		3EEFAEC4E11BA7973311EFAC2DCFC658 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FBSDKCoreKit;
-			target = 28907903AF6DD0AD321D92CD660E7E23 /* FBSDKCoreKit */;
-			targetProxy = C27DF907624CA8E5E932D188FDCE76FE /* PBXContainerItemProxy */;
-		};
-		56C658273FF0EAC5C2753E8772266249 /* PBXTargetDependency */ = {
+		1ADEAE29B427039CB828979D75CDF70E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FBAEMKit;
 			target = 479BDBD165CD08E2159181E58CD2078F /* FBAEMKit */;
-			targetProxy = 676EDF880B3AC8C97E0CB472A92D0498 /* PBXContainerItemProxy */;
+			targetProxy = D8AF8DF114F34E21AC13F866C75E08C9 /* PBXContainerItemProxy */;
 		};
-		8017335E7BE5E4F2AA7C704D34F729C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FBSDKCoreKit_Basics;
-			target = 8EA62FEAB23070050EFD4D4508D659E5 /* FBSDKCoreKit_Basics */;
-			targetProxy = 02A4BE5D668F3B5CEA0FBEEE1CF2E5CD /* PBXContainerItemProxy */;
-		};
-		847FDCB19BF8828CA239B562DEC3B644 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FBSDKCoreKit_Basics;
-			target = 8EA62FEAB23070050EFD4D4508D659E5 /* FBSDKCoreKit_Basics */;
-			targetProxy = C59C6E8B3308D042FC87FF994BFD41F9 /* PBXContainerItemProxy */;
-		};
-		A9EE837649E2B6FE214F990788596C62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FBSDKCoreKit;
-			target = 28907903AF6DD0AD321D92CD660E7E23 /* FBSDKCoreKit */;
-			targetProxy = FCABB065035E5FAF2E3A00046BDEFF1F /* PBXContainerItemProxy */;
-		};
-		B0CD437C0BBA8546E54637443F048F6A /* PBXTargetDependency */ = {
+		240CB4465040E1EABD82B917E7237ED3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FBAEMKit;
 			target = 479BDBD165CD08E2159181E58CD2078F /* FBAEMKit */;
-			targetProxy = B4B596AFAD6406CBFBD4F7B5E4E0B35E /* PBXContainerItemProxy */;
+			targetProxy = 8353652BC71F1767839BB90A8276B30F /* PBXContainerItemProxy */;
 		};
-		B935F39993DB26DAA52BC0C72E89D857 /* PBXTargetDependency */ = {
+		2DA1DBB723DA8420F4493E30986EBAD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKLoginKit;
+			target = 10C5885FCB0908EF785774EE52473DAB /* FBSDKLoginKit */;
+			targetProxy = 40802C4B0FB14849AB7BAEC6B968C0AD /* PBXContainerItemProxy */;
+		};
+		31D5047E6E85EBB29EF6023BE9CFD3F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKCoreKit_Basics;
+			target = 8EA62FEAB23070050EFD4D4508D659E5 /* FBSDKCoreKit_Basics */;
+			targetProxy = 4F54198F750CB6CE2F1FB8447E207A74 /* PBXContainerItemProxy */;
+		};
+		45CCF4F4863E0B8071E9ACA0CE790A7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKCoreKit;
+			target = 28907903AF6DD0AD321D92CD660E7E23 /* FBSDKCoreKit */;
+			targetProxy = 1A6B9860F6C3C302C2561E9CD691BAF0 /* PBXContainerItemProxy */;
+		};
+		6734DDF9305AA8201F6A69A4CEC302B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKLoginKit;
+			target = 10C5885FCB0908EF785774EE52473DAB /* FBSDKLoginKit */;
+			targetProxy = CF40BBC33552739B49863C07192F3D42 /* PBXContainerItemProxy */;
+		};
+		7363E3F63C3FB93AEE83B3EE61E0719C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKCoreKit_Basics;
+			target = 8EA62FEAB23070050EFD4D4508D659E5 /* FBSDKCoreKit_Basics */;
+			targetProxy = BCBFB07956BF95FA583ECE85282B5AA5 /* PBXContainerItemProxy */;
+		};
+		95273ACAC31BF8F1372DE13E3A0BBA14 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-CapstoneProject";
 			target = 5F1246A1039FE9B0CC8AA4C6FD969748 /* Pods-CapstoneProject */;
-			targetProxy = 845FD893570F2F203A4F2C7AC8E2389B /* PBXContainerItemProxy */;
+			targetProxy = 1B07B1F6A561BC0B27B407E5712771B9 /* PBXContainerItemProxy */;
 		};
-		BE1F54CB436A0E4D30A286EA615B2566 /* PBXTargetDependency */ = {
+		ACBDFA6E842CC8C28B36BFDD5D55F916 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DateTools;
+			target = 2B1A4F9261E8F421732B6CB1319CCC3E /* DateTools */;
+			targetProxy = E5B7991AD57A8B67599BC19C2F2B9B46 /* PBXContainerItemProxy */;
+		};
+		CB8F836DE710D62121661A7CE83418A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DateTools;
+			target = 2B1A4F9261E8F421732B6CB1319CCC3E /* DateTools */;
+			targetProxy = 59959583D0E4FADF9DEBC794864EADDE /* PBXContainerItemProxy */;
+		};
+		D6AD9F3E14DFB3605FB5D7B6CC3CE313 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSDKCoreKit;
+			target = 28907903AF6DD0AD321D92CD660E7E23 /* FBSDKCoreKit */;
+			targetProxy = 815C3155B219040E9F991E3993EC53C1 /* PBXContainerItemProxy */;
+		};
+		FDD15414624244E0499E8D77A6C9DE2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FBAEMKit;
 			target = 479BDBD165CD08E2159181E58CD2078F /* FBAEMKit */;
-			targetProxy = 8C0EEE1B06433AB252380EB7D24866E2 /* PBXContainerItemProxy */;
-		};
-		DA28CAA5841FDF67BCBE610997340875 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FBSDKLoginKit;
-			target = 10C5885FCB0908EF785774EE52473DAB /* FBSDKLoginKit */;
-			targetProxy = 1E5D0F345BF77A993AB858F35A88972D /* PBXContainerItemProxy */;
-		};
-		DC738324C8AB5CC83815D7B1B5FFBB45 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FBSDKLoginKit;
-			target = 10C5885FCB0908EF785774EE52473DAB /* FBSDKLoginKit */;
-			targetProxy = F735B2EEDB12318549AE3AB0C1FD9B1F /* PBXContainerItemProxy */;
+			targetProxy = B532923B46CB49895A0DFE7714EE5593 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -857,9 +1044,47 @@
 			};
 			name = Debug;
 		};
+		1214543F00D84ADBAB66A4700F0CF0B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 338A0CDD73FE82E53F67851A6A27C737 /* Pods-CapstoneProject-CapstoneProjectUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		273A8B8CC56714E67783FB76650B523A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD89167A35A6A57EA6B1B9B9F3F26032 /* FBSDKLoginKit.debug.xcconfig */;
+			baseConfigurationReference = 92EEE18645ED41330FC256A8B2A86276 /* FBSDKLoginKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -876,7 +1101,7 @@
 		};
 		276B1CBE600B90E6F08B7A75A97FE393 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC70EC629D3D1E824E5D47E7961853C0 /* FBAEMKit.debug.xcconfig */;
+			baseConfigurationReference = 500532840A0D9B4E2383233EB0CBB1A8 /* FBAEMKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -890,6 +1115,44 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		2A4FF79871EE4F039EF34F1BFA88F179 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BB79A31D8DC96FA905D552F533DCB02 /* Pods-CapstoneProject.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CapstoneProject/Pods-CapstoneProject-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CapstoneProject/Pods-CapstoneProject.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		2DE0D8898245310716431F92FA4989FF /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -953,7 +1216,7 @@
 			};
 			name = Release;
 		};
-		3255A5145D014C76F7541AE0281DB984 /* Debug */ = {
+		316DD75B95D9072F975E1DC5D6B9F0EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81BC19CB72296DD4EF036ED9D10F4CD2 /* Pods-CapstoneProject.debug.xcconfig */;
 			buildSettings = {
@@ -990,27 +1253,9 @@
 			};
 			name = Debug;
 		};
-		3DDCC5BBB07FCA81DFF52C7704279A20 /* Release */ = {
+		3780B253F39F9850C8F58450986B2F09 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C8C6F8D9A91E61295CE1F306C7255804 /* FBSDKCoreKit.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		3E07DC5AA81D5CB20D5A5E77E0918C3A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24072D45ECBFFF10571F8DE7E0A29780 /* FBSDKCoreKit_Basics.debug.xcconfig */;
+			baseConfigurationReference = 07A3EF0FB4029DB57B11DFE671126BF1 /* FBSDKCoreKit_Basics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1025,9 +1270,9 @@
 			};
 			name = Debug;
 		};
-		535A0BFA2AA5677B8970E78B89D340F5 /* Release */ = {
+		3DDCC5BBB07FCA81DFF52C7704279A20 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC271F4651EE6ECD3590EC600A95B9A9 /* FBAEMKit.release.xcconfig */;
+			baseConfigurationReference = C5A94D78FDED39E5CD118A05A986D707 /* FBSDKCoreKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1043,41 +1288,21 @@
 			};
 			name = Release;
 		};
-		560E7BE7110731183F668BFFDE55743F /* Release */ = {
+		535A0BFA2AA5677B8970E78B89D340F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 338A0CDD73FE82E53F67851A6A27C737 /* Pods-CapstoneProject-CapstoneProjectUITests.release.xcconfig */;
+			baseConfigurationReference = 87BB24072ED71EB495F8171126A17D95 /* FBAEMKit.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1121,7 +1346,7 @@
 		};
 		57821C348C39408A19EC4E6A700A33E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56EF0EFC931B00CC98D40430A90194AE /* FBSDKCoreKit.debug.xcconfig */;
+			baseConfigurationReference = F698E3F80CFA81D02F2994CB3E2DCC57 /* FBSDKCoreKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1136,12 +1361,10 @@
 			};
 			name = Debug;
 		};
-		57FE2048572A28F7C7310026074D2040 /* Release */ = {
+		6677340F7FF313CD291629AC66D7A976 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BB79A31D8DC96FA905D552F533DCB02 /* Pods-CapstoneProject.release.xcconfig */;
+			baseConfigurationReference = 0BF3D3F91348BBB5E9A8955D28A44939 /* DateTools.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1150,61 +1373,21 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CapstoneProject/Pods-CapstoneProject-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/DateTools/DateTools-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DateTools/DateTools-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CapstoneProject/Pods-CapstoneProject.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/DateTools/DateTools.modulemap";
+				PRODUCT_MODULE_NAME = DateTools;
+				PRODUCT_NAME = DateTools;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		755837E9409EB9CBB2A02CA39AE6FC61 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE40BA21E34E2C29789B4FA681C89340 /* Pods-CapstoneProject-CapstoneProjectUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1213,7 +1396,7 @@
 		};
 		AC4B3FE6EE9F82FE425FEC1F15C6FCFE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 055F35A855A46DE8568050DBDA4F3215 /* FBSDKLoginKit.release.xcconfig */;
+			baseConfigurationReference = F1C2E35BD9CB501D74F49947233B58FA /* FBSDKLoginKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1266,9 +1449,80 @@
 			};
 			name = Debug;
 		};
-		EF16FB4CD95BE7E289581AA42F469DE4 /* Release */ = {
+		C075A551740138C995C593F899AD6D6A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E8E69D7C40373EB7C9AAA8C31C6561E /* FBSDKCoreKit_Basics.release.xcconfig */;
+			baseConfigurationReference = BE40BA21E34E2C29789B4FA681C89340 /* Pods-CapstoneProject-CapstoneProjectUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FF49FAB56A5747AE24ADBCAF22CE8C80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55994A3A5A2BC6C295985CAC5D10F20C /* DateTools.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/DateTools/DateTools-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DateTools/DateTools-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/DateTools/DateTools.modulemap";
+				PRODUCT_MODULE_NAME = DateTools;
+				PRODUCT_NAME = DateTools;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FFFE6567212A3FCC2C201C9359ECF65A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C81F4C45F639F02047CE849FF9E803E4 /* FBSDKCoreKit_Basics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1287,11 +1541,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		035656960A067353649EA423EF370480 /* Build configuration list for PBXAggregateTarget "FBSDKCoreKit_Basics" */ = {
+		15077E78D11AAC7EE67A979E5C2B83DA /* Build configuration list for PBXNativeTarget "Pods-CapstoneProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3E07DC5AA81D5CB20D5A5E77E0918C3A /* Debug */,
-				EF16FB4CD95BE7E289581AA42F469DE4 /* Release */,
+				316DD75B95D9072F975E1DC5D6B9F0EC /* Debug */,
+				2A4FF79871EE4F039EF34F1BFA88F179 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28FAA9EF63E852885EA13552FAC1BAAD /* Build configuration list for PBXAggregateTarget "FBSDKCoreKit_Basics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3780B253F39F9850C8F58450986B2F09 /* Debug */,
+				FFFE6567212A3FCC2C201C9359ECF65A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1314,11 +1577,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		99327D799DC4EB81E30CF17FE82F3622 /* Build configuration list for PBXNativeTarget "Pods-CapstoneProject" */ = {
+		5FDF7CF2B148EBF222893185551A8F4D /* Build configuration list for PBXNativeTarget "Pods-CapstoneProject-CapstoneProjectUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3255A5145D014C76F7541AE0281DB984 /* Debug */,
-				57FE2048572A28F7C7310026074D2040 /* Release */,
+				C075A551740138C995C593F899AD6D6A /* Debug */,
+				1214543F00D84ADBAB66A4700F0CF0B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79E33D1A5E434AD8B81AB8028FA07869 /* Build configuration list for PBXNativeTarget "DateTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6677340F7FF313CD291629AC66D7A976 /* Debug */,
+				FF49FAB56A5747AE24ADBCAF22CE8C80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1346,15 +1618,6 @@
 			buildConfigurations = (
 				273A8B8CC56714E67783FB76650B523A /* Debug */,
 				AC4B3FE6EE9F82FE425FEC1F15C6FCFE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EFAF95EDB6304237B7A6254913043660 /* Build configuration list for PBXNativeTarget "Pods-CapstoneProject-CapstoneProjectUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				755837E9409EB9CBB2A02CA39AE6FC61 /* Debug */,
-				560E7BE7110731183F668BFFDE55743F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -28,7 +28,7 @@
         
         formatter.dateStyle = NSDateFormatterShortStyle;     // Configure output format
         formatter.timeStyle = NSDateFormatterNoStyle;
-        self.post_time = [formatter stringFromDate:date];     // Convert Date to String
+        self.post_createdAt = [formatter stringFromDate:date];     // Convert Date to String
     }
     return self;
 }

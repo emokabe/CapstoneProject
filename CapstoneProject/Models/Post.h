@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *user_id; // App-scoped id of user
 @property (nonatomic, strong) NSString *post_id; // App-scoped id of user
 @property (nonatomic, strong) NSString *user_name; // App-scoped id of user
-@property (nonatomic, strong) NSString *post_time; // App-scoped id of user
+@property (nonatomic, strong) NSString *post_createdAt; // App-scoped id of user
 @property (nonatomic, strong) NSDate *post_date; // App-scoped id of user
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
