@@ -10,7 +10,7 @@
 #import "FBSDKLoginKit/FBSDKLoginKit.h"
 #import "QuestionFeedViewController.h"
 
-@interface FBLoginViewController ()
+@interface FBLoginViewController () <FBSDKLoginButtonDelegate>
 
 
 @end
@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.loginButton.delegate = self;
+    self.loginButton.permissions = @[@"public_profile", @"email", @"user_friends"];
     
 }
 
@@ -51,5 +54,29 @@
 
 }
 */
+
+- (void)loginButton:(FBSDKLoginButton * _Nonnull)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult * _Nullable)result error:(NSError * _Nullable)error {
+    if (error) {
+        NSLog(@"😫😫😫 Error logging in: %@", error.localizedDescription);
+        return;
+    }
+    
+    if (result.token) {
+        // Get user access token
+        //FBSDKAccessToken *token = result.token;
+        
+        // or NSLog(@"Token = %@", token);
+        NSLog(@"Token = %@", [FBSDKAccessToken currentAccessToken].tokenString);
+        NSLog(@"User ID = %@", [FBSDKAccessToken currentAccessToken].userID);
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UITabBarController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginSuccessPage"];
+        self.view.window.rootViewController = rootViewController;
+    }
+}
+
+- (void)loginButtonDidLogOut:(FBSDKLoginButton * _Nonnull)loginButton {
+    NSLog(@"User is logged out");
+}
 
 @end
