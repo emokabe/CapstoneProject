@@ -1,8 +1,12 @@
-# Capstone Project - *Name*
+# Emily's Capstone Project
 
 ## Description
 
-**Name** is a course collaboration app.
+This iOS app is a course collaboration tool where students can interact with each other's posts about course-related topics. Many of my core features will revolve around the Facebook SDK.
+
+To log into my app, the user will need to first log into their Facebook account or sign up for a new Facebook account to log in with through OAuth. Upon login, the user will see a feed of posts for the current course that the user is viewing. Each course is represented by a Facebook group, and all posts posted on the app are posted in the corresponding Facebook group.
+The user is also able to switch between viewing different courses on their app, and the course that they had been viewing during their last session will be stored in a backend database so that they can come back to it when logging in again.
+Finally, the user is able to compose a post in the selected course. Composing a post will cause a new post to pop up on the feed, and will also cause the post to be posted on the corresponding Facebook group as mentioned before.
 
 ## Wireframe
 
