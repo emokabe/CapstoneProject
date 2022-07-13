@@ -13,7 +13,7 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 
 ## Wireframe
 
-![Wireframe image](https://ibb.co/RzXBCf8)
+<a href="https://ibb.co/RzXBCf8"><img src="https://i.ibb.co/RzXBCf8/Updated-wireframe.jpg" alt="Updated-wireframe" border="0"></a>
 
 
 ## MVP Features
