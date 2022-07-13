@@ -9,9 +9,12 @@
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "FBSDKLoginKit/FBSDKLoginKit.h"
 #import "FBLoginViewController.h"
+#import "PostCell.h"
+#import "Post.h"
 
 @interface QuestionFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -19,22 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-        initWithGraphPath:@"/425184976239857/feed"
-        parameters:@{ @"fields": @"from, created_time, message"}
-        HTTPMethod:@"GET"];
     
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"%@", result[@"data"][0]);
-            NSLog(@"%@",
-                  [result[@"data"][0] class]);
-        } else {
-            NSLog(@"Error posting to feed: %@", error.localizedDescription);
-        }
-    }];
-    NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self fetchPosts];
 }
 
 
@@ -50,6 +42,26 @@
     self.view.window.rootViewController = loginViewController; // substitute, less elegant
 }
 
+-(void)fetchPosts {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+        initWithGraphPath:@"/425184976239857/feed"
+        parameters:@{ @"fields": @"from, created_time, message"}
+        HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result[@"data"]);
+            NSLog(@"%@",
+                  [result[@"data"] class]);
+            self.postArray = [Post postsWithArray:result[@"data"]];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+        }
+    }];
+    NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
+}
+
 
 /*
 #pragma mark - Navigation
@@ -62,13 +74,15 @@
 */
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    // TODO
-    return NULL;
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+        
+        [cell setPost:self.postArray[indexPath.row]];
+        
+        return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // TODO
-    return 0;
+    return self.postArray.count;
 }
 
 

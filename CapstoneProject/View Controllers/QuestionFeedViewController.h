@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 
+@property (nonatomic, strong) NSMutableArray *postArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

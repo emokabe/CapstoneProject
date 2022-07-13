@@ -54,7 +54,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="199" id="LWb-8h-ubS" customClass="PostCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="199" id="LWb-8h-ubS" customClass="PostCell">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="199"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LWb-8h-ubS" id="TEw-vj-WUp">
@@ -138,6 +138,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="logoutButton" destination="07e-zh-uNI" id="Ln3-jt-xJp"/>
+                        <outlet property="tableView" destination="6C7-zU-gqo" id="uvx-vp-UD8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Vf-R5-9fS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
