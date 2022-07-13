@@ -11,10 +11,12 @@
 #import "FBLoginViewController.h"
 #import "PostCell.h"
 #import "Post.h"
+#import "ComposeViewController.h"
 
 @interface QuestionFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -27,6 +29,11 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self fetchPosts];
+    
+    // Initialize a UIRefreshControl
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+        [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 
@@ -58,6 +65,7 @@
         } else {
             NSLog(@"Error posting to feed: %@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
     }];
     NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
 }
@@ -83,6 +91,11 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.postArray.count;
+}
+
+- (void)didPost:(nonnull Post *)post {
+    [self.postArray insertObject:post atIndex:0];
+    [self.tableView reloadData];
 }
 
 

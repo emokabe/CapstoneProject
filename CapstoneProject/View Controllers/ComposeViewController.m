@@ -33,6 +33,7 @@
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"%@", result);
+
         } else {
             NSLog(@"Error posting to feed: %@", error.localizedDescription);
         }
