@@ -20,4 +20,14 @@
     // Configure the view for the selected state
 }
 
+-(void)setPost:(Post *)post {
+    _post = post;
+    
+    self.nameLabel.text = post.user_name;
+    self.postText.text = post.textContent;
+    self.dateLabel.text = post.post_createdAt;
+    self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
+    NSLog(@"message = %@", self.postText.text);
+}
+
 @end

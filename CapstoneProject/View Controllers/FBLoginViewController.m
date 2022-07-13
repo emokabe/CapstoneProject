@@ -33,7 +33,7 @@
 - (IBAction)didTapLogin:(id)sender {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     
-    [login logInWithPermissions:@[@"public_profile", @"email"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult * _Nullable result, NSError * _Nullable error) {
+    [login logInWithPermissions:@[@"public_profile", @"email", @"user_posts", @"publish_to_groups", @"groups_show_list", @"groups_access_member_info", @"user_managed_groups"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult * _Nullable result, NSError * _Nullable error) {
         if (error) {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         } else if (result.declinedPermissions.count != 0) {
