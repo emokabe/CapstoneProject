@@ -31,9 +31,9 @@
     [self fetchPosts];
     
     // Initialize a UIRefreshControl
-        self.refreshControl = [[UIRefreshControl alloc] init];
-        [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
-        [self.tableView insertSubview:self.refreshControl atIndex:0];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 
@@ -42,7 +42,7 @@
     [logoutManager logOut];
     
     NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
-
+    
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FBLoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"FBLoginViewController"];
@@ -51,9 +51,9 @@
 
 -(void)fetchPosts {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-        initWithGraphPath:@"/425184976239857/feed"
-        parameters:@{ @"fields": @"from, created_time, message"}
-        HTTPMethod:@"GET"];
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
@@ -72,9 +72,9 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-        
+    
     [cell setPost:self.postArray[indexPath.row]];
-        
+    
     return cell;
 }
 
@@ -83,7 +83,6 @@
 }
 
 - (void)didPost:(nonnull Post *)post {
-    //[self.postArray insertObject:post atIndex:0];
     [self fetchPosts];
     [self.tableView reloadData];
 }
@@ -91,7 +90,6 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"composeSegue"]) {
         UINavigationController *navigationController = [segue destinationViewController];

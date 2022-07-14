@@ -31,9 +31,9 @@
 
 -(void)composePost {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-        initWithGraphPath:@"/425184976239857/feed"
-               parameters:@{ @"message": self.postText.text,}
-               HTTPMethod:@"POST"];
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"message": self.postText.text,}
+                                  HTTPMethod:@"POST"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
@@ -58,9 +58,9 @@
     __block Post *newPost = nil;
     
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-        initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
-        parameters:@{ @"fields": @"from, created_time, message"}
-        HTTPMethod:@"GET"];
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
@@ -77,9 +77,9 @@
 
 -(void)getPostWithID:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-        initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
-        parameters:@{ @"fields": @"from, created_time, message"}
-        HTTPMethod:@"GET"];
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
@@ -93,15 +93,5 @@
     }];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
