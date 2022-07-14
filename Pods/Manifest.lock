@@ -1,4 +1,5 @@
 PODS:
+  - DateTools (2.0.0)
   - FBAEMKit (14.1.0):
     - FBSDKCoreKit_Basics (= 14.1.0)
   - FBSDKCoreKit (14.1.0):
@@ -9,21 +10,24 @@ PODS:
     - FBSDKCoreKit (= 14.1.0)
 
 DEPENDENCIES:
+  - DateTools
   - FBSDKLoginKit
 
 SPEC REPOS:
   trunk:
+    - DateTools
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
     - FBSDKLoginKit
 
 SPEC CHECKSUMS:
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   FBAEMKit: a899515e45476027f73aef377b5cffadcd56ca3a
   FBSDKCoreKit: 24f8bc8d3b5b2a8c5c656a1329492a12e8efa792
   FBSDKCoreKit_Basics: 6e578c9bdc7aa1365dbbbde633c9ebb536bcaa98
   FBSDKLoginKit: 787de205d524c3a4b17d527916f1d066e4361660
 
-PODFILE CHECKSUM: 572a1e83add9c10c68e9754de1aa52e2239b21b8
+PODFILE CHECKSUM: fac72ead2b9fe623129a0f2480b21bcaf575f5db
 
 COCOAPODS: 1.11.3
