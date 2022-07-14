@@ -17,19 +17,20 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 
 
 ## MVP Features
-- [ ] Sign up with a new user profile through Facebook
-- [ ] Log in/out of app using Facebook credentials 
+- [X] Sign up with a new user profile through Facebook
+- [X] Log in/out of app using Facebook credentials 
 - [ ] Fade in/out animation when logging in/out
 - [ ] Show a progress SVG (using external library) while the feed loads
 - [ ] Select a course from a list to view its feed
-- [ ] Upon login, display feed for course that was viewed last during last login session
-- [ ] Compose a post and update the corresponding course feed
+- [X] Display the user feed
+- [ ] Upon login, display the feed for course that was viewed last during previous login session
+- [X] Compose a post and update the corresponding course feed
 - [ ] Tap gesture on screen to toggle on-screen keyboard
 
 
 ## Possible Stretch Features
 - [ ] Liking and unliking posts
-- [ ] If a valid session already exists, take the user straight to the home feed without logging in
+- [X] If a valid session already exists, take the user straight to the home feed without logging in
 - [ ] Selecting posts to put on a personal ToDo list
 - [ ] Comment on posts (Note: This is only possible with Facebook Pages, which may or may not be possible to use depending on permissions.)
 - [ ] A gamification of the app (e.g. The user gets points for each interaction they make with the app.)
