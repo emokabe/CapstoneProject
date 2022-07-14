@@ -7,6 +7,7 @@
 
 #import "ComposeViewController.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "Post.h"
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *postText;
@@ -25,6 +26,10 @@
 }
 
 - (IBAction)didTapPost:(id)sender {
+    [self composePost];
+}
+
+-(void)composePost {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
         initWithGraphPath:@"/425184976239857/feed"
                parameters:@{ @"message": self.postText.text,}
@@ -33,7 +38,8 @@
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"%@", result);
-
+            Post *post = [self createPostObject:result[@"id"]];
+            [self.delegate didPost:post];
         } else {
             NSLog(@"Error posting to feed: %@", error.localizedDescription);
         }
@@ -42,6 +48,26 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (Post *)createPostObject: (NSString* _Nullable)post_id {
+    
+    __block Post *newPost = nil;
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+        initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+        parameters:@{ @"fields": @"from, created_time, message"}
+        HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+            newPost = [[Post alloc] initWithDictionary:result];
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+        }
+    }];
+    
+    return newPost;
+}
 
 
 /*

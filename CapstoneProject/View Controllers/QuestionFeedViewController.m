@@ -13,7 +13,7 @@
 #import "Post.h"
 #import "ComposeViewController.h"
 
-@interface QuestionFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface QuestionFeedViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -84,9 +84,9 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
         
-        [cell setPost:self.postArray[indexPath.row]];
+    [cell setPost:self.postArray[indexPath.row]];
         
-        return cell;
+    return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
