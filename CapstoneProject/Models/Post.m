@@ -11,7 +11,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
-
+    
     if (self) {
         NSLog(@"%@", dictionary);
         self.user_id = dictionary[@"from"][@"id"];
@@ -25,11 +25,6 @@
         
         NSDate *date = [formatter dateFromString:createdAtOriginalString];     // Convert String to Date
         self.post_date = date;
-        
-        NSLog(@"createdAt = %@", createdAtOriginalString);
-        NSLog(@"class %@", [createdAtOriginalString class]);
-        NSLog(@"date = %@", date);
-        NSLog(@"post_date = %@", self.post_date);
         
         formatter.dateStyle = NSDateFormatterShortStyle;     // Configure output format
         formatter.timeStyle = NSDateFormatterNoStyle;
