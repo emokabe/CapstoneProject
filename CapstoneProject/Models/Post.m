@@ -21,10 +21,15 @@
         
         NSString *createdAtOriginalString = dictionary[@"created_time"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";     // Configure the input format to parse the date string
+        formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";     // Configure the input format to parse the date string
         
         NSDate *date = [formatter dateFromString:createdAtOriginalString];     // Convert String to Date
         self.post_date = date;
+        
+        NSLog(@"createdAt = %@", createdAtOriginalString);
+        NSLog(@"class %@", [createdAtOriginalString class]);
+        NSLog(@"date = %@", date);
+        NSLog(@"post_date = %@", self.post_date);
         
         formatter.dateStyle = NSDateFormatterShortStyle;     // Configure output format
         formatter.timeStyle = NSDateFormatterNoStyle;
