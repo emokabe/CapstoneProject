@@ -37,7 +37,6 @@
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"%@", result);
             Post *post = [self createPostObject:result[@"id"]];
             [self.delegate didPost:post];
         } else {
@@ -66,6 +65,7 @@
         }
     }];
     
+    NSLog(@"New post is %@", newPost);
     return newPost;
 }
 

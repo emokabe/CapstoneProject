@@ -94,7 +94,8 @@
 }
 
 - (void)didPost:(nonnull Post *)post {
-    [self.postArray insertObject:post atIndex:0];
+    //[self.postArray insertObject:post atIndex:0];
+    [self fetchPosts];
     [self.tableView reloadData];
 }
 
