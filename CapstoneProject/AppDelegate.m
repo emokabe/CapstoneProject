@@ -9,6 +9,7 @@
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "FBSDKLoginKit/FBSDKLoginKit.h"
+#import "Parse/Parse.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +22,28 @@
     // Override point for customization after application launch.
     [FBSDKLoginButton class];
     [FBSDKApplicationDelegate.sharedInstance application:application didFinishLaunchingWithOptions:launchOptions];
+    
+    ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        
+        configuration.applicationId = @"Ah8NtLvAUjjjk6zIro3QeC8S3g3bYmfSQT2CCuwX";
+        configuration.clientKey = @"WH4s0Z5NL8Aa2BxC202b1eqwLgtVAOBCnTpEF9u4";
+        configuration.server = @"https://parseapi.back4app.com";
+        
+        PFObject *post = [PFObject objectWithClassName:@"Post"];
+        post[@"post_id"] = @1337;
+        post[@"playerName"] = @"Sean Plott";
+        post[@"cheatMode"] = @NO;
+        [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Object saved!");
+            } else {
+                NSLog(@"Error: %@", error.description);
+            }
+        }];
+    }];
+    
+    [Parse initializeWithConfiguration:config];
+    
     return YES;
 }
 
