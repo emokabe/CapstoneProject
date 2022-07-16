@@ -1,0 +1,49 @@
+//
+//  SelectCourseViewController.m
+//  CapstoneProject
+//
+//  Created by Emily Ito Okabe on 7/15/22.
+//
+
+#import "SelectCourseViewController.h"
+#import "CourseCell.h"
+
+@interface SelectCourseViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
+@end
+
+@implementation SelectCourseViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    CourseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseCell"];
+    
+    [cell setCourse:self.courseArray[indexPath.row]];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.courseArray.count;
+}
+
+@end

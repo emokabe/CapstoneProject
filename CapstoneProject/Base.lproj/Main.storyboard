@@ -209,7 +209,7 @@
         <!--Select a Course-->
         <scene sceneID="EUZ-k0-GgN">
             <objects>
-                <viewController id="nDo-qd-Cv2" sceneMemberID="viewController">
+                <viewController id="nDo-qd-Cv2" customClass="SelectCourseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DG3-iC-CAq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,7 +218,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="109" id="BPH-Fr-szb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="109" id="BPH-Fr-szb" customClass="CourseCell">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BPH-Fr-szb" id="KXv-qF-Mau">
@@ -248,6 +248,10 @@
                                                 <constraint firstItem="M3p-02-uZi" firstAttribute="trailing" secondItem="CaM-On-eIz" secondAttribute="trailing" id="xHz-Sq-11S"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseAbbr" destination="M3p-02-uZi" id="946-zo-oOf"/>
+                                            <outlet property="courseName" destination="CaM-On-eIz" id="ymA-uP-PYE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -262,6 +266,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Select a Course" id="kif-fM-3e1"/>
+                    <connections>
+                        <outlet property="tableView" destination="xPl-S0-apg" id="FgU-bs-cc2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dc-Kw-83v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
