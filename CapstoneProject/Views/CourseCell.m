@@ -20,7 +20,7 @@
     // Configure the view for the selected state
 }
 
--(void)setCourseCell:(PFObject *)course {
+- (void)setCourseCell:(PFObject *)course {
     _course = course;
     
     self.courseName.text = course[@"course_name"];
