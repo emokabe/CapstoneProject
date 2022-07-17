@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-
 @end
 
 @implementation SelectCourseViewController
@@ -27,20 +26,28 @@
 }
 
 - (void)fetchCourses {
-    // construct query
+    [self getCoursesWithCompletion:^(NSArray *courses, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            self.courseArray = [NSMutableArray arrayWithArray:courses];
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+
+- (void)getCoursesWithCompletion:(void(^)(NSArray *courses, NSError *error))completion {
     PFQuery *query = [PFQuery queryWithClassName:@"Course"];
-    //[query whereKey:@"likesCount" greaterThan:@100];
     query.limit = 20;
 
     // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *courses, NSError *error) {
-        if (courses != nil) {
-            NSLog(@"Type: %@", [courses class]);
-            NSLog(@"Count = %lu", (unsigned long)courses.count);
-            self.courseArray = [NSMutableArray arrayWithArray:courses];
-            NSLog(@"Second course: %@", self.courseArray[1]);
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+        if (result != nil) {
+            NSMutableArray *courses = [NSMutableArray arrayWithArray:result];
+            completion(courses, nil);
         } else {
-            NSLog(@"%@", error.localizedDescription);
+            completion(nil, error);
         }
     }];
 }
@@ -57,16 +64,14 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     CourseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseCell"];
-    
-    [cell setCourse:self.courseArray[indexPath.row]];  // CHECK
+
+    [cell setCourseCell:self.courseArray[indexPath.row]];
     
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //NSLog(@"Count Later = %lu", (unsigned long)self.courseArray.count);
-    //return self.courseArray.count;
-    return 2;
+    return self.courseArray.count;
 }
 
 @end

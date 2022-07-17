@@ -249,8 +249,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="courseAbbr" destination="M3p-02-uZi" id="946-zo-oOf"/>
-                                            <outlet property="courseName" destination="CaM-On-eIz" id="ymA-uP-PYE"/>
+                                            <outlet property="courseAbbr" destination="CaM-On-eIz" id="L53-r5-P2o"/>
+                                            <outlet property="courseName" destination="M3p-02-uZi" id="cRB-kI-qeZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
