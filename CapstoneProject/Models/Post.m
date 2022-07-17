@@ -9,6 +9,7 @@
 
 @implementation Post
 
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
 

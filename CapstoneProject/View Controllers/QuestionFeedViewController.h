@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuestionFeedViewController : UIViewController
+@interface QuestionFeedViewController : UIViewController <UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 

@@ -140,7 +140,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Post"/>
                                 <connections>
-                                    <segue destination="jJ4-Fu-ear" kind="presentation" id="FhU-5a-82J"/>
+                                    <segue destination="jJ4-Fu-ear" kind="presentation" identifier="composeSegue" id="FhU-5a-82J"/>
                                 </connections>
                             </button>
                         </barButtonItem>
