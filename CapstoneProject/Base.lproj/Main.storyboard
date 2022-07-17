@@ -241,10 +241,10 @@
             </objects>
             <point key="canvasLocation" x="-1267" y="873"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="gYg-3f-lLb">
             <objects>
-                <tabBarController storyboardIdentifier="loginSuccessPage" automaticallyAdjustsScrollViewInsets="NO" id="FFh-Lf-ndx" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="loginSuccessPage" automaticallyAdjustsScrollViewInsets="NO" id="FFh-Lf-ndx" customClass="TabBarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8S7-tx-tY2"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cyN-Vi-yls">
