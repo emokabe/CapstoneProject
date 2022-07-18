@@ -19,7 +19,7 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 ## MVP Features
 - [X] Sign up with a new user profile through Facebook
 - [X] Log in/out of app using Facebook credentials 
-- [ ] Fade in/out animation when logging in/out
+- [ ] Animation of screen filling up with objects (e.g. coins, stars) as user interaction with app increases (a gamification of the app)
 - [ ] Show a progress SVG (using external library) while the feed loads
 - [ ] Select a course from a list to view its feed
 - [X] Display the user feed
@@ -32,8 +32,22 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 - [ ] Liking and unliking posts
 - [X] If a valid session already exists, take the user straight to the home feed without logging in
 - [ ] Selecting posts to put on a personal ToDo list
-- [ ] Comment on posts (Note: This is only possible with Facebook Pages, which may or may not be possible to use depending on permissions.)
-- [ ] A gamification of the app (e.g. The user gets points for each interaction they make with the app.)
+- [ ] Comment on posts by mapping each Facebook post to an array of comments using a database
+- [ ] Let user search for new courses to join, so that not all courses in the database are automatically added to the user's course list
+
+
+## Edit Log
+
+----- Thursday, July 14 -----
+
+
+
+----- Friday, July 15 -----
+
+
+
+----- Monday, July 17 -----
+
  
  
 ## Credits
