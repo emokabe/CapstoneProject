@@ -8,6 +8,7 @@
 #import "ComposeViewController.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "Post.h"
+#import "Parse/Parse.h"
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *postText;
@@ -44,8 +45,19 @@
                     NSLog(@"Success!");
                     
                     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-                    NSString *str = [saved stringForKey:@"currentCourse"];
-                    NSLog(@"Current course: %@", str);
+                    NSString *courseId = [saved stringForKey:@"currentCourse"];
+                    NSLog(@"Current course: %@", courseId);
+                    
+                    PFObject *newPost = [PFObject objectWithClassName:@"Post"];
+                    newPost[@"course_ObjectId"] = courseId;
+                    //gameScore[@"comments"] = [[NSMutableArray alloc] init];
+                    [newPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+                            NSLog(@"Object saved!");
+                        } else {
+                            NSLog(@"Error: %@", error.description);
+                        }
+                    }];
                     
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self.delegate didPost:post];
