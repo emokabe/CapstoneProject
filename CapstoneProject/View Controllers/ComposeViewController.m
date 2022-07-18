@@ -42,6 +42,11 @@
                     NSLog(@"Error getting post: %@", err.localizedDescription);
                 } else {
                     NSLog(@"Success!");
+                    
+                    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+                    NSString *str = [saved stringForKey:@"currentCourse"];
+                    NSLog(@"Current course: %@", str);
+                    
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self.delegate didPost:post];
                 }
