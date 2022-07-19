@@ -236,17 +236,69 @@
             </objects>
             <point key="canvasLocation" x="4924.6376811594209" y="872.54464285714278"/>
         </scene>
-        <!--View Controller-->
+        <!--Select a Course-->
         <scene sceneID="EUZ-k0-GgN">
             <objects>
-                <viewController id="nDo-qd-Cv2" sceneMemberID="viewController">
+                <viewController id="nDo-qd-Cv2" customClass="SelectCourseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DG3-iC-CAq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xPl-S0-apg">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CourseCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" rowHeight="109" id="BPH-Fr-szb" customClass="CourseCell">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="109"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BPH-Fr-szb" id="KXv-qF-Mau">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENGR 40M" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaM-On-eIz">
+                                                    <rect key="frame" x="30" y="19" width="356" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An Intro to Making: What is EE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3p-02-uZi">
+                                                    <rect key="frame" x="30" y="61" width="356" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="M3p-02-uZi" firstAttribute="leading" secondItem="CaM-On-eIz" secondAttribute="leading" id="O8x-aR-HUh"/>
+                                                <constraint firstAttribute="bottom" secondItem="M3p-02-uZi" secondAttribute="bottom" constant="26" id="bka-FI-YeR"/>
+                                                <constraint firstAttribute="trailing" secondItem="CaM-On-eIz" secondAttribute="trailing" constant="28" id="c3o-w5-xX4"/>
+                                                <constraint firstItem="CaM-On-eIz" firstAttribute="leading" secondItem="KXv-qF-Mau" secondAttribute="leading" constant="30" id="fGX-Jg-IY8"/>
+                                                <constraint firstItem="CaM-On-eIz" firstAttribute="top" secondItem="KXv-qF-Mau" secondAttribute="top" constant="19" id="jPS-XO-XO8"/>
+                                                <constraint firstItem="M3p-02-uZi" firstAttribute="top" secondItem="CaM-On-eIz" secondAttribute="bottom" constant="12" id="rvO-3p-22h"/>
+                                                <constraint firstItem="M3p-02-uZi" firstAttribute="trailing" secondItem="CaM-On-eIz" secondAttribute="trailing" id="xHz-Sq-11S"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseAbbr" destination="CaM-On-eIz" id="L53-r5-P2o"/>
+                                            <outlet property="courseName" destination="M3p-02-uZi" id="cRB-kI-qeZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dis-MN-r6h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xPl-S0-apg" firstAttribute="leading" secondItem="dis-MN-r6h" secondAttribute="leading" id="0nA-7p-ycr"/>
+                            <constraint firstItem="dis-MN-r6h" firstAttribute="trailing" secondItem="xPl-S0-apg" secondAttribute="trailing" id="Gc4-Wg-77j"/>
+                            <constraint firstItem="dis-MN-r6h" firstAttribute="top" secondItem="xPl-S0-apg" secondAttribute="top" constant="88" id="Uw1-e6-sbh"/>
+                            <constraint firstItem="xPl-S0-apg" firstAttribute="bottom" secondItem="dis-MN-r6h" secondAttribute="bottom" constant="83" id="UxK-zZ-WM0"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="kif-fM-3e1"/>
+                    <navigationItem key="navigationItem" title="Select a Course" id="kif-fM-3e1"/>
+                    <connections>
+                        <outlet property="tableView" destination="xPl-S0-apg" id="FgU-bs-cc2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dc-Kw-83v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
