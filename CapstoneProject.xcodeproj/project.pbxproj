@@ -11,6 +11,7 @@
 		76A39FE0FECDB0E40A1CB644 /* Pods_CapstoneProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646B9531342764967FC8DCA9 /* Pods_CapstoneProjectTests.framework */; };
 		BE05CF3328820E1500899BE9 /* SelectCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05CF3228820E1500899BE9 /* SelectCourseViewController.m */; };
 		BE05CF3628820F4400899BE9 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05CF3528820F4400899BE9 /* CourseCell.m */; };
+		BE05CF302880C97D00899BE9 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05CF2F2880C97D00899BE9 /* TabBarViewController.m */; };
 		BE1762E3287BDE0300B7DD03 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */; };
 		BE8277D7287C8DDD0059B509 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8277D6287C8DDD0059B509 /* PostCell.m */; };
 		BE8277DB287C91230059B509 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8277DA287C91230059B509 /* Post.m */; };
@@ -56,6 +57,8 @@
 		BE05CF3228820E1500899BE9 /* SelectCourseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCourseViewController.m; sourceTree = "<group>"; };
 		BE05CF3428820F4400899BE9 /* CourseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseCell.h; sourceTree = "<group>"; };
 		BE05CF3528820F4400899BE9 /* CourseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseCell.m; sourceTree = "<group>"; };
+		BE05CF2E2880C97D00899BE9 /* TabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		BE05CF2F2880C97D00899BE9 /* TabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		BE1762E1287BDE0300B7DD03 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		BE8277D5287C8DDD0059B509 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */,
 				BE05CF3128820E1500899BE9 /* SelectCourseViewController.h */,
 				BE05CF3228820E1500899BE9 /* SelectCourseViewController.m */,
+				BE05CF2E2880C97D00899BE9 /* TabBarViewController.h */,
+				BE05CF2F2880C97D00899BE9 /* TabBarViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -470,6 +475,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE05CF302880C97D00899BE9 /* TabBarViewController.m in Sources */,
+				BEDF11552874FA0A00B080A4 /* ViewController.m in Sources */,
 				BEDF114F2874FA0A00B080A4 /* AppDelegate.m in Sources */,
 				BEDF11602874FA0A00B080A4 /* main.m in Sources */,
 				BE8277D7287C8DDD0059B509 /* PostCell.m in Sources */,

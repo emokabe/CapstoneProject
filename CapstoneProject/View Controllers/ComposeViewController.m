@@ -7,6 +7,7 @@
 
 #import "ComposeViewController.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "Post.h"
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *postText;
@@ -25,33 +26,72 @@
 }
 
 - (IBAction)didTapPost:(id)sender {
+    [self composePost];
+}
+
+-(void)composePost {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-        initWithGraphPath:@"/425184976239857/feed"
-               parameters:@{ @"message": self.postText.text,}
-               HTTPMethod:@"POST"];
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"message": self.postText.text,}
+                                  HTTPMethod:@"POST"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"%@", result);
-
+            [self getPostWithID:result[@"id"] completion:^(Post *post, NSError *err) {
+                if (err) {
+                    NSLog(@"Error getting post: %@", err.localizedDescription);
+                } else {
+                    NSLog(@"Success!");
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self.delegate didPost:post];
+                }
+            }];
         } else {
             NSLog(@"Error posting to feed: %@", error.localizedDescription);
         }
     }];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (Post *)createPostObject: (NSString* _Nullable)post_id {
+    
+    __block Post *newPost = nil;
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+            newPost = [[Post alloc] initWithDictionary:result];
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+        }
+    }];
+    
+    NSLog(@"New post is %@", newPost);
+    return newPost;
 }
-*/
+
+-(void)getPostWithID:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+            Post *post = [[Post alloc] initWithDictionary:result];
+            completion(post, nil);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
 
 @end

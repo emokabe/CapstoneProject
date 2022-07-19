@@ -9,9 +9,10 @@
 
 @implementation Post
 
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
-
+    
     if (self) {
         NSLog(@"%@", dictionary);
         self.user_id = dictionary[@"from"][@"id"];
@@ -21,7 +22,7 @@
         
         NSString *createdAtOriginalString = dictionary[@"created_time"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";     // Configure the input format to parse the date string
+        formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";     // Configure the input format to parse the date string
         
         NSDate *date = [formatter dateFromString:createdAtOriginalString];     // Convert String to Date
         self.post_date = date;

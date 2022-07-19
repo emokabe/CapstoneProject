@@ -12,23 +12,31 @@
 
 @interface FBLoginViewController () <FBSDKLoginButtonDelegate>
 
-
 @end
 
 @implementation FBLoginViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.loginButton.delegate = self;
     self.loginButton.permissions = @[@"public_profile", @"email", @"user_friends"];
-    
 }
 
-// TODO: write viewWillAppear method
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"Hi!");
+    
+    // if the user is already logged in
+    if ([FBSDKAccessToken currentAccessToken] != nil) {
+        NSLog(@"User ID = %@", [FBSDKAccessToken currentAccessToken].userID);
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UITabBarController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginSuccessPage"]; // loginSuccessPage
+        [self showViewController:rootViewController sender:nil];
+    }
+}
 
 - (IBAction)didTapLogin:(id)sender {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
@@ -42,20 +50,8 @@
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];
-    
-    // if press cancel instead of continue at login
-    // continues with segue, not getting right error
-    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-}
-*/
 
 - (void)loginButton:(FBSDKLoginButton * _Nonnull)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult * _Nullable)result error:(NSError * _Nullable)error {
     if (error) {
