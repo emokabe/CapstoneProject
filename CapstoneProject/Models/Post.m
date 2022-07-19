@@ -36,10 +36,13 @@
 
 + (NSMutableArray *)postsWithArray:(NSArray *)dictionaries {
     NSMutableArray *posts = [NSMutableArray array];
+    NSLog(@"postsWithArray posts: %@", posts);
     for (NSDictionary *dictionary in dictionaries) {
+        NSLog(@"postsWithArray dictionary: %@", dictionary);
         Post *post = [[Post alloc] initWithDictionary:dictionary];
         [posts addObject:post];
     }
+    NSLog(@"postsWithArray return value: %@", posts);
     return posts;
 }
 

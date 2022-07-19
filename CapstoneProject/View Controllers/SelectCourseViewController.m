@@ -74,4 +74,12 @@
     return self.courseArray.count;
 }
 
+/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *objectId = self.courseArray[indexPath.row][@"objectId"];
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    [saved setObject:objectId forKey:@"currentCourse"];
+}
+ */
+
 @end
