@@ -49,7 +49,7 @@
                     NSLog(@"Current course: %@", courseId);
                     
                     PFObject *newPost = [PFObject objectWithClassName:@"Post"];
-                    newPost[@"course_ObjectId"] = courseId;
+                    newPost[@"course_objectId"] = courseId;
                     //gameScore[@"comments"] = [[NSMutableArray alloc] init];
                     [newPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (succeeded) {
