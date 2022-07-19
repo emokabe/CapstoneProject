@@ -19,7 +19,7 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 ## MVP Features
 - [X] Sign up with a new user profile through Facebook
 - [X] Log in/out of app using Facebook credentials 
-- [ ] Fade in/out animation when logging in/out
+- [ ] Animation of screen filling up with objects (e.g. coins, stars) as user interaction with app increases (a gamification of the app)
 - [ ] Show a progress SVG (using external library) while the feed loads
 - [ ] Select a course from a list to view its feed
 - [X] Display the user feed
@@ -32,9 +32,31 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 - [ ] Liking and unliking posts
 - [X] If a valid session already exists, take the user straight to the home feed without logging in
 - [ ] Selecting posts to put on a personal ToDo list
-- [ ] Comment on posts (Note: This is only possible with Facebook Pages, which may or may not be possible to use depending on permissions.)
-- [ ] A gamification of the app (e.g. The user gets points for each interaction they make with the app.)
- 
+- [ ] Comment on posts by mapping each Facebook post to an array of comments using a database
+- [ ] Let user search for new courses to join, so that not all courses in the database are automatically added to the user's course list
+
+
+## Edit Log
+
+----- Thursday, July 14 -----
+- Fixed lingering bugs with displaying courses on the user feed
+    - [Link to update that mentions this change](https://fb.workplace.com/permalink.php?story_fbid=pfbid0TjSPX2d2mPZRrf3LxtMgoJYzJyWQ2cM2YprRs4xQtpYt4sjwC9NqNzXpM2otWzW3l&id=100081792760931)
+    - One of the issues was that after composing a post, the post was not displayed immediately on the timeline.
+        - The problem was that I forgot to write the prepareForSegue method; not setting the ComposeViewController's delegate as the QuestionFeedViewController was the main issue.
+        - The dates and timestamps also show up now; this bug was due to using the incorrect input format for the date formatter.
+
+
+----- Friday, July 15 -----
+- Added feature to display list of courses under a viewcontroller in a separate tab bar
+    - [Link to in-progress view of courses](https://fb.workplace.com/permalink.php?story_fbid=pfbid0TjSPX2d2mPZRrf3LxtMgoJYzJyWQ2cM2YprRs4xQtpYt4sjwC9NqNzXpM2otWzW3l&id=100081792760931)
+    - I use Parse to store Course objects, where each Course has a unique course_id. Each post on the Facebook Group will be mapped to a course_id, so that each course will have posts that are only affiliated with that course.
+
+
+----- Monday, July 17 -----
+- Added test animation for filling screen with objects as the user interacts more with the app
+    - [Link to Workplace Update with video demo](https://fb.workplace.com/permalink.php?story_fbid=pfbid02iB5YAGYFw1f9ZFE7mVKYgErcukmVHnrwXaQh5NAKPKuwztdTH84BJ7XyAZJBF59jl&id=100081792760931)
+    
+
  
 ## Credits
 
