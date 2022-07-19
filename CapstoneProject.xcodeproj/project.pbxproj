@@ -17,6 +17,9 @@
 		BE8277DB287C91230059B509 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8277DA287C91230059B509 /* Post.m */; };
 		BEA4666B28781C1F00D57C23 /* FBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA4666A28781C1F00D57C23 /* FBLoginViewController.m */; };
 		BEA4666E2878CF2500D57C23 /* QuestionFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA4666D2878CF2500D57C23 /* QuestionFeedViewController.m */; };
+		BEB9214A2884FC33004FA147 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB921492884FC33004FA147 /* GameViewController.m */; };
+		BEB9215028850864004FA147 /* ParticleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BEB9214F28850864004FA147 /* ParticleScene.sks */; };
+		BEB921562885089D004FA147 /* ParticleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB921552885089D004FA147 /* ParticleScene.m */; };
 		BEDF114F2874FA0A00B080A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF114E2874FA0A00B080A4 /* AppDelegate.m */; };
 		BEDF11522874FA0A00B080A4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF11512874FA0A00B080A4 /* SceneDelegate.m */; };
 		BEDF11582874FA0A00B080A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF11562874FA0A00B080A4 /* Main.storyboard */; };
@@ -70,6 +73,11 @@
 		BEA4666A28781C1F00D57C23 /* FBLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController.m; sourceTree = "<group>"; };
 		BEA4666C2878CF2500D57C23 /* QuestionFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionFeedViewController.h; sourceTree = "<group>"; };
 		BEA4666D2878CF2500D57C23 /* QuestionFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionFeedViewController.m; sourceTree = "<group>"; };
+		BEB921482884FC33004FA147 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		BEB921492884FC33004FA147 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		BEB9214F28850864004FA147 /* ParticleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ParticleScene.sks; sourceTree = "<group>"; };
+		BEB921542885089D004FA147 /* ParticleScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleScene.h; sourceTree = "<group>"; };
+		BEB921552885089D004FA147 /* ParticleScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParticleScene.m; sourceTree = "<group>"; };
 		BEDF114A2874FA0A00B080A4 /* CapstoneProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDF114D2874FA0A00B080A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BEDF114E2874FA0A00B080A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -174,8 +182,20 @@
 				BE05CF3228820E1500899BE9 /* SelectCourseViewController.m */,
 				BE05CF2E2880C97D00899BE9 /* TabBarViewController.h */,
 				BE05CF2F2880C97D00899BE9 /* TabBarViewController.m */,
+				BEB921482884FC33004FA147 /* GameViewController.h */,
+				BEB921492884FC33004FA147 /* GameViewController.m */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BEB9214E28850834004FA147 /* SpriteKit Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				BEB9214F28850864004FA147 /* ParticleScene.sks */,
+				BEB921542885089D004FA147 /* ParticleScene.h */,
+				BEB921552885089D004FA147 /* ParticleScene.m */,
+			);
+			path = "SpriteKit Scenes";
 			sourceTree = "<group>";
 		};
 		BEDF11412874FA0A00B080A4 = {
@@ -208,6 +228,9 @@
 				BEDF114E2874FA0A00B080A4 /* AppDelegate.m */,
 				BEDF11502874FA0A00B080A4 /* SceneDelegate.h */,
 				BEDF11512874FA0A00B080A4 /* SceneDelegate.m */,
+				BEDF11532874FA0A00B080A4 /* ViewController.h */,
+				BEDF11542874FA0A00B080A4 /* ViewController.m */,
+				BEB9214E28850834004FA147 /* SpriteKit Scenes */,
 				BE8277D8287C91040059B509 /* Models */,
 				BE8277D4287C8DAB0059B509 /* Views */,
 				BEA4666828781C0400D57C23 /* View Controllers */,
@@ -347,6 +370,7 @@
 			files = (
 				BEDF115D2874FA0A00B080A4 /* LaunchScreen.storyboard in Resources */,
 				BEDF115A2874FA0A00B080A4 /* Assets.xcassets in Resources */,
+				BEB9215028850864004FA147 /* ParticleScene.sks in Resources */,
 				BEDF11582874FA0A00B080A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,8 +500,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE05CF302880C97D00899BE9 /* TabBarViewController.m in Sources */,
+				BEB9214A2884FC33004FA147 /* GameViewController.m in Sources */,
 				BEDF11552874FA0A00B080A4 /* ViewController.m in Sources */,
 				BEDF114F2874FA0A00B080A4 /* AppDelegate.m in Sources */,
+				BEB921562885089D004FA147 /* ParticleScene.m in Sources */,
 				BEDF11602874FA0A00B080A4 /* main.m in Sources */,
 				BE8277D7287C8DDD0059B509 /* PostCell.m in Sources */,
 				BE8277DB287C91230059B509 /* Post.m in Sources */,
