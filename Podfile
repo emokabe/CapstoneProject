@@ -8,6 +8,7 @@ target 'CapstoneProject' do
   # Pods for CapstoneProject
   pod 'FBSDKLoginKit'
   pod 'DateTools'
+  pod 'Parse'
 
   target 'CapstoneProjectTests' do
     inherit! :search_paths
