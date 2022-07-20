@@ -105,7 +105,7 @@
                                             <outlet property="nameLabel" destination="bgV-G6-RZz" id="Fgo-Gg-Naa"/>
                                             <outlet property="postText" destination="aX1-Aq-cAU" id="yAM-Od-kj0"/>
                                             <outlet property="timestampLabel" destination="VbD-iK-BxT" id="eFF-Nv-lBj"/>
-                                            <segue destination="X95-fU-b2f" kind="show" id="jcq-FU-8fD"/>
+                                            <segue destination="X95-fU-b2f" kind="show" identifier="detailsSegue" id="jcq-FU-8fD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
