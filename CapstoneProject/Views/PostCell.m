@@ -13,14 +13,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
 
--(void)setPost:(Post *)post {
+- (void)setPost:(Post *)post {
     _post = post;
     
     self.titleLabel.text = post.titleContent;

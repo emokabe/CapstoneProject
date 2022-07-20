@@ -52,16 +52,6 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
- 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     CourseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseCell"];
 
@@ -73,13 +63,5 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.courseArray.count;
 }
-
-/*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *objectId = self.courseArray[indexPath.row][@"objectId"];
-    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    [saved setObject:objectId forKey:@"currentCourse"];
-}
- */
 
 @end

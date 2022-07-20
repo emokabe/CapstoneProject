@@ -17,8 +17,8 @@
         NSLog(@"%@", dictionary);
         self.user_id = dictionary[@"from"][@"id"];
         self.user_name = dictionary[@"from"][@"name"];
-        
-        NSLog(@"This is my message: %@", dictionary[@"message"]);
+        self.post_id = dictionary[@"id"];
+
         NSArray *arrayOfComponents = [dictionary[@"message"] componentsSeparatedByString:@"/0\n\n"];
         if ([arrayOfComponents count] == 3) {
             self.titleContent = arrayOfComponents[0];
@@ -28,8 +28,6 @@
             self.titleContent = [NSMutableString stringWithString:@""];
             self.textContent = [NSMutableString stringWithString:@""];
         }
-        
-        self.post_id = dictionary[@"id"];
         
         NSString *createdAtOriginalString = dictionary[@"created_time"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
