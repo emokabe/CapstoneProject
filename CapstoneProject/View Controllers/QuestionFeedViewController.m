@@ -12,6 +12,7 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "ComposeViewController.h"
+#import "SelectCourseViewController.h"
 #import "Parse/Parse.h"
 
 @interface QuestionFeedViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -57,25 +58,17 @@
     
     [self getAllPostsWithCompletion:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            NSLog(@"HELLO!");
             NSMutableArray *postsToBeQueried = [NSMutableArray array];
             for (Post *post in posts) {
-                NSLog(@"textcontent: %@", post.textContent);
                 NSArray *arrayOfComponents = [post.textContent componentsSeparatedByString:@"<?/!,,,,,,,,,,..,,,!>"];
                 if ([arrayOfComponents count] >= 2) {
-                    NSLog(@"first: %@", arrayOfComponents[0]);
-                    NSLog(@"second: %@", arrayOfComponents[1]);
                     if ([arrayOfComponents[1] isEqualToString:course_id]) {
-                        
-                        Post *p = post;
-                        p.textContent = arrayOfComponents[0];
-                        [postsToBeQueried addObject:p];
-                        NSLog(@"postsToBeQueried: %@", postsToBeQueried);
+                        post.textContent = arrayOfComponents[0];
+                        [postsToBeQueried addObject:post];
                     }
                 }
             }
             self.postArray = postsToBeQueried;
-            NSLog(@"postArray in fetchPosts: %@", postsToBeQueried);
             [self.tableView reloadData];
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
