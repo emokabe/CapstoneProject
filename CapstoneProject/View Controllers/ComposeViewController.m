@@ -11,6 +11,7 @@
 #import "Parse/Parse.h"
 
 @interface ComposeViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *postText;
 
 @end
@@ -19,7 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.titleText.layer.borderWidth = 1.0;
+    self.titleText.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.postText.layer.borderWidth = 1.0;
+    self.postText.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
 - (IBAction)didTapCancel:(id)sender {
@@ -34,10 +38,10 @@
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *courseId = [saved stringForKey:@"currentCourse"];
     
-    NSString *messageWithDelimiter = [NSString stringWithFormat:@"%@%@%@", self.postText.text, @"<?/!,,,,,,,,,,..,,,!>", courseId];
+    NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@%@%@", self.titleText.text, @"/0\n\n", self.postText.text, @"/0\n\n", courseId];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/425184976239857/feed"
-                                  parameters:@{ @"message": messageWithDelimiter}
+                                  parameters:@{ @"message": messageWithDelimiters}
                                   HTTPMethod:@"POST"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {

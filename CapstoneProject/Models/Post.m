@@ -17,7 +17,18 @@
         NSLog(@"%@", dictionary);
         self.user_id = dictionary[@"from"][@"id"];
         self.user_name = dictionary[@"from"][@"name"];
-        self.textContent = dictionary[@"message"];
+        
+        NSLog(@"This is my message: %@", dictionary[@"message"]);
+        NSArray *arrayOfComponents = [dictionary[@"message"] componentsSeparatedByString:@"/0\n\n"];
+        if ([arrayOfComponents count] == 3) {
+            self.titleContent = arrayOfComponents[0];
+            self.textContent = arrayOfComponents[1];
+            self.courses = arrayOfComponents[2];
+        } else {
+            self.titleContent = [NSMutableString stringWithString:@""];
+            self.textContent = [NSMutableString stringWithString:@""];
+        }
+        
         self.post_id = dictionary[@"id"];
         
         NSString *createdAtOriginalString = dictionary[@"created_time"];
@@ -40,7 +51,9 @@
     for (NSDictionary *dictionary in dictionaries) {
         NSLog(@"postsWithArray dictionary: %@", dictionary);
         Post *post = [[Post alloc] initWithDictionary:dictionary];
-        [posts addObject:post];
+        if (![post.titleContent isEqualToString:@""] && ![post.textContent isEqualToString: @""]) {
+            [posts addObject:post];
+        }
     }
     NSLog(@"postsWithArray return value: %@", posts);
     return posts;

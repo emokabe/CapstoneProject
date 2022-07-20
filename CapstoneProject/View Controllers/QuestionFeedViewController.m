@@ -60,12 +60,8 @@
         if (!error) {
             NSMutableArray *postsToBeQueried = [NSMutableArray array];
             for (Post *post in posts) {
-                NSArray *arrayOfComponents = [post.textContent componentsSeparatedByString:@"<?/!,,,,,,,,,,..,,,!>"];
-                if ([arrayOfComponents count] >= 2) {
-                    if ([arrayOfComponents[1] isEqualToString:course_id]) {
-                        post.textContent = arrayOfComponents[0];
-                        [postsToBeQueried addObject:post];
-                    }
+                if ([post.courses isEqualToString:course_id]) {
+                    [postsToBeQueried addObject:post];
                 }
             }
             self.postArray = postsToBeQueried;

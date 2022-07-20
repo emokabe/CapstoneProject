@@ -23,6 +23,7 @@
 -(void)setPost:(Post *)post {
     _post = post;
     
+    self.titleLabel.text = post.titleContent;
     self.nameLabel.text = post.user_name;
     self.postText.text = post.textContent;
     self.dateLabel.text = post.post_createdAt;
