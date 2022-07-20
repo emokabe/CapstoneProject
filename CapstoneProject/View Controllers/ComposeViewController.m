@@ -31,9 +31,13 @@
 }
 
 -(void)composePost {
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *courseId = [saved stringForKey:@"currentCourse"];
+    
+    NSString *messageWithDelimiter = [NSString stringWithFormat:@"%@%@%@", self.postText.text, @"<?/!,,,,,,,,,,..,,,!>", courseId];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/425184976239857/feed"
-                                  parameters:@{ @"message": self.postText.text,}
+                                  parameters:@{ @"message": messageWithDelimiter}
                                   HTTPMethod:@"POST"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
@@ -43,23 +47,6 @@
                     NSLog(@"Error getting post: %@", err.localizedDescription);
                 } else {
                     NSLog(@"Success!");
-                    
-                    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-                    NSString *courseId = [saved stringForKey:@"currentCourse"];
-                    NSLog(@"Current course: %@", courseId);
-                    
-                    PFObject *newPost = [PFObject objectWithClassName:@"Post"];
-                    newPost[@"post_id"] = result[@"id"];
-                    newPost[@"course_objectId"] = courseId;
-                    //gameScore[@"comments"] = [[NSMutableArray alloc] init];
-                    [newPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        if (succeeded) {
-                            NSLog(@"Object saved!");
-                        } else {
-                            NSLog(@"Error: %@", error.description);
-                        }
-                    }];
-                    
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self.delegate didPost:post];
                 }

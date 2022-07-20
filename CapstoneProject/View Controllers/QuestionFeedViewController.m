@@ -53,82 +53,53 @@
 - (void)fetchPosts {
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_id = [saved stringForKey:@"currentCourse"];
+    NSLog(@"course_id = %@", course_id);
     
-    [self getCoursePostsWithCompletion:course_id completion:^(NSArray *posts, NSError *error) {
+    [self getAllPostsWithCompletion:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            self.postArray = [Post postsWithArray:posts];
-            NSLog(@"postArray in fetchPosts: %@", posts);
+            NSLog(@"HELLO!");
+            NSMutableArray *postsToBeQueried = [NSMutableArray array];
+            for (Post *post in posts) {
+                NSLog(@"textcontent: %@", post.textContent);
+                NSArray *arrayOfComponents = [post.textContent componentsSeparatedByString:@"<?/!,,,,,,,,,,..,,,!>"];
+                if ([arrayOfComponents count] >= 2) {
+                    NSLog(@"first: %@", arrayOfComponents[0]);
+                    NSLog(@"second: %@", arrayOfComponents[1]);
+                    if ([arrayOfComponents[1] isEqualToString:course_id]) {
+                        
+                        Post *p = post;
+                        p.textContent = arrayOfComponents[0];
+                        [postsToBeQueried addObject:p];
+                        NSLog(@"postsToBeQueried: %@", postsToBeQueried);
+                    }
+                }
+            }
+            self.postArray = postsToBeQueried;
+            NSLog(@"postArray in fetchPosts: %@", postsToBeQueried);
             [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
-- (void)getCoursePostsWithCompletion:(NSString *)course_id completion:(void(^)(NSArray *posts, NSError *error))completion {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray *allPosts = [[NSMutableArray alloc] init];
-        [self getPostMappingsFromCourseWithCompletion:course_id completion:^(NSArray *postMappingsFromCourse, NSError *error) {
-            if (!error) {
-                for (NSDictionary *dict in postMappingsFromCourse) {
-                    NSLog(@"dict: %@", dict);
-                    NSLog(@"id of dict: %@", dict[@"post_id"]);
-                    
-                    [self getPostFromIdWithCompletion:dict[@"post_id"] completion:^(NSDictionary *post, NSError *error) {
-                        if (!error) {
-                            [allPosts addObject:post];
-                            NSLog(@"allPosts so far = %@", allPosts);
-                        } else {
-                            NSLog(@"Error getting post: %@", error.localizedDescription);
-                            completion(nil, error);
-                        }
-                    }];
-                }
-                NSLog(@"allPosts final = %@", allPosts);
-            } else {
-                NSLog(@"Error: %@", error.localizedDescription);
-            }
-        }];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"allPosts after dispatch block = %@", allPosts);
-            completion(allPosts, nil);
-        });
-    });
-}
-
-- (void)getPostFromIdWithCompletion:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion {
+- (void)getAllPostsWithCompletion:(void(^)(NSMutableArray *posts, NSError *error))completion {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  initWithGraphPath:@"/425184976239857/feed"
                                   parameters:@{ @"fields": @"from, created_time, message"}
                                   HTTPMethod:@"GET"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
-            NSDictionary *post = [NSDictionary dictionaryWithDictionary:result];
-            completion(post, nil);
-        } else {
-            completion(nil, error);
-        }
-    }];
-}
-
-- (void)getPostMappingsFromCourseWithCompletion:(NSString *)course_id completion:(void(^)(NSArray *posts, NSError *error))completion {
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"course_objectId" equalTo:course_id];
-    // TODO: add limit/load more posts
-
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
-        if (result != nil) {
-            NSMutableArray *posts = [NSMutableArray arrayWithArray:result];
-            NSLog(@"Selected Posts: %@", posts);
+            NSMutableArray *posts = [Post postsWithArray:result[@"data"]];
             completion(posts, nil);
         } else {
             completion(nil, error);
         }
     }];
 }
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
