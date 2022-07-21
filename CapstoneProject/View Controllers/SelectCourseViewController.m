@@ -79,7 +79,22 @@
     NSString *objectId = ((PFObject *) self.courseArray[indexPath.row]).objectId;
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     [saved setObject:objectId forKey:@"currentCourse"];
-    [self.tabBarController setSelectedIndex:0];
+
+    
+    //QuestionFeedViewController *questionfeedvc = self.tabBarController.viewControllers[0];
+    
+    UIView * fromView = self.tabBarController.selectedViewController.view;
+    UIView * toView = self.tabBarController.viewControllers[0].view;
+    
+    [UIView transitionFromView:fromView
+                            toView:toView
+                          duration:0.5
+                           options: UIViewAnimationOptionTransitionCrossDissolve
+                        completion:^(BOOL finished) {
+                            if (finished) {
+                                [self.tabBarController setSelectedIndex:0];
+                            }
+    }];
 }
 
 @end
