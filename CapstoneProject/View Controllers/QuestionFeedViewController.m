@@ -116,6 +116,7 @@
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
     }
+    // TODO: pass post information to details view
 }
 
 @end
