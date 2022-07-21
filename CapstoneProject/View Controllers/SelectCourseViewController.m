@@ -7,6 +7,7 @@
 
 #import "SelectCourseViewController.h"
 #import "CourseCell.h"
+#import "QuestionFeedViewController.h"
 
 @interface SelectCourseViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -72,6 +73,13 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.courseArray.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *objectId = ((PFObject *) self.courseArray[indexPath.row]).objectId;
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    [saved setObject:objectId forKey:@"currentCourse"];
+    [self.tabBarController setSelectedIndex:0];
 }
 
 @end
