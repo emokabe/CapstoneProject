@@ -52,10 +52,16 @@ Finally, the user is able to compose a post in the selected course. Composing a 
     - I use Parse to store Course objects, where each Course has a unique course_id. Each post on the Facebook Group will be mapped to a course_id, so that each course will have posts that are only affiliated with that course.
 
 
------ Monday, July 17 -----
+----- Monday, July 18 -----
 - Added test animation for filling screen with objects as the user interacts more with the app
     - [Link to Workplace Update with video demo](https://fb.workplace.com/permalink.php?story_fbid=pfbid02iB5YAGYFw1f9ZFE7mVKYgErcukmVHnrwXaQh5NAKPKuwztdTH84BJ7XyAZJBF59jl&id=100081792760931)
+
     
+----- Wednesday, July 20 -----
+- Added the ability for users to add a title to their post
+- Added title/post/course-id mapping so that the post feed now displays the posts with corresponding titles for the selected course
+    - Used a delimiter (/0) between each section
+-
 
  
 ## Credits
