@@ -19,7 +19,7 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 ## MVP Features
 - [X] Sign up with a new user profile through Facebook
 - [X] Log in/out of app using Facebook credentials 
-- [ ] Animation of screen filling up with objects (e.g. coins, stars) as user interaction with app increases (a gamification of the app)
+- [ ] Animations – fading in/out when switching views (TBD)
 - [ ] Show a progress SVG (using external library) while the feed loads
 - [ ] Select a course from a list to view its feed
 - [X] Display the user feed
@@ -34,6 +34,7 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 - [ ] Selecting posts to put on a personal ToDo list
 - [ ] Comment on posts by mapping each Facebook post to an array of comments using a database
 - [ ] Let user search for new courses to join, so that not all courses in the database are automatically added to the user's course list
+- [ ] A gamification of the app
 
 
 ## Edit Log
@@ -55,13 +56,24 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 ----- Monday, July 18 -----
 - Added test animation for filling screen with objects as the user interacts more with the app
     - [Link to Workplace Update with video demo](https://fb.workplace.com/permalink.php?story_fbid=pfbid02iB5YAGYFw1f9ZFE7mVKYgErcukmVHnrwXaQh5NAKPKuwztdTH84BJ7XyAZJBF59jl&id=100081792760931)
+    
+
+----- Tuesday, July 19 -----
+- Attempted to add a functionality to map questions to course-id using a Parse database, but realized that calling the Parse API many times was inefficient
+- Decided to add information to be mapped to the post message on Facebook itself, as discussed next
 
     
 ----- Wednesday, July 20 -----
 - Added the ability for users to add a title to their post
-- Added title/post/course-id mapping so that the post feed now displays the posts with corresponding titles for the selected course
-    - Used a delimiter (/0) between each section
--
+    - Added title/body/course-ids mapping all on one Facebook post so that the post feed now displays the posts with corresponding titles for the selected course
+    - Used a delimiter (/0) between each section with newlines to make the text legible on Facebook
+        - The final format I stored on Facebook is: "QuestionTitle/0\n\nQuestionBody/0\n\nCourseTag1,CourseTag2"
+    - [Link to Workplace Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid0HJXP2vRaD1isWBe84RutPajWnpHs2r7ai4Lch689wqdBVq2AHsNmaTnba3u3a2efl&id=100081792760931) with in-between process
+    - [Link to Github PR](https://github.com/emokabe/CapstoneProject/pull/16)
+    
+- Added UI for viewing post details and commenting on a post
+    - Can click on any post in the feed to see the text components that will be filled with the corresponding information
+    - Can click on "Answer this Question" button to see a view for posting an answer, with a cancel button that returns back to the details view
 
  
 ## Credits
