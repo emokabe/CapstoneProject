@@ -46,9 +46,6 @@
     
     if (result.token) {
         // Get user access token
-        //FBSDKAccessToken *token = result.token;
-        
-        // or NSLog(@"Token = %@", token);
         NSLog(@"Token = %@", [FBSDKAccessToken currentAccessToken].tokenString);
         NSLog(@"User ID = %@", [FBSDKAccessToken currentAccessToken].userID);
         
@@ -62,8 +59,7 @@
     self.view.window.rootViewController = rootViewController;
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    NSString *course_id = [saved stringForKey:@"bogus"];
-    //NSString *course_id = [saved stringForKey:@"currentCourse"];
+    NSString *course_id = [saved stringForKey:@"currentCourse"];
     
     if (!course_id) {
         [rootViewController setSelectedIndex:1];
