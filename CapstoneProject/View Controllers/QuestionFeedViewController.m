@@ -12,6 +12,8 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "ComposeViewController.h"
+#import "SelectCourseViewController.h"
+#import "Parse/Parse.h"
 
 @interface QuestionFeedViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -49,7 +51,29 @@
     self.view.window.rootViewController = loginViewController; // substitute, less elegant
 }
 
--(void)fetchPosts {
+- (void)fetchPosts {
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *course_id = [saved stringForKey:@"currentCourse"];
+    NSLog(@"course_id = %@", course_id);
+    
+    [self getAllPostsWithCompletion:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            NSMutableArray *postsToBeQueried = [NSMutableArray array];
+            for (Post *post in posts) {
+                if ([post.courses isEqualToString:course_id]) {
+                    [postsToBeQueried addObject:post];
+                }
+            }
+            self.postArray = postsToBeQueried;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+        [self.refreshControl endRefreshing];
+    }];
+}
+
+- (void)getAllPostsWithCompletion:(void(^)(NSMutableArray *posts, NSError *error))completion {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/425184976239857/feed"
                                   parameters:@{ @"fields": @"from, created_time, message"}
@@ -57,18 +81,14 @@
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"%@", result[@"data"]);
-            NSLog(@"%@",
-                  [result[@"data"] class]);
-            self.postArray = [Post postsWithArray:result[@"data"]];
-            [self.tableView reloadData];
+            NSMutableArray *posts = [Post postsWithArray:result[@"data"]];
+            completion(posts, nil);
         } else {
-            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+            completion(nil, error);
         }
-        [self.refreshControl endRefreshing];
     }];
-    NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
 }
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
