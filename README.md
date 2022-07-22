@@ -19,11 +19,11 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 ## MVP Features
 - [X] Sign up with a new user profile through Facebook
 - [X] Log in/out of app using Facebook credentials 
-- [ ] Animation of screen filling up with objects (e.g. coins, stars) as user interaction with app increases (a gamification of the app)
+- [X] Animations – fading in/out when switching views (TBD)
 - [ ] Show a progress SVG (using external library) while the feed loads
-- [ ] Select a course from a list to view its feed
+- [X] Select a course from a list to view its feed
 - [X] Display the user feed
-- [ ] Upon login, display the feed for course that was viewed last during previous login session
+- [X] Upon login, display the feed for course that was viewed last during previous login session
 - [X] Compose a post and update the corresponding course feed
 - [ ] Tap gesture on screen to toggle on-screen keyboard
 
@@ -32,8 +32,9 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 - [ ] Liking and unliking posts
 - [X] If a valid session already exists, take the user straight to the home feed without logging in
 - [ ] Selecting posts to put on a personal ToDo list
-- [ ] Comment on posts by mapping each Facebook post to an array of comments using a database
+- [ ] Comment on posts by mapping answers to post-id by posting them in the same Facebook post with delimiters
 - [ ] Let user search for new courses to join, so that not all courses in the database are automatically added to the user's course list
+- [ ] A gamification of the app
 
 
 ## Edit Log
@@ -52,10 +53,39 @@ Finally, the user is able to compose a post in the selected course. Composing a 
     - I use Parse to store Course objects, where each Course has a unique course_id. Each post on the Facebook Group will be mapped to a course_id, so that each course will have posts that are only affiliated with that course.
 
 
------ Monday, July 17 -----
+----- Monday, July 18 -----
 - Added test animation for filling screen with objects as the user interacts more with the app
     - [Link to Workplace Update with video demo](https://fb.workplace.com/permalink.php?story_fbid=pfbid02iB5YAGYFw1f9ZFE7mVKYgErcukmVHnrwXaQh5NAKPKuwztdTH84BJ7XyAZJBF59jl&id=100081792760931)
     
+
+----- Tuesday, July 19 -----
+- Attempted to add a functionality to map questions to course-id using a Parse database, but realized that calling the Parse API many times was inefficient
+- Decided to add information to be mapped to the post message on Facebook itself, as discussed next
+
+    
+----- Wednesday, July 20 -----
+- Added the ability for users to add a title to their post
+    - Added title/body/course-ids mapping all on one Facebook post so that the post feed now displays the posts with corresponding titles for the selected course
+    - Used a delimiter (/0) between each section with newlines to make the text legible on Facebook
+        - The final format I stored on Facebook is: "QuestionTitle/0\n\nQuestionBody/0\n\nCourseTag1,CourseTag2"
+    - [Link to Workplace Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid0HJXP2vRaD1isWBe84RutPajWnpHs2r7ai4Lch689wqdBVq2AHsNmaTnba3u3a2efl&id=100081792760931) with in-between process
+    - [Link to Github PR](https://github.com/emokabe/CapstoneProject/pull/16)
+    
+- Added UI for viewing post details and commenting on a post
+    - Can click on any post in the feed to see the text components that will be filled with the corresponding information
+    - Can click on "Answer this Question" button to see a view for posting an answer, with a cancel button that returns back to the details view
+    
+    
+----- Thursday, July 21 -----
+- Added functionality for selecting a course from a list of courses, saving the course id locally, then automatically switching back to the home question feed
+    - [Link to Workplace Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid0BjGGEjKykavLmzrngb1exZiawXHuMGdJ54iWaoRaKsCGF3Vajq7UHPkY7RM4fvm2l&id=100081792760931)
+    
+- Filled in the details in the post details view so that clicking on a post in the feed will lead to a view with the selected post's details
+    - For both this functionality and the next one, a segue is used to pass data between view controllers
+    - Have yet to add the profile picture of the poster -- this will require additional calls to the API, and API-calling methods will change with the implementation of dynamic fetching and caching
+- Added the UI of the view for commenting on a post
+
+    - Displays the question title/body and username of poster on the comment-composing view to make it easier to respond
 
  
 ## Credits
