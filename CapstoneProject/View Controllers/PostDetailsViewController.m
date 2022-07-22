@@ -27,21 +27,16 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"answerSegue"]) {
         
         Post *dataToPass = self.postInfo;
         
-        // 3 Get reference to destination controller
+        // Get reference to destination controller
         AnsweringViewController *answeringVC = (AnsweringViewController *)(((UINavigationController *)[segue destinationViewController]).topViewController);
         
-        NSLog(@"%@", answeringVC);
-        
-        // 4 Pass the local dictionary to the view controller property
-        answeringVC.postToAnswerInfo = dataToPass; // ERROR
-        
-        
+        // Pass the local dictionary to the view controller property
+        answeringVC.postToAnswerInfo = dataToPass;
     }
 }
 

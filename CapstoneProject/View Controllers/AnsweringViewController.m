@@ -17,7 +17,6 @@
     [super viewDidLoad];
     
     self.titleLabel.text = self.postToAnswerInfo.titleContent;
-    //self.profileImage.image =
     self.answeringToLabel.text = [NSString stringWithFormat:@"Answering %@'s question:", self.postToAnswerInfo.user_name];
     self.descriptionLabel.text = self.postToAnswerInfo.textContent;
     
