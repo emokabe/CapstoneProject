@@ -19,11 +19,11 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 ## MVP Features
 - [X] Sign up with a new user profile through Facebook
 - [X] Log in/out of app using Facebook credentials 
-- [ ] Animations – fading in/out when switching views (TBD)
+- [X] Animations – fading in/out when switching views (TBD)
 - [ ] Show a progress SVG (using external library) while the feed loads
-- [ ] Select a course from a list to view its feed
+- [X] Select a course from a list to view its feed
 - [X] Display the user feed
-- [ ] Upon login, display the feed for course that was viewed last during previous login session
+- [X] Upon login, display the feed for course that was viewed last during previous login session
 - [X] Compose a post and update the corresponding course feed
 - [ ] Tap gesture on screen to toggle on-screen keyboard
 
@@ -74,6 +74,18 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 - Added UI for viewing post details and commenting on a post
     - Can click on any post in the feed to see the text components that will be filled with the corresponding information
     - Can click on "Answer this Question" button to see a view for posting an answer, with a cancel button that returns back to the details view
+    
+    
+----- Thursday, July 21 -----
+- Added functionality for selecting a course from a list of courses, saving the course id locally, then automatically switching back to the home question feed
+    - [Link to Workplace Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid0BjGGEjKykavLmzrngb1exZiawXHuMGdJ54iWaoRaKsCGF3Vajq7UHPkY7RM4fvm2l&id=100081792760931)
+    
+- Filled in the details in the post details view so that clicking on a post in the feed will lead to a view with the selected post's details
+    - For both this functionality and the next one, a segue is used to pass data between view controllers
+    - Have yet to add the profile picture of the poster -- this will require additional calls to the API, and API-calling methods will change with the implementation of dynamic fetching and caching
+- Added the UI of the view for commenting on a post
+
+    - Displays the question title/body and username of poster on the comment-composing view to make it easier to respond
 
  
 ## Credits
