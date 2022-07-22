@@ -6,10 +6,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AnsweringViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UILabel *answeringToLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *answerText;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property (strong, nonatomic) Post *postToAnswerInfo;
 
 @end
 

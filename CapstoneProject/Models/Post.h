@@ -15,10 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableString *textContent; // Text content of post
 @property (nonatomic, strong) NSMutableString *courses; // Courses, separated by comma
 @property (nonatomic, strong) NSString *user_id; // App-scoped id of user
-@property (nonatomic, strong) NSString *post_id; // App-scoped id of user
-@property (nonatomic, strong) NSString *user_name; // App-scoped id of user
-@property (nonatomic, strong) NSString *post_createdAt; // App-scoped id of user
-@property (nonatomic, strong) NSDate *post_date; // App-scoped id of user
+@property (nonatomic, strong) NSString *post_id; // Post id of Facebook post
+@property (nonatomic, strong) NSString *user_name; // User's Facebook username
+@property (nonatomic, strong) NSString *post_createdAt; // Date of post: MM/DD/YY
+@property (nonatomic, strong) NSString *post_date_detailed; // Detailed date of post for details view
+@property (nonatomic, strong) NSDate *post_date; // Date of post as NSDate
+@property (nonatomic, strong) NSString *profilePic_url; // URL of profile image
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

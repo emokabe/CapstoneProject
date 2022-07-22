@@ -6,6 +6,7 @@
 //
 
 #import "PostDetailsViewController.h"
+#import "AnsweringViewController.h"
 
 @interface PostDetailsViewController ()
 
@@ -15,18 +16,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.titleLabel.text = self.postInfo.titleContent;
+    // TODO: set profile image: self.profileImage.image = ...
+    self.nameLabel.text = self.postInfo.user_name;
+    self.dateLabel.text = self.postInfo.post_date_detailed;
+    self.descriptionLabel.text = self.postInfo.textContent;
 }
 
-/*
-TODO: pass question data to answering view
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"answerSegue"]) {
+        
+        Post *dataToPass = self.postInfo;
+        
+        // 3 Get reference to destination controller
+        AnsweringViewController *answeringVC = (AnsweringViewController *)(((UINavigationController *)[segue destinationViewController]).topViewController);
+        
+        NSLog(@"%@", answeringVC);
+        
+        // 4 Pass the local dictionary to the view controller property
+        answeringVC.postToAnswerInfo = dataToPass; // ERROR
+        
+        
+    }
 }
-*/
 
 @end
