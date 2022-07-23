@@ -109,12 +109,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    NSString *course_id = [saved stringForKey:@"currentCourse"];
-    
     [self fetchPosts];
     [self.tableView reloadData];
-    NSLog(@"Current course id: %@", course_id);
 }
 
 
