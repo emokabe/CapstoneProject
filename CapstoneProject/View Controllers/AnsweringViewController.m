@@ -15,7 +15,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.titleLabel.text = self.postToAnswerInfo.titleContent;
+    self.answeringToLabel.text = [NSString stringWithFormat:@"Answering %@'s question:", self.postToAnswerInfo.user_name];
+    self.descriptionLabel.text = self.postToAnswerInfo.textContent;
+    
+    self.answerText.layer.borderWidth = 1.0;
+    self.answerText.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
 - (IBAction)didTapCancel:(id)sender {

@@ -14,6 +14,7 @@
 #import "ComposeViewController.h"
 #import "SelectCourseViewController.h"
 #import "Parse/Parse.h"
+#import "PostDetailsViewController.h"
 
 @interface QuestionFeedViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -115,8 +116,19 @@
         UINavigationController *navigationController = [segue destinationViewController];
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"detailsSegue"]) {
+        // 1 Get indexpath
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+        // 2 Get movie dictionary
+        Post *dataToPass = self.postArray[indexPath.row];
+        
+        // 3 Get reference to destination controller
+        PostDetailsViewController *detailsVC = [segue destinationViewController];
+        
+        // 4 Pass the local dictionary to the view controller property
+        detailsVC.postInfo = dataToPass;
     }
-    // TODO: pass post information to details view
 }
 
 @end
