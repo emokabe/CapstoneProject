@@ -120,8 +120,8 @@
                                             <outlet property="nameLabel" destination="bgV-G6-RZz" id="Fgo-Gg-Naa"/>
                                             <outlet property="postText" destination="aX1-Aq-cAU" id="yAM-Od-kj0"/>
                                             <outlet property="timestampLabel" destination="VbD-iK-BxT" id="eFF-Nv-lBj"/>
-                                            <segue destination="X95-fU-b2f" kind="show" identifier="detailsSegue" id="jcq-FU-8fD"/>
                                             <outlet property="titleLabel" destination="IC3-N2-n4M" id="sUb-0t-PgX"/>
+                                            <segue destination="X95-fU-b2f" kind="show" identifier="detailsSegue" id="jcq-FU-8fD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -277,8 +277,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="fdh-vX-rEK">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="Xod-G2-fc9">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ii4-d9-cV3" userLabel="Cancel">
-                                <rect key="frame" x="20" y="12.5" width="92" height="31"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ii4-d9-cV3" userLabel="Cancel">
+                                <rect key="frame" x="20" y="11" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cancel"/>

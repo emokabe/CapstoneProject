@@ -73,6 +73,34 @@
     }];
 }
 
+- (void)getNextSetOfPostsWithCompletion:(NSInteger)afterNthInterval completion:(void(^)(NSMutableArray *posts, NSError *error))completion {
+    
+    NSDate *start = [NSDate date];
+    NSInteger daysinInterval = 7;
+    NSTimeInterval interval = (NSTimeInterval)(daysinInterval * 86400);
+    NSDate *end = [NSDate dateWithTimeInterval:interval sinceDate:start];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *startDateStr = [dateFormat stringFromDate:start];
+    NSString *endDateStr = [dateFormat stringFromDate:end];
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"fields": @"from,created_time,message",@"limit": @"20",@"until": endDateStr,@"since": startDateStr}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSMutableArray *posts = [Post postsWithArray:result[@"data"]];
+            completion(posts, nil);
+        } else {
+            completion(nil, error);
+        }
+    }];
+}
+
 - (void)getAllPostsWithCompletion:(void(^)(NSMutableArray *posts, NSError *error))completion {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/425184976239857/feed"
