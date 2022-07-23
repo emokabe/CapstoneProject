@@ -48,6 +48,10 @@
     return handled;
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - UISceneSession lifecycle
 
 
