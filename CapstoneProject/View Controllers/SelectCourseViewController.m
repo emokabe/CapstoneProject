@@ -69,9 +69,6 @@
     NSString *objectId = ((PFObject *) self.courseArray[indexPath.row]).objectId;
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     [saved setObject:objectId forKey:@"currentCourse"];
-
-    
-    //QuestionFeedViewController *questionfeedvc = self.tabBarController.viewControllers[0];
     
     UIView * fromView = self.tabBarController.selectedViewController.view;
     UIView * toView = self.tabBarController.viewControllers[0].view;
