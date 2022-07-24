@@ -57,7 +57,25 @@
     NSString *course_id = [saved stringForKey:@"currentCourse"];
     NSLog(@"course_id = %@", course_id);
     
+    /*
     [self getAllPostsWithCompletion:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            NSMutableArray *postsToBeQueried = [NSMutableArray array];
+            for (Post *post in posts) {
+                if ([post.courses isEqualToString:course_id]) {
+                    [postsToBeQueried addObject:post];
+                }
+            }
+            self.postArray = postsToBeQueried;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+        [self.refreshControl endRefreshing];
+    }];
+     */
+    
+    [self getNextSetOfPostsWithCompletion:0 completion:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             NSMutableArray *postsToBeQueried = [NSMutableArray array];
             for (Post *post in posts) {
@@ -75,11 +93,16 @@
 }
 
 - (void)getNextSetOfPostsWithCompletion:(NSInteger)afterNthInterval completion:(void(^)(NSMutableArray *posts, NSError *error))completion {
+
+    NSDate *now = [NSDate date];
+    NSDate *tomorrow = [NSDate dateWithTimeInterval:86400 sinceDate:now];
     
-    NSDate *start = [NSDate date];
-    NSInteger daysinInterval = 7;
-    NSTimeInterval interval = (NSTimeInterval)(daysinInterval * 86400);
-    NSDate *end = [NSDate dateWithTimeInterval:interval sinceDate:start];
+    NSInteger daysinInterval = 7; // number of days into the past to get posts up to
+    NSTimeInterval startInterval = (NSTimeInterval)((afterNthInterval + 1) * daysinInterval * -86400);
+    NSTimeInterval endInterval = (NSTimeInterval)(afterNthInterval * daysinInterval * -86400);
+    
+    NSDate *start = [NSDate dateWithTimeInterval:startInterval sinceDate:tomorrow];
+    NSDate *end = [NSDate dateWithTimeInterval:endInterval sinceDate:tomorrow];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
@@ -89,7 +112,7 @@
     
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/425184976239857/feed"
-                                  parameters:@{ @"fields": @"from,created_time,message",@"limit": @"20",@"until": endDateStr,@"since": startDateStr}
+                                  parameters:@{ @"fields": @"from,created_time,message",@"until": endDateStr,@"since": startDateStr}
                                   HTTPMethod:@"GET"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
