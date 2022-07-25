@@ -75,14 +75,20 @@
     }];
      */
     
-    [self getNextSetOfPostsWithCompletion:0 completion:^(NSMutableArray *posts, NSError *error) {
+    [self getNextSetOfPostsWithCompletion:nil startDate:nil completion:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             NSMutableArray *postsToBeQueried = [NSMutableArray array];
             for (Post *post in posts) {
                 if ([post.courses isEqualToString:course_id]) {
+                    // add post to cache
                     [postsToBeQueried addObject:post];
                 }
             }
+            
+            if ([postsToBeQueried count] < 2) {
+                
+            }
+            
             self.postArray = postsToBeQueried;
             [self.tableView reloadData];
         } else {
@@ -92,6 +98,51 @@
     }];
 }
 
+- (void)getNextSetOfPostsWithCompletion:(nullable NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSError *error))completion {
+    
+    NSString *untilDateStr = until;
+    NSString *sinceDateStr = since;
+    
+    if (untilDateStr == nil) {   // set 'until' to end of today
+        NSDate *endOfToday = [NSDate dateWithTimeIntervalSinceNow:86400]; // tomorrow @ 0:00am
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+        
+        untilDateStr = [dateFormat stringFromDate:endOfToday];
+    }
+    
+    if (sinceDateStr == nil) {   // set 'since' to two weeks before until
+        NSInteger daysinInterval = 2;  // number of days into the past to get posts up to
+        NSTimeInterval twoWeekInterval = (NSTimeInterval)(daysinInterval * -86400);
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+        
+        NSDate *startDate = [NSDate dateWithTimeInterval:twoWeekInterval sinceDate:[dateFormat dateFromString:untilDateStr]];
+        
+        sinceDateStr = [dateFormat stringFromDate:startDate];
+    }
+    
+    NSLog(@"untilDateStr = %@", untilDateStr);
+    NSLog(@"sinceDateStr = %@", sinceDateStr);
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"fields": @"from,created_time,message",@"until": untilDateStr,@"since": sinceDateStr}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSMutableArray *posts = [Post postsWithArray:result[@"data"]];
+            completion(posts, nil);
+        } else {
+            completion(nil, error);
+        }
+    }];
+}
+
+/*
 - (void)getNextSetOfPostsWithCompletion:(NSInteger)afterNthInterval completion:(void(^)(NSMutableArray *posts, NSError *error))completion {
 
     NSDate *now = [NSDate date];
@@ -105,7 +156,7 @@
     NSDate *end = [NSDate dateWithTimeInterval:endInterval sinceDate:tomorrow];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
     
     NSString *startDateStr = [dateFormat stringFromDate:start];
     NSString *endDateStr = [dateFormat stringFromDate:end];
@@ -124,6 +175,7 @@
         }
     }];
 }
+*/
 
 - (void)getAllPostsWithCompletion:(void(^)(NSMutableArray *posts, NSError *error))completion {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
