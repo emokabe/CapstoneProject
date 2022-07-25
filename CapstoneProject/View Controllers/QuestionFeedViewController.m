@@ -31,12 +31,18 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.postArray = [[NSMutableArray alloc] init];
     [self fetchPosts];
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(receiveTestNotification:)
+            name:@"TestNotification"
+            object:nil];
 }
 
 
@@ -102,10 +108,7 @@
 }
 
 - (void)fetchPostsRec:(NSString *)course_id {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-            selector:@selector(receiveTestNotification:)
-            name:@"TestNotification"
-            object:nil];
+    
     
     [self getNextSetOfPostsWithCompletion:nil startDate:nil completion:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
@@ -115,7 +118,7 @@
                     [self.postArray addObject:post];
                 }
             }
-            
+            NSLog(@"after for loop");
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
