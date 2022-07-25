@@ -75,6 +75,7 @@
     }];
      */
     
+    /*
     [self getNextSetOfPostsWithCompletion:nil startDate:nil completion:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             NSMutableArray *postsToBeQueried = [NSMutableArray array];
@@ -96,6 +97,44 @@
         }
         [self.refreshControl endRefreshing];
     }];
+     */
+    [self fetchPostsRec:course_id];
+}
+
+- (void)fetchPostsRec:(NSString *)course_id {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(receiveTestNotification:)
+            name:@"TestNotification"
+            object:nil];
+    
+    [self getNextSetOfPostsWithCompletion:nil startDate:nil completion:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            for (Post *post in posts) {
+                if ([post.courses isEqualToString:course_id]) {
+                    // add post to cache
+                    [self.postArray addObject:post];
+                }
+            }
+            
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+        //[self.refreshControl endRefreshing];
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:@"TestNotification"
+                object:self];
+    }];
+
+}
+
+- (void) receiveTestNotification:(NSNotification *) notification {
+    if ([self.postArray count] < 2) {
+        NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+        NSString *course_id = [saved stringForKey:@"currentCourse"];
+        [self fetchPostsRec:course_id];
+    } else {
+        [self.tableView reloadData];
+    }
 }
 
 - (void)getNextSetOfPostsWithCompletion:(nullable NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSError *error))completion {
