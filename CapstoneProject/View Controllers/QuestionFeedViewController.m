@@ -37,6 +37,11 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    UISwipeGestureRecognizer *leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                      action:@selector(leftSwipe:)];
+        [leftSwipeRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+        [self.tableView addGestureRecognizer:leftSwipeRecognizer];
 }
 
 
@@ -96,6 +101,9 @@
     
     [cell setPost:self.postArray[indexPath.row]];
     
+    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    [self.view addGestureRecognizer:longPressRecognizer];
+    
     return cell;
 }
 
@@ -111,6 +119,35 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self fetchPosts];
     [self.tableView reloadData];
+}
+
+- (void)leftSwipe:(UISwipeGestureRecognizer *)gestureRecognizer {
+    NSLog(@"left swipe");
+}
+
+- (void)longPress:(UILongPressGestureRecognizer*)sender {
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"My Alert"
+                                   message:@"This is an alert."
+                                   preferredStyle:UIAlertControllerStyleAlert];
+     
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        NSLog(@"Cancel");
+    }];
+    
+    UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        NSLog(@"Delete");
+        CGPoint tapPoint = [sender locationInView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapPoint];
+        
+        PostCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    }];
+     
+    [alert addAction:defaultAction];
+    [alert addAction:deleteAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
