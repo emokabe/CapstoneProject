@@ -45,17 +45,6 @@
         if (!error) {
             NSLog(@"Success!");
             [self dismissViewControllerAnimated:YES completion:nil];
-            /*
-            [self getPostWithID:result[@"id"] completion:^(Post *post, NSError *err) {
-                if (err) {
-                    NSLog(@"Error getting post: %@", err.localizedDescription);
-                } else {
-                    NSLog(@"Success!");
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    //[self.delegate didPost:post];
-                }
-            }];
-             */
         } else {
             NSLog(@"Error posting to feed: %@", error.localizedDescription);
         }
