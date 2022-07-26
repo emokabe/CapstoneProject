@@ -6,6 +6,7 @@
 //
 
 #import "AnsweringViewController.h"
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
 
 @interface AnsweringViewController ()
 
@@ -26,6 +27,28 @@
 
 - (IBAction)didTapCancel:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)didTapRespond:(id)sender {
+    [self composeAnswer];
+}
+
+
+- (void)composeAnswer {
+    NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@", self.answerText.text, @"/0\n\n", self.postToAnswerInfo.post_id];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"message": messageWithDelimiters}
+                                  HTTPMethod:@"POST"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Success!");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+        }
+    }];
 }
 
 
