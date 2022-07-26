@@ -33,22 +33,20 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.postArray = [[NSMutableArray alloc] init];
     
-    
-    [self fetchPosts];
-    
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-    
-    /*
-    [[NSNotificationCenter defaultCenter] addObserver:self
-            selector:@selector(receiveTestNotification:)
-            name:@"TestNotification"
-            object:nil];
-     */
 }
 
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    if (self) {
+        self.firstFetchCall = YES;
+    }
+    return self;
+}
 
 - (IBAction)didTapLogout:(id)sender {
     FBSDKLoginManager *logoutManager = [[FBSDKLoginManager alloc] init];
@@ -69,7 +67,6 @@
     
     [self.postArray removeAllObjects];
     [self fetchPostsRec:course_id endDate:nil startDate:nil];
-    
 }
 
 - (void)fetchPostsRec:(NSString *)course_id endDate:(NSString *)until startDate:(NSString *)since {
@@ -80,8 +77,8 @@
                 return;
             }
             for (Post *post in posts) {
+                // TODO: add post to cache
                 if ([post.courses isEqualToString:course_id]) {
-                    // add post to cache
                     [self.postArray addObject:post];
                 }
             }
@@ -92,25 +89,19 @@
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
                 NSLog(@"Date = %@", [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date]);
                 [self fetchPostsRec:course_id endDate:lastDate startDate:nil];
-                // endDate:[dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date]
             } else {
                 __weak typeof(self) weakSelf = self;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    // use weakSelf here
                     __strong typeof(self) strongSelf = weakSelf;
                     if (strongSelf) {
                         [self.tableView reloadData];
                     }
                 });
-                
             }
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
-        
-        //[self.refreshControl endRefreshing];
     }];
-
 }
 
 - (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion {
@@ -195,12 +186,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    //NSString *course_id = [saved stringForKey:@"currentCourse"];
-    
-    [self fetchPosts];
-    [self.tableView reloadData];
-    //NSLog(@"Current course id: %@", course_id);
+    if (self.firstFetchCall) {
+        [self fetchPosts];
+        [self.tableView reloadData];
+        self.firstFetchCall = NO;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.firstFetchCall = YES;
 }
 
 

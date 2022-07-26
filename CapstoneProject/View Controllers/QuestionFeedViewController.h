@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *postArray;
 
+@property (nonatomic, assign) BOOL firstFetchCall;
+
 @end
 
 NS_ASSUME_NONNULL_END
