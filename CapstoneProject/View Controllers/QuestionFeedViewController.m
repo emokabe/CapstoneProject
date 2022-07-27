@@ -143,11 +143,32 @@
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapPoint];
         
         PostCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [self.postArray removeObjectAtIndex:indexPath.row];//or something similar to this based on your data source array structure
+        //remove the corresponding object from your data source array before this or else you will get a crash
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }];
      
     [alert addAction:defaultAction];
     [alert addAction:deleteAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)getPostWithID:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+            Post *post = [[Post alloc] initWithDictionary:result];
+            completion(post, nil);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
 }
 
 
