@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+
 @end
 
 @implementation QuestionFeedViewController
@@ -31,7 +34,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+
+    [self.activityIndicator setHidesWhenStopped:YES];
+    //[self.activityIndicator startAnimating];
+    //self.activityIndicator.hidden = NO;
     [self fetchPosts];
+    //self.activityIndicator.hidden = YES;
+    //[self.activityIndicator stopAnimating];
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -109,10 +118,17 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    //self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
     [self fetchPosts];
     [self.tableView reloadData];
+    //[self.activityIndicator stopAnimating];
+    //self.activityIndicator.hidden = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.activityIndicator stopAnimating];
+}
 
 #pragma mark - Navigation
 
