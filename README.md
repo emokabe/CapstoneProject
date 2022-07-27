@@ -84,8 +84,25 @@ Finally, the user is able to compose a post in the selected course. Composing a 
     - For both this functionality and the next one, a segue is used to pass data between view controllers
     - Have yet to add the profile picture of the poster -- this will require additional calls to the API, and API-calling methods will change with the implementation of dynamic fetching and caching
 - Added the UI of the view for commenting on a post
-
     - Displays the question title/body and username of poster on the comment-composing view to make it easier to respond
+    
+    
+----- Monday, July 25 -----
+- Combined PR #16 (displaying the courses for a hard-coded course id) and #19 (selecting a course) so that users can select a course, then be lead immediately to the corresponding feed
+    - [Link to PR with video demo](https://github.com/emokabe/CapstoneProject/pull/21)
+- Created API call for posting a comment to a post
+    - Calls the Facebook API and posts the comment as a Group post
+    - Post has the post-id of the post it is responding to appended to it
+    - [Link to PR with video demo](https://github.com/emokabe/CapstoneProject/pull/22)
+
+
+----- Tuesday, July 26 -----
+- Added dynamic fetching of posts
+    - First, the app fetches posts from two days ago (a small number for the sake of testing) until the end of today.
+    - It sorts through all of the fetched posts and keeps the ones with the correct course id.
+    - If there aren't enough posts to be displayed, fetch a second two-day batch with timeframe ending two days ago from today
+    - Keep fetching until there are enough posts to be displayed, or there are no more posts
+    - [Link to Workplace Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid02oREVd3sbqPLdoQPDTSp462qyRsLGFRxmj8JqDhbt69sb95uKCiA9LoT8wDZzWcyyl&id=100081792760931)
 
  
 ## Credits
