@@ -31,7 +31,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self fetchPosts];
+    self.postArray = [[NSMutableArray alloc] init];
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -39,6 +39,14 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    if (self) {
+        self.firstFetchCall = YES;
+    }
+    return self;
+}
 
 - (IBAction)didTapLogout:(id)sender {
     FBSDKLoginManager *logoutManager = [[FBSDKLoginManager alloc] init];
@@ -57,20 +65,90 @@
     NSString *course_id = [saved stringForKey:@"currentCourse"];
     NSLog(@"course_id = %@", course_id);
     
-    [self getAllPostsWithCompletion:^(NSMutableArray *posts, NSError *error) {
+    [self.postArray removeAllObjects];
+    [self fetchPostsRec:course_id endDate:nil startDate:nil];
+}
+
+- (void)fetchPostsRec:(NSString *)course_id endDate:(NSString *)until startDate:(NSString *)since {
+    [self getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
         if (!error) {
-            NSMutableArray *postsToBeQueried = [NSMutableArray array];
+            if ([posts count] == 0) {
+                [self.tableView reloadData];
+                return;
+            }
             for (Post *post in posts) {
+                // TODO: add post to cache
                 if ([post.courses isEqualToString:course_id]) {
-                    [postsToBeQueried addObject:post];
+                    [self.postArray addObject:post];
                 }
             }
-            self.postArray = postsToBeQueried;
-            [self.tableView reloadData];
+            NSLog(@"after for loop");
+            if ([self.postArray count] < 5) {
+                NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
+                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+                NSLog(@"Date = %@", [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date]);
+                [self fetchPostsRec:course_id endDate:lastDate startDate:nil];
+            } else {
+                __weak typeof(self) weakSelf = self;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(self) strongSelf = weakSelf;
+                    if (strongSelf) {
+                        [self.tableView reloadData];
+                        self.firstFetchCall = YES;
+                    }
+                });
+            }
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
-        [self.refreshControl endRefreshing];
+    }];
+}
+
+- (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion {
+    
+    NSString *untilDateStr = until;
+    NSString *sinceDateStr = since;
+    
+    if (untilDateStr == nil) {   // set 'until' to end of today
+        NSDate *endOfToday = [NSDate dateWithTimeIntervalSinceNow:86400]; // tomorrow @ 0:00am
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        
+        untilDateStr = [dateFormat stringFromDate:endOfToday];
+    }
+    
+    if (sinceDateStr == nil) {   // set 'since' to two weeks before until
+        double daysinInterval = 2;  // number of days into the past to get posts up to
+        NSTimeInterval twoWeekInterval = (NSTimeInterval)(daysinInterval * -86400);
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        
+        NSDate *startDate = [NSDate dateWithTimeInterval:twoWeekInterval sinceDate:[dateFormat dateFromString:untilDateStr]];
+        
+        sinceDateStr = [dateFormat stringFromDate:startDate];
+    }
+    
+    NSLog(@"untilDateStr = %@", untilDateStr);
+    NSLog(@"sinceDateStr = %@", sinceDateStr);
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"fields": @"from,created_time,message",@"until": untilDateStr,@"since": sinceDateStr}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSMutableArray *posts = [Post postsWithArray:result[@"data"]];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+            
+            completion(posts, [dateFormat stringFromDate:((Post *)[posts lastObject]).post_date], nil);
+        } else {
+            completion(nil, nil, error);
+        }
     }];
 }
 
@@ -109,8 +187,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self fetchPosts];
-    [self.tableView reloadData];
+    if (self.firstFetchCall) {
+        [self fetchPosts];
+        [self.tableView reloadData];
+        self.firstFetchCall = NO;
+    }
 }
 
 
