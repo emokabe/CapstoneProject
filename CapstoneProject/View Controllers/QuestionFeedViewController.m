@@ -83,7 +83,7 @@
                 }
             }
             NSLog(@"after for loop");
-            if ([self.postArray count] < 5) {     // [self.postArray count]
+            if ([self.postArray count] < 5) {
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
