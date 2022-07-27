@@ -95,6 +95,7 @@
                     __strong typeof(self) strongSelf = weakSelf;
                     if (strongSelf) {
                         [self.tableView reloadData];
+                        self.firstFetchCall = YES;
                     }
                 });
             }
@@ -191,10 +192,6 @@
         [self.tableView reloadData];
         self.firstFetchCall = NO;
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    self.firstFetchCall = YES;
 }
 
 

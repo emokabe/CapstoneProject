@@ -26,8 +26,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    //[saved setObject:@"fYiXfSzdT9" forKey:@"currentCourse"];
     
     // if the user is already logged in
     if ([FBSDKAccessToken currentAccessToken] != nil) {
