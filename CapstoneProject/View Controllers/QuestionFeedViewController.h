@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "FBSDKLoginKit/FBSDKLoginKit.h"
+#import "APIManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *postArray;
 
 @property (nonatomic, assign) BOOL firstFetchCall;
+
+@property (nonatomic, strong) APIManager *_apiManager;
+
+@property (nonatomic, strong) NSMutableArray *postsToBeCached;
 
 @end
 
