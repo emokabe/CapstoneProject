@@ -12,9 +12,9 @@
 		BE05CF302880C97D00899BE9 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05CF2F2880C97D00899BE9 /* TabBarViewController.m */; };
 		BE05CF3328820E1500899BE9 /* SelectCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05CF3228820E1500899BE9 /* SelectCourseViewController.m */; };
 		BE05CF3628820F4400899BE9 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05CF3528820F4400899BE9 /* CourseCell.m */; };
-		BE166FDC2891F8010062D0CF /* CacheExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = BE166FDB2891F8010062D0CF /* CacheExtention.m */; };
 		BE166FDF2891F9270062D0CF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE166FDE2891F9270062D0CF /* CommentCell.m */; };
 		BE166FE22891FA2A0062D0CF /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = BE166FE12891FA2A0062D0CF /* Comment.m */; };
+		BE166FE9289254C70062D0CF /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BE166FE8289254C70062D0CF /* APIManager.m */; };
 		BE1762E3287BDE0300B7DD03 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */; };
 		BE53E1272888AD3000744F3A /* PostDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE53E1262888AD3000744F3A /* PostDetailsViewController.m */; };
 		BE53E12A2888AD6C00744F3A /* AnsweringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE53E1292888AD6C00744F3A /* AnsweringViewController.m */; };
@@ -67,12 +67,12 @@
 		BE05CF3228820E1500899BE9 /* SelectCourseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCourseViewController.m; sourceTree = "<group>"; };
 		BE05CF3428820F4400899BE9 /* CourseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseCell.h; sourceTree = "<group>"; };
 		BE05CF3528820F4400899BE9 /* CourseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseCell.m; sourceTree = "<group>"; };
-		BE166FDA2891F8010062D0CF /* CacheExtention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheExtention.h; sourceTree = "<group>"; };
-		BE166FDB2891F8010062D0CF /* CacheExtention.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheExtention.m; sourceTree = "<group>"; };
 		BE166FDD2891F9270062D0CF /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		BE166FDE2891F9270062D0CF /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		BE166FE02891FA2A0062D0CF /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		BE166FE12891FA2A0062D0CF /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		BE166FE7289254C70062D0CF /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		BE166FE8289254C70062D0CF /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		BE1762E1287BDE0300B7DD03 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		BE53E1252888AD3000744F3A /* PostDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailsViewController.h; sourceTree = "<group>"; };
@@ -164,13 +164,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		BE166FD92891F6D70062D0CF /* Cache Extensions */ = {
+		BE166FE3289254270062D0CF /* API Manager */ = {
 			isa = PBXGroup;
 			children = (
-				BE166FDA2891F8010062D0CF /* CacheExtention.h */,
-				BE166FDB2891F8010062D0CF /* CacheExtention.m */,
+				BE166FE7289254C70062D0CF /* APIManager.h */,
+				BE166FE8289254C70062D0CF /* APIManager.m */,
 			);
-			path = "Cache Extensions";
+			path = "API Manager";
 			sourceTree = "<group>";
 		};
 		BE8277D4287C8DAB0059B509 /* Views */ = {
@@ -260,7 +260,7 @@
 				BEDF114E2874FA0A00B080A4 /* AppDelegate.m */,
 				BEDF11502874FA0A00B080A4 /* SceneDelegate.h */,
 				BEDF11512874FA0A00B080A4 /* SceneDelegate.m */,
-				BE166FD92891F6D70062D0CF /* Cache Extensions */,
+				BE166FE3289254270062D0CF /* API Manager */,
 				BEB9214E28850834004FA147 /* SpriteKit Scenes */,
 				BE8277D8287C91040059B509 /* Models */,
 				BE8277D4287C8DAB0059B509 /* Views */,
@@ -531,6 +531,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE05CF302880C97D00899BE9 /* TabBarViewController.m in Sources */,
+				BE166FE9289254C70062D0CF /* APIManager.m in Sources */,
 				BE53E12A2888AD6C00744F3A /* AnsweringViewController.m in Sources */,
 				BEB9214A2884FC33004FA147 /* GameViewController.m in Sources */,
 				BEDF114F2874FA0A00B080A4 /* AppDelegate.m in Sources */,
@@ -544,7 +545,6 @@
 				BE1762E3287BDE0300B7DD03 /* ComposeViewController.m in Sources */,
 				BE05CF3628820F4400899BE9 /* CourseCell.m in Sources */,
 				BEA4666E2878CF2500D57C23 /* QuestionFeedViewController.m in Sources */,
-				BE166FDC2891F8010062D0CF /* CacheExtention.m in Sources */,
 				BEA4666B28781C1F00D57C23 /* FBLoginViewController.m in Sources */,
 				BE166FDF2891F9270062D0CF /* CommentCell.m in Sources */,
 				BE05CF3328820E1500899BE9 /* SelectCourseViewController.m in Sources */,

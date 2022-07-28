@@ -1,5 +1,5 @@
 //
-//  CacheExtention.h
+//  APIManager.h
 //  CapstoneProject
 //
 //  Created by Emily Ito Okabe on 7/27/22.
@@ -9,9 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CacheExtention : NSCache
+@interface APIManager : NSObject
 
-+ (NSCache *)sharedInstance;
+@property (nonatomic, strong) NSCache *postCache;
 
 @end
 

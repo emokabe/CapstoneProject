@@ -32,8 +32,9 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.postArray = [[NSMutableArray alloc] init];
+    self._apiManager = [[APIManager alloc] init];
     self.postsToBeCached = [[NSMutableArray alloc] init];
-    self.postCache = [[NSCache alloc] init];
+    //self.postCache = [[NSCache alloc] init];
     
     //NSMutableArray *arr = [[NSMutableArray alloc] init];
     //[self.postCache setObject:arr forKey:@"posts"];
@@ -100,12 +101,12 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(self) strongSelf = weakSelf;
                     if (strongSelf) {
-                        [self.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                        [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                         [self.tableView reloadData];
                         self.firstFetchCall = YES;
                         
                         NSLog(@"Posts to be cached: %@", self.postsToBeCached);
-                        NSLog(@"Posts in cache: %@", [self.postCache objectForKey:@"posts"]);
+                        NSLog(@"Posts in cache: %@", [self._apiManager.postCache objectForKey:@"posts"]);
                     }
                 });
             }
