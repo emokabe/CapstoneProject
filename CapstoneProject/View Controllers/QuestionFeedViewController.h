@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL firstFetchCall;
 
-//@property (nonatomic, strong) NSCache *postCache;
-
 @property (nonatomic, strong) APIManager *_apiManager;
 
 @property (nonatomic, strong) NSMutableArray *postsToBeCached;
