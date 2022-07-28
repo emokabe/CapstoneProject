@@ -32,6 +32,11 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.postArray = [[NSMutableArray alloc] init];
+    self.postsToBeCached = [[NSMutableArray alloc] init];
+    self.postCache = [[NSCache alloc] init];
+    
+    //NSMutableArray *arr = [[NSMutableArray alloc] init];
+    //[self.postCache setObject:arr forKey:@"posts"];
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -78,6 +83,7 @@
             }
             for (Post *post in posts) {
                 // TODO: add post to cache
+                [self.postsToBeCached addObject:post];
                 if ([post.courses isEqualToString:course_id]) {
                     [self.postArray addObject:post];
                 }
@@ -94,8 +100,12 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(self) strongSelf = weakSelf;
                     if (strongSelf) {
+                        [self.postCache setObject:self.postsToBeCached forKey:@"posts"];
                         [self.tableView reloadData];
                         self.firstFetchCall = YES;
+                        
+                        NSLog(@"Posts to be cached: %@", self.postsToBeCached);
+                        NSLog(@"Posts in cache: %@", [self.postCache objectForKey:@"posts"]);
                     }
                 });
             }
