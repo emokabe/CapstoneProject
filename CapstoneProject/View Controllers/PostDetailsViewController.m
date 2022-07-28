@@ -24,6 +24,21 @@
     self.descriptionLabel.text = self.postInfo.textContent;
 }
 
+- (IBAction)pinchToZoom:(UIPinchGestureRecognizer*)sender {
+    if ([sender state] == UIGestureRecognizerStateBegan) {
+        NSLog(@"Began");
+    }
+    if ([sender state] == UIGestureRecognizerStateChanged) {
+        NSLog(@"%f", [sender scale]);
+        CGFloat originalSize = self.descriptionLabel.font.pointSize;
+        if (originalSize < 32 && [sender velocity] > 0) {
+            [self.descriptionLabel setFont:[UIFont systemFontOfSize:self.descriptionLabel.font.pointSize + 1]];
+        } else if (originalSize > 17 && [sender velocity] < 0) {
+            [self.descriptionLabel setFont:[UIFont systemFontOfSize:self.descriptionLabel.font.pointSize - 1]];
+        }
+    }
+}
+
 
 #pragma mark - Navigation
 
