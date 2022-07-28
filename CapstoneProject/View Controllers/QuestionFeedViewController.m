@@ -34,10 +34,6 @@
     self.postArray = [[NSMutableArray alloc] init];
     self._apiManager = [[APIManager alloc] init];
     self.postsToBeCached = [[NSMutableArray alloc] init];
-    //self.postCache = [[NSCache alloc] init];
-    
-    //NSMutableArray *arr = [[NSMutableArray alloc] init];
-    //[self.postCache setObject:arr forKey:@"posts"];
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -72,6 +68,7 @@
     NSLog(@"course_id = %@", course_id);
     
     [self.postArray removeAllObjects];
+    [self.postsToBeCached removeAllObjects];
     [self fetchPostsRec:course_id endDate:nil startDate:nil];
 }
 
@@ -83,7 +80,6 @@
                 return;
             }
             for (Post *post in posts) {
-                // TODO: add post to cache
                 [self.postsToBeCached addObject:post];
                 if ([post.courses isEqualToString:course_id]) {
                     [self.postArray addObject:post];
@@ -105,8 +101,7 @@
                         [self.tableView reloadData];
                         self.firstFetchCall = YES;
                         
-                        NSLog(@"Posts to be cached: %@", self.postsToBeCached);
-                        NSLog(@"Posts in cache: %@", [self._apiManager.postCache objectForKey:@"posts"]);
+                        NSLog(@"Posts in cache from feed: %@", [self._apiManager.postCache objectForKey:@"posts"]);
                     }
                 });
             }
@@ -217,14 +212,16 @@
         // 1 Get indexpath
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         
-        // 2 Get movie dictionary
-        Post *dataToPass = self.postArray[indexPath.row];
+        // 2 Get post and API manager to pass
+        Post *postToPass = self.postArray[indexPath.row];
+        APIManager *apiManagerToPass = self._apiManager;
         
         // 3 Get reference to destination controller
         PostDetailsViewController *detailsVC = [segue destinationViewController];
         
         // 4 Pass the local dictionary to the view controller property
-        detailsVC.postInfo = dataToPass;
+        detailsVC.postInfo = postToPass;
+        detailsVC.apiManagerFromFeed = apiManagerToPass;
     }
 }
 

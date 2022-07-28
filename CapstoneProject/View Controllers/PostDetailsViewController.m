@@ -22,6 +22,8 @@
     self.nameLabel.text = self.postInfo.user_name;
     self.dateLabel.text = self.postInfo.post_date_detailed;
     self.descriptionLabel.text = self.postInfo.textContent;
+    
+    NSLog(@"Posts in cache from details: %@", [self.apiManagerFromFeed.postCache objectForKey:@"posts"]);
 }
 
 
