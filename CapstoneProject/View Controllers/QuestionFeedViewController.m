@@ -86,7 +86,7 @@
                 }
             }
             NSLog(@"after for loop");
-            if ([self.postArray count] < 5) {
+            if ([self.postArray count] < 12) {
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
@@ -126,7 +126,7 @@
     }
     
     if (sinceDateStr == nil) {   // set 'since' to two weeks before until
-        double daysinInterval = 2;  // number of days into the past to get posts up to
+        double daysinInterval = 7;  // number of days into the past to get posts up to
         NSTimeInterval twoWeekInterval = (NSTimeInterval)(daysinInterval * -86400);
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -193,11 +193,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self fetchPosts];
+    [self.tableView reloadData];
+    /*
     if (self.firstFetchCall) {
         [self fetchPosts];
         [self.tableView reloadData];
         self.firstFetchCall = NO;
     }
+     */
 }
 
 

@@ -7,8 +7,12 @@
 
 #import "PostDetailsViewController.h"
 #import "AnsweringViewController.h"
+#import "CommentCell.h"
+#import "Comment.h"
 
-@interface PostDetailsViewController ()
+@interface PostDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.titleLabel.text = self.postInfo.titleContent;
     // TODO: set profile image: self.profileImage.image = ...
@@ -40,6 +47,14 @@
         // Pass the local dictionary to the view controller property
         answeringVC.postToAnswerInfo = dataToPass;
     }
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    <#code#>
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    <#code#>
 }
 
 @end
