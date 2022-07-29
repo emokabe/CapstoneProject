@@ -25,9 +25,6 @@
 }
 
 - (IBAction)pinchToZoom:(UIPinchGestureRecognizer*)sender {
-    if ([sender state] == UIGestureRecognizerStateBegan) {
-        NSLog(@"Began");
-    }
     if ([sender state] == UIGestureRecognizerStateChanged) {
         NSLog(@"%f", [sender scale]);
         CGFloat originalSize = self.descriptionLabel.font.pointSize;
