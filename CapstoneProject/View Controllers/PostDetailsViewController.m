@@ -10,7 +10,7 @@
 #import "CommentCell.h"
 #import "Post.h"
 
-@interface PostDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface PostDetailsViewController () <AnsweringViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -46,6 +46,7 @@
 }
 
 - (void)didComment:(nonnull Post *)post {
+    NSLog(@"Did comment!");
     [self.commentArray insertObject:post atIndex:0];
     [self.tableView reloadData];
 }
@@ -63,6 +64,8 @@
         
         // Pass the local dictionary to the view controller property
         answeringVC.postToAnswerInfo = dataToPass;
+        
+        answeringVC.delegate = self;
     }
 }
 

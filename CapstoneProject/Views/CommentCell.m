@@ -24,6 +24,7 @@
     
     self.nameLabel.text = post.user_name;
     self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
+    self.answerLabel.text = post.textContent;
 }
 
 @end

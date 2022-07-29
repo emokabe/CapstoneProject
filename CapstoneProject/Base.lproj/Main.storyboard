@@ -219,27 +219,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="133" id="B4x-OK-N2B" customClass="CommentCell">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="133"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="104" id="B4x-OK-N2B" customClass="CommentCell">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B4x-OK-N2B" id="NHe-zp-JAe">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="133"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzX-ly-F4D">
-                                                    <rect key="frame" x="20" y="18" width="319" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzX-ly-F4D">
+                                                    <rect key="frame" x="20" y="18" width="319" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcl-MG-RLZ">
-                                                    <rect key="frame" x="363" y="18" width="31" height="22"/>
+                                                    <rect key="frame" x="363" y="18" width="31" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSj-gh-yhv">
-                                                    <rect key="frame" x="20" y="62" width="374" height="24"/>
+                                                    <rect key="frame" x="20" y="61.5" width="374" height="22.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -252,7 +252,7 @@
                                                 <constraint firstItem="bcl-MG-RLZ" firstAttribute="leading" secondItem="gzX-ly-F4D" secondAttribute="trailing" constant="24" id="BCo-iP-jp5"/>
                                                 <constraint firstItem="fSj-gh-yhv" firstAttribute="leading" secondItem="gzX-ly-F4D" secondAttribute="leading" id="PIL-Ql-CW5"/>
                                                 <constraint firstItem="fSj-gh-yhv" firstAttribute="top" secondItem="gzX-ly-F4D" secondAttribute="bottom" constant="22" id="qTz-T2-6ou"/>
-                                                <constraint firstAttribute="bottom" secondItem="fSj-gh-yhv" secondAttribute="bottom" constant="47" id="sbm-9J-lw6"/>
+                                                <constraint firstAttribute="bottom" secondItem="fSj-gh-yhv" secondAttribute="bottom" constant="20" id="sbm-9J-lw6"/>
                                                 <constraint firstItem="gzX-ly-F4D" firstAttribute="top" secondItem="NHe-zp-JAe" secondAttribute="top" constant="18" id="u9q-Fw-TYo"/>
                                                 <constraint firstItem="gzX-ly-F4D" firstAttribute="leading" secondItem="NHe-zp-JAe" secondAttribute="leading" constant="20" symbolic="YES" id="uHe-0r-Q2h"/>
                                                 <constraint firstAttribute="trailing" secondItem="bcl-MG-RLZ" secondAttribute="trailing" constant="20" symbolic="YES" id="vlH-R2-U75"/>
