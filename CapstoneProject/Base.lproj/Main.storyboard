@@ -251,6 +251,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bRU-Qa-uYY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="kLQ-kW-MZB" appends="YES" id="tM7-2B-Hn8"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Czr-1w-inP"/>
                     <connections>
@@ -263,6 +267,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M70-2L-cLp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="kLQ-kW-MZB">
+                    <connections>
+                        <action selector="pinchToZoom:" destination="X95-fU-b2f" id="NIg-mx-CTu"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1249.2753623188407" y="1674.7767857142856"/>
         </scene>
