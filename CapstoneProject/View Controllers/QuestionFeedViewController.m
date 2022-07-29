@@ -41,15 +41,6 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super initWithCoder:decoder];
-    if (self) {
-        self.firstFetchCall = YES;
-    }
-    return self;
-}
-
 - (IBAction)didTapLogout:(id)sender {
     FBSDKLoginManager *logoutManager = [[FBSDKLoginManager alloc] init];
     [logoutManager logOut];
@@ -76,17 +67,18 @@
     [self getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
         if (!error) {
             if ([posts count] == 0) {
+                [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                 [self.tableView reloadData];
                 return;
             }
             for (Post *post in posts) {
                 [self.postsToBeCached addObject:post];
-                if ([post.courses isEqualToString:course_id]) {
+                if ([post.parent_post_id isEqualToString:@""] && [post.courses isEqualToString:course_id]) {
                     [self.postArray addObject:post];
                 }
             }
             NSLog(@"after for loop");
-            if ([self.postArray count] < 5) {
+            if ([self.postArray count] < 10) {
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
@@ -99,14 +91,12 @@
                     if (strongSelf) {
                         [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                         [self.tableView reloadData];
-                        self.firstFetchCall = YES;
-                        
-                        NSLog(@"Posts in cache from feed: %@", [self._apiManager.postCache objectForKey:@"posts"]);
                     }
                 });
             }
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
+            // TODO: get posts from cache instead
         }
     }];
 }
@@ -116,17 +106,12 @@
     NSString *untilDateStr = until;
     NSString *sinceDateStr = since;
     
-    if (untilDateStr == nil) {   // set 'until' to end of today
-        NSDate *endOfToday = [NSDate dateWithTimeIntervalSinceNow:86400]; // tomorrow @ 0:00am
-        
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        
-        untilDateStr = [dateFormat stringFromDate:endOfToday];
+    if (untilDateStr == nil) {
+        untilDateStr = @"now";
     }
     
     if (sinceDateStr == nil) {   // set 'since' to two weeks before until
-        double daysinInterval = 2;  // number of days into the past to get posts up to
+        double daysinInterval = 7;  // number of days into the past to get posts up to
         NSTimeInterval twoWeekInterval = (NSTimeInterval)(daysinInterval * -86400);
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -193,11 +178,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (self.firstFetchCall) {
-        [self fetchPosts];
-        [self.tableView reloadData];
-        self.firstFetchCall = NO;
-    }
+    [self fetchPosts];
+    [self.tableView reloadData];
 }
 
 

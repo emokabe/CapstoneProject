@@ -7,6 +7,7 @@
 
 #import "AnsweringViewController.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "PostDetailsViewController.h"
 
 @interface AnsweringViewController ()
 
@@ -44,9 +45,34 @@
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"Success!");
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self getPostWithID:result[@"id"] completion:^(Post *post, NSError *err) {
+                if (err) {
+                    NSLog(@"Error getting post: %@", err.localizedDescription);
+                } else {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self.delegate didComment:post];
+                }
+            }];
         } else {
             NSLog(@"Error posting to feed: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)getPostWithID:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+            Post *post = [[Post alloc] initWithDictionary:result];
+            completion(post, nil);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+            completion(nil, error);
         }
     }];
 }

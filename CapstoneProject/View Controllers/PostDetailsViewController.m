@@ -7,8 +7,12 @@
 
 #import "PostDetailsViewController.h"
 #import "AnsweringViewController.h"
+#import "CommentCell.h"
+#import "Post.h"
 
-@interface PostDetailsViewController ()
+@interface PostDetailsViewController () <AnsweringViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,6 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.commentArray = [[NSMutableArray alloc] init];
     
     self.titleLabel.text = self.postInfo.titleContent;
     // TODO: set profile image: self.profileImage.image = ...
@@ -23,7 +31,22 @@
     self.dateLabel.text = self.postInfo.post_date_detailed;
     self.descriptionLabel.text = self.postInfo.textContent;
     
-    NSLog(@"Posts in cache from details: %@", [self.apiManagerFromFeed.postCache objectForKey:@"posts"]);
+    [self fetchComments];
+}
+
+- (void)fetchComments {
+    NSMutableArray *posts = [self.apiManagerFromFeed.postCache objectForKey:@"posts"];
+    for (Post *post in posts) {
+        if ([post.parent_post_id isEqualToString:self.postInfo.post_id]) {
+            [self.commentArray addObject:post];
+        }
+    }
+    [self.tableView reloadData];
+}
+
+- (void)didComment:(nonnull Post *)post {
+    [self.commentArray insertObject:post atIndex:0];
+    [self.tableView reloadData];
 }
 
 - (IBAction)pinchToZoom:(UIPinchGestureRecognizer*)sender {
@@ -51,7 +74,21 @@
         
         // Pass the local dictionary to the view controller property
         answeringVC.postToAnswerInfo = dataToPass;
+        
+        answeringVC.delegate = self;
     }
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    
+    [cell setComment:self.commentArray[indexPath.row]];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.commentArray.count;
 }
 
 @end

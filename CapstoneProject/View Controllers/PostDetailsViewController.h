@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostDetailsViewController : UIViewController
+@interface PostDetailsViewController : UIViewController <UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *answerButton;
 @property (strong, nonatomic) Post *postInfo;
 @property (nonatomic, strong) APIManager *apiManagerFromFeed;
+@property (nonatomic, strong) NSMutableArray *commentArray;
 
 @end
 

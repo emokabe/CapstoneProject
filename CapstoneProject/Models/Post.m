@@ -24,6 +24,12 @@
             self.titleContent = arrayOfComponents[0];
             self.textContent = arrayOfComponents[1];
             self.courses = arrayOfComponents[2];
+            self.parent_post_id = [NSMutableString stringWithString:@""];
+        } else if ([arrayOfComponents count] == 2) {
+            self.titleContent = [NSMutableString stringWithString:@"comment"];
+            self.textContent = arrayOfComponents[0];
+            self.courses = [NSMutableString stringWithString:@""];
+            self.parent_post_id = arrayOfComponents[1];
         } else {
             self.titleContent = [NSMutableString stringWithString:@""];
             self.textContent = [NSMutableString stringWithString:@""];
