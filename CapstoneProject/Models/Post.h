@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableString *courses; // Courses, separated by comma
 @property (nonatomic, strong) NSString *user_id; // App-scoped id of user
 @property (nonatomic, strong) NSString *post_id; // Post id of Facebook post
+@property (nonatomic, strong) NSMutableString *parent_post_id; // Post id of post being commented, if applicable
 @property (nonatomic, strong) NSString *user_name; // User's Facebook username
 @property (nonatomic, strong) NSString *post_createdAt; // Date of post: MM/DD/YY
 @property (nonatomic, strong) NSString *post_date_detailed; // Detailed date of post for details view

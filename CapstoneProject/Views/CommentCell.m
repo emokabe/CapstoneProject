@@ -19,11 +19,11 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)setComment:(Comment *)comment {
-    _comment = comment;
+- (void)setComment:(Post *)post {
+    _post = post;
     
-    self.nameLabel.text = comment.user_name;
-    self.timestampLabel.text = comment.post_date.shortTimeAgoSinceNow;
+    self.nameLabel.text = post.user_name;
+    self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
 }
 
 @end

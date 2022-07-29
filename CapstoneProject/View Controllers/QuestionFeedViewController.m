@@ -76,17 +76,21 @@
     [self getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
         if (!error) {
             if ([posts count] == 0) {
+                [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                 [self.tableView reloadData];
+                self.firstFetchCall = YES;
+                
+                NSLog(@"Posts in cache from feed: %@", [self._apiManager.postCache objectForKey:@"posts"]);
                 return;
             }
             for (Post *post in posts) {
                 [self.postsToBeCached addObject:post];
-                if ([post.courses isEqualToString:course_id]) {
+                if ([post.parent_post_id isEqualToString:@""] && [post.courses isEqualToString:course_id]) {
                     [self.postArray addObject:post];
                 }
             }
             NSLog(@"after for loop");
-            if ([self.postArray count] < 12) {
+            if ([self.postArray count] < 10) {
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
@@ -107,6 +111,7 @@
             }
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
+            // TODO: get posts from cache instead
         }
     }];
 }
@@ -117,12 +122,16 @@
     NSString *sinceDateStr = since;
     
     if (untilDateStr == nil) {   // set 'until' to end of today
+        /*
         NSDate *endOfToday = [NSDate dateWithTimeIntervalSinceNow:86400]; // tomorrow @ 0:00am
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
         
         untilDateStr = [dateFormat stringFromDate:endOfToday];
+         */
+        
+        untilDateStr = @"now";
     }
     
     if (sinceDateStr == nil) {   // set 'since' to two weeks before until

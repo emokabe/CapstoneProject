@@ -6,16 +6,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Comment.h"
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CommentCell : UITableViewCell
 
-@property (nonatomic, strong) Comment *comment;
+@property (nonatomic, strong) Post *post;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
+
+- (void)setComment:(Post *)post;
 
 @end
 

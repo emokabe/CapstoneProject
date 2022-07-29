@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol AnsweringViewControllerDelegate
+
+- (void)didComment:(Post *)post;
+
+@end
+
 @interface AnsweringViewController : UIViewController
+
+@property (nonatomic, weak) id<AnsweringViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *answeringToLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
