@@ -49,7 +49,6 @@
                 if (err) {
                     NSLog(@"Error getting post: %@", err.localizedDescription);
                 } else {
-                    NSLog(@"Success!");
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self.delegate didComment:post];
                 }

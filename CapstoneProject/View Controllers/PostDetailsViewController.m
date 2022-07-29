@@ -32,7 +32,6 @@
     self.descriptionLabel.text = self.postInfo.textContent;
     
     [self fetchComments];
-    NSLog(@"Posts in cache from details: %@", [self.apiManagerFromFeed.postCache objectForKey:@"posts"]);
 }
 
 - (void)fetchComments {
@@ -46,7 +45,6 @@
 }
 
 - (void)didComment:(nonnull Post *)post {
-    NSLog(@"Did comment!");
     [self.commentArray insertObject:post atIndex:0];
     [self.tableView reloadData];
 }

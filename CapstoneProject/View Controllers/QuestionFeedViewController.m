@@ -41,15 +41,6 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super initWithCoder:decoder];
-    if (self) {
-        self.firstFetchCall = YES;
-    }
-    return self;
-}
-
 - (IBAction)didTapLogout:(id)sender {
     FBSDKLoginManager *logoutManager = [[FBSDKLoginManager alloc] init];
     [logoutManager logOut];
@@ -78,9 +69,6 @@
             if ([posts count] == 0) {
                 [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                 [self.tableView reloadData];
-                self.firstFetchCall = YES;
-                
-                NSLog(@"Posts in cache from feed: %@", [self._apiManager.postCache objectForKey:@"posts"]);
                 return;
             }
             for (Post *post in posts) {
@@ -103,9 +91,6 @@
                     if (strongSelf) {
                         [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                         [self.tableView reloadData];
-                        self.firstFetchCall = YES;
-                        
-                        NSLog(@"Posts in cache from feed: %@", [self._apiManager.postCache objectForKey:@"posts"]);
                     }
                 });
             }
@@ -121,16 +106,7 @@
     NSString *untilDateStr = until;
     NSString *sinceDateStr = since;
     
-    if (untilDateStr == nil) {   // set 'until' to end of today
-        /*
-        NSDate *endOfToday = [NSDate dateWithTimeIntervalSinceNow:86400]; // tomorrow @ 0:00am
-        
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        
-        untilDateStr = [dateFormat stringFromDate:endOfToday];
-         */
-        
+    if (untilDateStr == nil) {
         untilDateStr = @"now";
     }
     
@@ -204,13 +180,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self fetchPosts];
     [self.tableView reloadData];
-    /*
-    if (self.firstFetchCall) {
-        [self fetchPosts];
-        [self.tableView reloadData];
-        self.firstFetchCall = NO;
-    }
-     */
 }
 
 
