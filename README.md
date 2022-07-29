@@ -19,20 +19,22 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 ## MVP Features
 - [X] Sign up with a new user profile through Facebook
 - [X] Log in/out of app using Facebook credentials 
-- [X] Animations – fading in/out when switching views (TBD)
-- [ ] Show a progress SVG (using external library) while the feed loads
+- [X] Animations – fading in/out when switching views
+- [ ] An external library to polish UI
 - [X] Select a course from a list to view its feed
 - [X] Display the user feed
 - [X] Upon login, display the feed for course that was viewed last during previous login session
 - [X] Compose a post and update the corresponding course feed
-- [ ] Tap gesture on screen to toggle on-screen keyboard
+- [X] Pinch gesture on screen to change text size
+- [X] Comment on posts by mapping answers to post-id by posting them in the same Facebook post with delimiters
+- [X] Cache posts to decrease number of fetches and increase efficiency
+- [ ] Sort posts
 
 
 ## Possible Stretch Features
 - [ ] Liking and unliking posts
 - [X] If a valid session already exists, take the user straight to the home feed without logging in
 - [ ] Selecting posts to put on a personal ToDo list
-- [ ] Comment on posts by mapping answers to post-id by posting them in the same Facebook post with delimiters
 - [ ] Let user search for new courses to join, so that not all courses in the database are automatically added to the user's course list
 - [ ] A gamification of the app
 
