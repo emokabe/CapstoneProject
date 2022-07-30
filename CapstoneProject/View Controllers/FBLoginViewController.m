@@ -59,8 +59,9 @@
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_id = [saved stringForKey:@"currentCourse"];
+    NSString *course_id_abbr = [saved stringForKey:@"currentCourseAbbr"];
     
-    if (!course_id) {
+    if (!course_id || !course_id_abbr) {
         [rootViewController setSelectedIndex:1];
     }
 }

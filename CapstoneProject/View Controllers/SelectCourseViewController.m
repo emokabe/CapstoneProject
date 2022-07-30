@@ -67,8 +67,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *objectId = ((PFObject *) self.courseArray[indexPath.row]).objectId;
+    NSString *courseAbbr = ((PFObject *) self.courseArray[indexPath.row])[@"course_abbr"];
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     [saved setObject:objectId forKey:@"currentCourse"];
+    [saved setObject:courseAbbr forKey:@"currentCourseAbbr"];
     
     UIView * fromView = self.tabBarController.selectedViewController.view;
     UIView * toView = self.tabBarController.viewControllers[0].view;
