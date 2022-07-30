@@ -7,11 +7,11 @@
 
 #import "SearchPostsViewController.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "Parse/Parse.h"
 
 @interface SearchPostsViewController ()
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
 
 @end
 
@@ -19,21 +19,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self fetchPostsViewed];
+}
+
+- (void)fetchPostsViewed {
     NSString *current_user_id = [FBSDKAccessToken currentAccessToken].userID;
     NSString *userInParse = [NSString stringWithFormat:@"%@%@", @"user", current_user_id];
     
-    
-}
+    PFQuery *query = [PFQuery queryWithClassName:userInParse];
+    query.limit = 20;
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            NSLog(@"Posts viewed: %@", posts);
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
-*/
 
 @end
