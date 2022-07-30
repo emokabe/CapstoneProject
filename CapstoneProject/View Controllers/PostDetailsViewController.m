@@ -35,6 +35,28 @@
     
     NSString *current_user_id = [NSString stringWithFormat:@"%@%@", @"user", [FBSDKAccessToken currentAccessToken].userID];
     
+    // Check for duplicates
+    PFQuery *query = [PFQuery queryWithClassName:current_user_id];
+    [query whereKey:@"post_id" equalTo:self.postInfo.post_id];
+    query.limit = 1;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if ([posts count] != 0) {
+            NSLog(@"Already viewed: %@", posts);
+            NSString *objectId = ((PFObject *)posts[0]).objectId;
+            
+            [query getObjectInBackgroundWithId:objectId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                if (object != nil) {
+                    NSLog(@"Duplicate object: %@", object);
+                    [object incrementKey:@"times_viewed"];
+                    [object saveInBackground];
+                    return;
+                } else {
+                    NSLog(@"Error: %@", error.description);
+                }
+            }];
+        }
+    }];
+
     PFObject *postInParse = [[PFObject alloc] initWithClassName:current_user_id];
     postInParse[@"post_id"] = self.postInfo.post_id;
     postInParse[@"user_id"] = self.postInfo.user_id;
@@ -43,6 +65,7 @@
     postInParse[@"message"] = self.postInfo.textContent;
     postInParse[@"course"] = self.postInfo.courses;
     postInParse[@"read_date"] = [NSDate date];
+    postInParse[@"times_viewed"] = [NSNumber numberWithInt:1];
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_abbr = [saved stringForKey:@"currentCourseAbbr"];
