@@ -8,7 +8,9 @@ To log into my app, the user will need to first log into their Facebook account 
 
 The user is able to switch between viewing different courses on their app, and the course that they had been viewing during their last session will be stored locally so that its feed appears upon login. Internally, all posts in the Facebook group that are mapped to the corresponding course id will be displayed.
 
-Finally, the user is able to compose a post in the selected course. Composing a post will cause a new post to pop up on the feed, and will also publish the post on the common Facebook group mentioned previously. The new post's id will be mapped to the course id.
+The user is able to compose a post in the selected course. Composing a post will cause a new post to pop up on the feed, and will also publish the post on the common Facebook group mentioned previously. The new post's id will be mapped to the course id.
+
+Finally, there will be a view for searching through posts that the user already read using a search bar. Before searching, the user will see a list of "recommended" posts, where more frequently or recently viewed posts will appear higher in the table. Clicking on a post in this search view will take the user to the details view for the post.
 
 
 ## Wireframe
@@ -27,8 +29,9 @@ Finally, the user is able to compose a post in the selected course. Composing a 
 - [X] Compose a post and update the corresponding course feed
 - [X] Pinch gesture on screen to change text size
 - [X] Comment on posts by mapping answers to post-id by posting them in the same Facebook post with delimiters
+- [X] Dynamically fetch posts by date range to prevent fetching too many posts at a time
 - [X] Cache posts to decrease number of fetches and increase efficiency
-- [ ] Sort posts
+- [ ] Search through already-read posts using a search bar, and click any post to view its details
 
 
 ## Possible Stretch Features
@@ -105,6 +108,35 @@ Finally, the user is able to compose a post in the selected course. Composing a 
     - If there aren't enough posts to be displayed, fetch a second two-day batch with timeframe ending two days ago from today
     - Keep fetching until there are enough posts to be displayed, or there are no more posts
     - [Link to Workplace Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid02oREVd3sbqPLdoQPDTSp462qyRsLGFRxmj8JqDhbt69sb95uKCiA9LoT8wDZzWcyyl&id=100081792760931)
+    
+----- Wednesday, July 27 -----
+- Implemented caching of posts
+    - Get posts and comments using the dynamic fetching algorithm from 7/26
+    - Cache all posts and comments as Post objects in an array
+    - When switching courses and loading a new feed, clear cache and refetch/recache posts to prevent duplicates
+- Added pinch gesture to resize post text size in details view
+    - Pinch out to increase post detail body text size, pinch in to decrease text size 
+    - Cap text size with maximum and minimum to prevent text from getting too large or small
+    - See [this PR](https://github.com/emokabe/CapstoneProject/pull/26)
+
+
+----- Thursday, July 28 -----
+- Added commenting functionality for all posts in feed
+    - Use caching functionality from 7/27 to access all cached Post object and filter comments
+    - Display comments as a table view in the details view that users can scroll through
+    - See [this PR](https://github.com/emokabe/CapstoneProject/pull/27) for a video demo
+    - See [this status update](https://fb.workplace.com/permalink.php?story_fbid=pfbid0225M5UnJJxu6pxbC6ktBBeTskSAvBqQnyH88UCiUtkjJPrraPG3hAeLubBy56da8Nl&id=100081792760931) to see a bug I fixed from 6/27
+    - TODO: fix UI so that the table view does not overlap with tab bar, and cells don't cut off at the edge
+
+
+----- Friday, July 29 -----
+- Added view with search bar for searching through posts
+    - See [this status update](https://fb.workplace.com/permalink.php?story_fbid=pfbid0225M5UnJJxu6pxbC6ktBBeTskSAvBqQnyH88UCiUtkjJPrraPG3hAeLubBy56da8Nl&id=100081792760931) for what the UI for the list of posts will look like
+- Added saving posts to Parse database
+    - Whenever the user clicks on a post in details view, the post is saved in Parse
+    - The post and its information is saved as a object with a name that contains its user-id 
+        - e.g. for a user with user-id = 12345, the post will be stored as an object called "user12345"
+        - This makes mapping users to viewed posts easier, because we won't have to save posts and map each post to a user, then query all posts with a particular user-id field
 
  
 ## Credits
