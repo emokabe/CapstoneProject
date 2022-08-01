@@ -565,7 +565,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="151" id="iEQ-R6-gvm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="151" id="iEQ-R6-gvm" customClass="SearchPostCell">
                                         <rect key="frame" x="0.0" y="88.5" width="414" height="151"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iEQ-R6-gvm" id="BAl-gm-9f6">
@@ -602,6 +602,12 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bodyText" destination="Mz6-Rb-3RF" id="75u-aw-Jtz"/>
+                                            <outlet property="courseLabel" destination="XxF-La-cfF" id="BTQ-5G-Uro"/>
+                                            <outlet property="titleLabel" destination="VWw-9p-ihO" id="cQc-Xw-PEJ"/>
+                                            <outlet property="viewTimeLabel" destination="cnc-yU-Aga" id="6bs-DF-LPf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
