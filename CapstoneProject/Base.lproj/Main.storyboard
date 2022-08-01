@@ -564,7 +564,6 @@
         <!--Search Courses View Controller-->
         <scene sceneID="QgA-3B-gN4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IuJ-9f-pjN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="8JE-Rc-a59" customClass="SearchCoursesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VRE-3z-UaC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -593,6 +592,7 @@
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IuJ-9f-pjN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3744.9275362318845" y="1674.7767857142856"/>
         </scene>
