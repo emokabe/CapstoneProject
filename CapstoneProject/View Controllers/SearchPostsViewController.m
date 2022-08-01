@@ -97,6 +97,8 @@
     self.searchBar.showsCancelButton = NO;
     self.searchBar.text = @"";
     [self.searchBar resignFirstResponder];
+    self.filteredPostArray = self.postArray;
+    [self.tableView reloadData];
 }
 
 @end
