@@ -24,6 +24,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
+    self.postArray = [[NSMutableArray alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
     [self fetchPostsViewed];
 }
@@ -31,7 +32,8 @@
 - (void)fetchPostsViewed {
     [self getPostsViewedWithCompletion:^(NSArray *result, NSError *error) {
         if ([result count] != 0) {
-            self.filteredPostArray = [NSMutableArray arrayWithArray:result];
+            self.postArray = [NSMutableArray arrayWithArray:result];
+            self.filteredPostArray = self.postArray;
             [self.tableView reloadData];
         } else if (!error) {
             // no courses viewed
@@ -71,6 +73,30 @@
     [cell setSearchPostCell:self.filteredPostArray[indexPath.row]];
     
     return cell;
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"message CONTAINS[cd] %@", searchText];
+        self.filteredPostArray = [NSMutableArray arrayWithArray:[self.postArray filteredArrayUsingPredicate:predicate]];
+        [self.tableView reloadData];
+    }
+    else {
+        self.filteredPostArray = self.postArray;
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
 }
 
 @end

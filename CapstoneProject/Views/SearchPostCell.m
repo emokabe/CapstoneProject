@@ -18,8 +18,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)setSearchPostCell:(PFObject *)post {
@@ -28,7 +26,7 @@
     self.titleLabel.text = post[@"title"];
     self.bodyText.text = post[@"message"];
     self.courseLabel.text = post[@"course"];
-    self.viewTimeLabel.text = ((NSDate *)post[@"read_date"]).shortTimeAgoSinceNow;
+    self.viewTimeLabel.text = [NSString stringWithFormat:@"%@%@%@", @"Viewed ", ((NSDate *)post[@"read_date"]).shortTimeAgoSinceNow, @" ago"];
 }
 
 @end
