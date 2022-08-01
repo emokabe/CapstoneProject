@@ -14,6 +14,7 @@
 		BE05CF3628820F4400899BE9 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05CF3528820F4400899BE9 /* CourseCell.m */; };
 		BE166FE9289254C70062D0CF /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BE166FE8289254C70062D0CF /* APIManager.m */; };
 		BE166FEF289307240062D0CF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE166FEE289307240062D0CF /* CommentCell.m */; };
+		BE166FF22894855D0062D0CF /* SearchPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE166FF12894855D0062D0CF /* SearchPostsViewController.m */; };
 		BE1762E3287BDE0300B7DD03 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */; };
 		BE53E1272888AD3000744F3A /* PostDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE53E1262888AD3000744F3A /* PostDetailsViewController.m */; };
 		BE53E12A2888AD6C00744F3A /* AnsweringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE53E1292888AD6C00744F3A /* AnsweringViewController.m */; };
@@ -70,6 +71,8 @@
 		BE166FE8289254C70062D0CF /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		BE166FED289307240062D0CF /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		BE166FEE289307240062D0CF /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		BE166FF02894855D0062D0CF /* SearchPostsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPostsViewController.h; sourceTree = "<group>"; };
+		BE166FF12894855D0062D0CF /* SearchPostsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPostsViewController.m; sourceTree = "<group>"; };
 		BE1762E1287BDE0300B7DD03 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		BE1762E2287BDE0300B7DD03 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		BE53E1252888AD3000744F3A /* PostDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailsViewController.h; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 				BE53E1262888AD3000744F3A /* PostDetailsViewController.m */,
 				BE53E1282888AD6C00744F3A /* AnsweringViewController.h */,
 				BE53E1292888AD6C00744F3A /* AnsweringViewController.m */,
+				BE166FF02894855D0062D0CF /* SearchPostsViewController.h */,
+				BE166FF12894855D0062D0CF /* SearchPostsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				BE05CF3628820F4400899BE9 /* CourseCell.m in Sources */,
 				BEA4666E2878CF2500D57C23 /* QuestionFeedViewController.m in Sources */,
 				BEA4666B28781C1F00D57C23 /* FBLoginViewController.m in Sources */,
+				BE166FF22894855D0062D0CF /* SearchPostsViewController.m in Sources */,
 				BE05CF3328820E1500899BE9 /* SelectCourseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
