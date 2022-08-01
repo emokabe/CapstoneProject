@@ -9,7 +9,7 @@
 #import "CourseCell.h"
 #import "QuestionFeedViewController.h"
 
-@interface SelectCourseViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SelectCourseViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

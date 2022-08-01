@@ -488,7 +488,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xPl-S0-apg">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="120" width="414" height="776"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CourseCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" rowHeight="109" id="BPH-Fr-szb" customClass="CourseCell">
@@ -528,14 +528,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Et6-i8-fCe">
+                                <rect key="frame" x="13" y="88" width="388" height="32"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="magnifyingglass" catalog="system" title=" Search to add a course">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="8JE-Rc-a59" kind="showDetail" id="aw1-et-WI9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dis-MN-r6h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xPl-S0-apg" firstAttribute="leading" secondItem="dis-MN-r6h" secondAttribute="leading" id="0nA-7p-ycr"/>
                             <constraint firstItem="dis-MN-r6h" firstAttribute="trailing" secondItem="xPl-S0-apg" secondAttribute="trailing" id="Gc4-Wg-77j"/>
-                            <constraint firstItem="dis-MN-r6h" firstAttribute="top" secondItem="xPl-S0-apg" secondAttribute="top" constant="88" id="Uw1-e6-sbh"/>
+                            <constraint firstItem="Et6-i8-fCe" firstAttribute="leading" secondItem="dis-MN-r6h" secondAttribute="leading" constant="13" id="HHq-NC-CvZ"/>
+                            <constraint firstItem="xPl-S0-apg" firstAttribute="top" secondItem="Et6-i8-fCe" secondAttribute="bottom" id="RCX-XL-HKH"/>
                             <constraint firstItem="xPl-S0-apg" firstAttribute="bottom" secondItem="dis-MN-r6h" secondAttribute="bottom" constant="83" id="UxK-zZ-WM0"/>
+                            <constraint firstItem="Et6-i8-fCe" firstAttribute="centerX" secondItem="xPl-S0-apg" secondAttribute="centerX" id="nRn-ai-oTn"/>
+                            <constraint firstItem="Et6-i8-fCe" firstAttribute="centerX" secondItem="dis-MN-r6h" secondAttribute="centerX" id="rEi-Zt-i6O"/>
+                            <constraint firstItem="Et6-i8-fCe" firstAttribute="top" secondItem="dis-MN-r6h" secondAttribute="top" id="veM-Vb-AXk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Select a Course" id="kif-fM-3e1"/>
@@ -545,7 +559,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dc-Kw-83v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2793" y="873"/>
+            <point key="canvasLocation" x="2792.753623188406" y="872.54464285714278"/>
+        </scene>
+        <!--Search Courses View Controller-->
+        <scene sceneID="QgA-3B-gN4">
+            <objects>
+                <viewController id="8JE-Rc-a59" customClass="SearchCoursesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VRE-3z-UaC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2D-G8-Epu">
+                                <rect key="frame" x="20" y="20" width="72" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                <connections>
+                                    <action selector="didTapCancel:" destination="8JE-Rc-a59" eventType="touchUpInside" id="f88-TC-Tcm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Noy-U7-vTf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qpg-cz-MeP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IuJ-9f-pjN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2792.753623188406" y="1674.7767857142856"/>
         </scene>
         <!--Item-->
         <scene sceneID="VKf-ez-h8X">
@@ -681,6 +722,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
