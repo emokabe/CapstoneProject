@@ -559,13 +559,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search for posts by keyword" id="2BS-w5-uR9">
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="av8-r1-NkD">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="151" id="iEQ-R6-gvm" customClass="SearchPostCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchPostCell" rowHeight="151" id="iEQ-R6-gvm" customClass="SearchPostCell">
                                         <rect key="frame" x="0.0" y="88.5" width="414" height="151"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iEQ-R6-gvm" id="BAl-gm-9f6">
@@ -617,7 +617,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search Recent History" id="WoV-Rr-g9F"/>
                     <connections>
-                        <outlet property="searchBar" destination="2BS-w5-uR9" id="9d6-EK-Gq6"/>
+                        <outlet property="searchBar" destination="av8-r1-NkD" id="64a-yt-miq"/>
+                        <outlet property="tableView" destination="xXY-kr-knt" id="TEJ-1S-2v3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97I-nm-Mqk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

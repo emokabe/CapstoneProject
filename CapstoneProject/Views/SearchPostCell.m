@@ -6,6 +6,8 @@
 //
 
 #import "SearchPostCell.h"
+#import "DateTools.h"
+#import "NSDate+DateTools.h"
 
 @implementation SearchPostCell
 
@@ -26,7 +28,7 @@
     self.titleLabel.text = post[@"title"];
     self.bodyText.text = post[@"message"];
     self.courseLabel.text = post[@"course"];
-    self.viewTimeLabel.text = post[@"read_date"];
+    self.viewTimeLabel.text = ((NSDate *)post[@"read_date"]).shortTimeAgoSinceNow;
 }
 
 @end
