@@ -34,6 +34,13 @@
     [self fetchComments];
 }
 
+- (void)viewDidLayoutSubviews {
+    self.scrollView.contentSize = CGSizeMake(
+            414,
+            500
+        );
+}
+
 - (void)fetchComments {
     NSMutableArray *posts = [self.apiManagerFromFeed.postCache objectForKey:@"posts"];
     for (Post *post in posts) {

@@ -18,6 +18,10 @@
         self.user_id = dictionary[@"from"][@"id"];
         self.user_name = dictionary[@"from"][@"name"];
         self.post_id = dictionary[@"id"];
+        
+        if ([dictionary objectForKey:@"links"]) {
+            
+        }
 
         NSArray *arrayOfComponents = [dictionary[@"message"] componentsSeparatedByString:@"/0\n\n"];
         if ([arrayOfComponents count] == 3) {
