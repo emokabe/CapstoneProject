@@ -21,16 +21,16 @@
         
         if ([dictionary objectForKey:@"attachments"]) {
             if ([[dictionary objectForKey:@"attachments"] objectForKey:@"data"]) {
-                    if ([dictionary[@"attachments"][@"data"][0][@"type"] isEqualToString:@"photo"]) {
-                        self.attach_image_url = dictionary[@"attachments"][@"data"][0][@"media"][@"image"][@"src"];
-                    }
+                if ([dictionary[@"attachments"][@"data"][0][@"type"] isEqualToString:@"photo"]) {
+                    self.attach_image_url = dictionary[@"attachments"][@"data"][0][@"media"][@"image"][@"src"];
+                }
             }
             //self.link = dictionary[@"link"];
             /*
-            if ([dictionary objectForKey:@"attachments"]) {
-                self.attach_image_url = dictionary[@"attachments"][@"data"][@"media"][@"image"][@"src"];
-                self.attach_title = dictionary[@"attachments"][@"data"][@"title"];
-            }
+             if ([dictionary objectForKey:@"attachments"]) {
+             self.attach_image_url = dictionary[@"attachments"][@"data"][@"media"][@"image"][@"src"];
+             self.attach_title = dictionary[@"attachments"][@"data"][@"title"];
+             }
              */
         } else {
             self.attach_image_url = @"";
