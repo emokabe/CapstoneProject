@@ -150,12 +150,12 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="koo-Hr-Wwn">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="koo-Hr-Wwn">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ow5-Rm-eqy">
                                 <rect key="frame" x="302" y="5" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Post"/>
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.pencil" catalog="system"/>
                                 <connections>
                                     <segue destination="jJ4-Fu-ear" kind="presentation" identifier="composeSegue" id="FhU-5a-82J"/>
                                 </connections>
@@ -646,11 +646,11 @@
             </objects>
             <point key="canvasLocation" x="4931.884057971015" y="872.54464285714278"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="VKf-ez-h8X">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wmf-FK-I7H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="TGY-Uw-bts"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="TGY-Uw-bts"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uni-M3-fYY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -671,7 +671,7 @@
                 <tabBarController storyboardIdentifier="loginSuccessPage" automaticallyAdjustsScrollViewInsets="NO" id="FFh-Lf-ndx" customClass="TabBarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8S7-tx-tY2"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cyN-Vi-yls">
+                    <tabBar key="tabBar" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cyN-Vi-yls">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -687,11 +687,11 @@
             </objects>
             <point key="canvasLocation" x="1868.1159420289857" y="97.767857142857139"/>
         </scene>
-        <!--Item-->
+        <!--Courses-->
         <scene sceneID="vKM-UN-Y9M">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="21P-Wm-ohf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="mKC-g2-2Tr"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="books.vertical" catalog="system" id="mKC-g2-2Tr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MbA-cZ-1yd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -779,11 +779,11 @@
             </objects>
             <point key="canvasLocation" x="-297" y="1675"/>
         </scene>
-        <!--Item-->
+        <!--Search-->
         <scene sceneID="doc-xa-xCG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w0K-Uj-DuY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="sPT-R3-Sg1"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="sPT-R3-Sg1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OqU-e3-maN">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -800,7 +800,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="books.vertical" catalog="system" width="128" height="107"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
