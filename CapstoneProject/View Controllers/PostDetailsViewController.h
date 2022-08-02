@@ -23,7 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) APIManager *apiManagerFromFeed;
 @property (nonatomic, strong) NSMutableArray *commentArray;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *linkView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *linkTitle;
+@property (weak, nonatomic) IBOutlet UILabel *linkURL;
 
 
 

@@ -127,7 +127,7 @@
     
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/425184976239857/feed"
-                                  parameters:@{ @"fields": @"from,created_time,message,link",@"until": untilDateStr,@"since": sinceDateStr}
+                                  parameters:@{ @"fields": @"from,created_time,message,link,attachments",@"until": untilDateStr,@"since": sinceDateStr}
                                   HTTPMethod:@"GET"];
     
     [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {

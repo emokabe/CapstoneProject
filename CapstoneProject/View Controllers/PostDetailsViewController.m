@@ -31,6 +31,17 @@
     self.dateLabel.text = self.postInfo.post_date_detailed;
     self.descriptionLabel.text = self.postInfo.textContent;
     
+    //self.linkTitle.text = self.postInfo.attach_title;
+    if (self.postInfo.attach_image_url != nil) {
+        //self.linkURL.text = self.postInfo.link;
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: self.postInfo.attach_image_url]];
+        self.imageView.image = [UIImage imageWithData:imageData];
+    }
+    
+    //NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: self.postInfo.attach_image_url]];
+    //self.imageView.image = [UIImage imageWithData:imageData];
+    //[self.linkView setHidden:YES];
+    
     [self fetchComments];
 }
 

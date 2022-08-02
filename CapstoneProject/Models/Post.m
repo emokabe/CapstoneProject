@@ -19,8 +19,21 @@
         self.user_name = dictionary[@"from"][@"name"];
         self.post_id = dictionary[@"id"];
         
-        if ([dictionary objectForKey:@"links"]) {
-            
+        if ([dictionary objectForKey:@"attachments"]) {
+            if ([[dictionary objectForKey:@"attachments"] objectForKey:@"data"]) {
+                    if ([dictionary[@"attachments"][@"data"][0][@"type"] isEqualToString:@"photo"]) {
+                        self.attach_image_url = dictionary[@"attachments"][@"data"][0][@"media"][@"image"][@"src"];
+                    }
+            }
+            //self.link = dictionary[@"link"];
+            /*
+            if ([dictionary objectForKey:@"attachments"]) {
+                self.attach_image_url = dictionary[@"attachments"][@"data"][@"media"][@"image"][@"src"];
+                self.attach_title = dictionary[@"attachments"][@"data"][@"title"];
+            }
+             */
+        } else {
+            self.attach_image_url = @"";
         }
 
         NSArray *arrayOfComponents = [dictionary[@"message"] componentsSeparatedByString:@"/0\n\n"];

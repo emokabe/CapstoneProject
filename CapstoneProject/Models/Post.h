@@ -22,7 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *post_date_detailed; // Detailed date of post for details view
 @property (nonatomic, strong) NSDate *post_date; // Date of post as NSDate
 @property (nonatomic, strong) NSString *profilePic_url; // URL of profile image
-@property (nonatomic, strong) NSArray *links; // links within text
+@property (nonatomic, strong) NSString *link; // link within text
+@property (nonatomic, strong) NSString *attach_title; // link within text
+@property (nonatomic, strong) NSString *attach_image_url; // link within text
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
