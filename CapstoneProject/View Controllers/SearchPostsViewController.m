@@ -6,9 +6,12 @@
 //
 
 #import "SearchPostsViewController.h"
+#import "FBSDKLoginKit/FBSDKLoginKit.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "Parse/Parse.h"
 #import "SearchPostCell.h"
+#import "Post.h"
+#import "PostDetailsViewController.h"
 
 @interface SearchPostsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -25,6 +28,7 @@
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     self.postArray = [[NSMutableArray alloc] init];
+    self._apiManager = [[APIManager alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
     [self fetchPostsViewed];
 }
@@ -100,5 +104,59 @@
     self.filteredPostArray = self.postArray;
     [self.tableView reloadData];
 }
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
+    [self._apiManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
+        if (post) {
+            NSLog(@"Hello, World!");
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            PostDetailsViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"PostDetailsViewController"];
+            
+            Post *p = [[Post alloc] initWithDictionary:post];
+            rootViewController.postInfo = p;
+            
+            self.view.window.rootViewController = rootViewController;
+            
+        } else if (!error) {
+            NSLog(@"Error: could not find post with matching id");
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
+/*
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    
+    if ([FBSDKAccessToken currentAccessToken] == nil) {
+        NSLog(@"No access token");
+    }
+    
+    if ([segue.identifier isEqualToString:@"searchToDetailsSegue"]) {
+        // 1 Get indexpath
+        NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
+        
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                      initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                      parameters:@{ @"fields": @"from, created_time, message"}
+                                      HTTPMethod:@"GET"];
+        
+        [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+            if (!error) {
+                NSLog(@"%@", result);
+                Post *post = [[Post alloc] initWithDictionary:result];
+                PostDetailsViewController *detailsVC = [segue destinationViewController];
+                detailsVC.postInfo = post;
+            } else {
+                NSLog(@"Error posting to feed: %@", error.localizedDescription);
+            }
+        }];
+    }
+}
+ */
 
 @end
