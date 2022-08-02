@@ -114,11 +114,9 @@
             
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             PostDetailsViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"PostDetailsViewController"];
-            
             Post *p = [[Post alloc] initWithDictionary:post];
             rootViewController.postInfo = p;
-            
-            self.view.window.rootViewController = rootViewController;
+            [self.navigationController pushViewController:rootViewController animated:YES];
             
         } else if (!error) {
             NSLog(@"Error: could not find post with matching id");
