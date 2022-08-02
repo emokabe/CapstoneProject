@@ -50,6 +50,8 @@
                     [object incrementKey:@"times_viewed"];
                     [object saveInBackground];
                     return;
+                } else if (error == nil) {
+                    NSLog(@"Error: No matching object found");
                 } else {
                     NSLog(@"Error: %@", error.description);
                 }
