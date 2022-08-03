@@ -42,6 +42,12 @@
         } else if (!error) {
             // no courses viewed
             NSLog(@"No courses viewed yet!");
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle: @ "No posts viewed!"
+                                                                              message: @"View posts in your feed to search by keyword" preferredStyle: UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle: @ "Dismiss"
+                                                              style: UIAlertActionStyleDefault handler: ^ (UIAlertAction *action) {}];
+            [alert addAction: action];
+            [self presentViewController: alert animated: true completion: nil];
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
@@ -108,8 +114,6 @@
     NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
     [self._apiManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (post) {
-            NSLog(@"Hello, World!");
-            
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             PostDetailsViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"PostDetailsViewController"];
             Post *p = [[Post alloc] initWithDictionary:post];
