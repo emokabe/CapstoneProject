@@ -19,6 +19,22 @@
     return self;
 }
 
+- (void)getPostDictFromIDWithCompletion:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion {
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from,created_time,message"}
+                                  HTTPMethod:@"GET"];
+                                  
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            completion(result, nil);
+        } else {
+            completion(nil, error);
+        }
+    }];
+}     
+
 - (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion {
     
     NSString *untilDateStr = until;

@@ -49,16 +49,21 @@
                     NSLog(@"Duplicate object: %@", object);
                     [object incrementKey:@"times_viewed"];
                     [object saveInBackground];
-                    return;
+                    [self fetchComments];
                 } else if (error == nil) {
                     NSLog(@"Error: No matching object found");
                 } else {
                     NSLog(@"Error: %@", error.description);
                 }
             }];
+        } else {
+            [self createNewReadPost:current_user_id];
+            [self fetchComments];
         }
     }];
+}
 
+- (void)createNewReadPost:(NSString *)current_user_id {
     PFObject *postInParse = [[PFObject alloc] initWithClassName:current_user_id];
     postInParse[@"post_id"] = self.postInfo.post_id;
     postInParse[@"user_id"] = self.postInfo.user_id;
@@ -80,8 +85,6 @@
             NSLog(@"Error: %@", error.description);
         }
     }];
-    
-    [self fetchComments];
 }
 
 - (void)fetchComments {
@@ -161,5 +164,6 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.commentArray.count;
 }
+
 
 @end
