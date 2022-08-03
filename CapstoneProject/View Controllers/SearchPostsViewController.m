@@ -93,8 +93,6 @@
     else {
         self.filteredPostArray = self.postArray;
     }
-    
-    [self.tableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
