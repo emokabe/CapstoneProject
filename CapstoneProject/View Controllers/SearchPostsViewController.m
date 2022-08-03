@@ -13,7 +13,7 @@
 #import "Post.h"
 #import "PostDetailsViewController.h"
 
-@interface SearchPostsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface SearchPostsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIContextMenuInteractionDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -30,11 +30,15 @@
     self.postArray = [[NSMutableArray alloc] init];
     self._apiManager = [[APIManager alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
-    //[self fetchPostsViewed];
+    self.filter_string = @"DEFAULT";
+    
+    UIContextMenuInteraction *interaction = [[UIContextMenuInteraction alloc] initWithDelegate:self];
+    [self.searchBar addInteraction:interaction];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self fetchPostsViewed];
+    NSLog(@"Filter: %@", self.filter_string);
 }
 
 - (void)fetchPostsViewed {
@@ -93,15 +97,21 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSPredicate *finalPredicate;
     if (searchText.length != 0) {
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"message CONTAINS[cd] %@", searchText];
-        self.filteredPostArray = [NSMutableArray arrayWithArray:[self.postArray filteredArrayUsingPredicate:predicate]];
-        [self.tableView reloadData];
+        if ([self.filter_string isEqualToString:@"DEFAULT"]) {
+            NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
+            NSPredicate *pred2 = [NSPredicate predicateWithFormat:@"message CONTAINS[cd] %@", searchText];
+            finalPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[pred1, pred2]];
+        } else {
+            finalPredicate = [NSPredicate predicateWithFormat:self.filter_string, searchText];
+        }
+        self.filteredPostArray = [NSMutableArray arrayWithArray:[self.postArray filteredArrayUsingPredicate:finalPredicate]];
     }
     else {
         self.filteredPostArray = self.postArray;
     }
+    [self.tableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -131,5 +141,35 @@
     }];
 }
 
+
+- (nullable UIContextMenuConfiguration *)contextMenuInteraction:(nonnull UIContextMenuInteraction *)interaction configurationForMenuAtLocation:(CGPoint)location {
+    
+    UIContextMenuConfiguration *config = [UIContextMenuConfiguration configurationWithIdentifier:nil previewProvider:nil actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> * _Nonnull suggestedActions) {
+        
+        UIAction *defaultFilter = [UIAction actionWithTitle:@"All text (default)" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+            self.filter_string = @"DEFAULT";
+        }];
+        
+        UIAction *messageFilter = [UIAction actionWithTitle:@"Message" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+            self.filter_string = @"message CONTAINS[cd] %@";
+        }];
+        
+        UIAction *titleFilter = [UIAction actionWithTitle:@"Title" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+            self.filter_string = @"title CONTAINS[cd] %@";
+        }];
+        
+        UIAction *usernameFilter = [UIAction actionWithTitle:@"Name" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+            self.filter_string = @"user_name CONTAINS[cd] %@";
+        }];
+        
+        UIAction *courseFilter = [UIAction actionWithTitle:@"Course" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+            self.filter_string = @"course CONTAINS[cd] %@";
+        }];
+        
+        return [UIMenu menuWithTitle:@"Filter By:" children:@[defaultFilter, messageFilter, titleFilter, usernameFilter, courseFilter]];
+    }];
+    
+    return config;
+}
 
 @end
