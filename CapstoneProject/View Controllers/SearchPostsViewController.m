@@ -126,35 +126,5 @@
     }];
 }
 
-/*
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    
-    if ([FBSDKAccessToken currentAccessToken] == nil) {
-        NSLog(@"No access token");
-    }
-    
-    if ([segue.identifier isEqualToString:@"searchToDetailsSegue"]) {
-        // 1 Get indexpath
-        NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
-        
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                      initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
-                                      parameters:@{ @"fields": @"from, created_time, message"}
-                                      HTTPMethod:@"GET"];
-        
-        [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-            if (!error) {
-                NSLog(@"%@", result);
-                Post *post = [[Post alloc] initWithDictionary:result];
-                PostDetailsViewController *detailsVC = [segue destinationViewController];
-                detailsVC.postInfo = post;
-            } else {
-                NSLog(@"Error posting to feed: %@", error.localizedDescription);
-            }
-        }];
-    }
-}
- */
 
 @end
