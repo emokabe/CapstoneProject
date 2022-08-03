@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APIManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *postArray;
 @property (nonatomic, strong) NSMutableArray *filteredPostArray;
+
+@property (nonatomic, strong) APIManager *_apiManager;
 
 @end
 

@@ -6,9 +6,12 @@
 //
 
 #import "SearchPostsViewController.h"
+#import "FBSDKLoginKit/FBSDKLoginKit.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "Parse/Parse.h"
 #import "SearchPostCell.h"
+#import "Post.h"
+#import "PostDetailsViewController.h"
 
 @interface SearchPostsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -25,6 +28,7 @@
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     self.postArray = [[NSMutableArray alloc] init];
+    self._apiManager = [[APIManager alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
     [self fetchPostsViewed];
 }
@@ -89,8 +93,6 @@
     else {
         self.filteredPostArray = self.postArray;
     }
-    
-    [self.tableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -100,5 +102,27 @@
     self.filteredPostArray = self.postArray;
     [self.tableView reloadData];
 }
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
+    [self._apiManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
+        if (post) {
+            NSLog(@"Hello, World!");
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            PostDetailsViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"PostDetailsViewController"];
+            Post *p = [[Post alloc] initWithDictionary:post];
+            rootViewController.postInfo = p;
+            [self.navigationController pushViewController:rootViewController animated:YES];
+            
+        } else if (!error) {
+            NSLog(@"Error: could not find post with matching id");
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
 
 @end
