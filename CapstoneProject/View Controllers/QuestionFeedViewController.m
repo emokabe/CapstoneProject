@@ -71,30 +71,30 @@
     __block NSInteger numPosts = 0;
     [self._apiManager getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
         if (!error) {
-            if ([posts count] == 0) {
+            if ([posts count] == 0) {   // no more posts left in Facebook Group: load posts to tableView
                 if (isFirst) {
                     [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                 }
-                
                 self.isMoreDataLoading = NO;
                 [self.tableView reloadData];
                 return;
             }
-            for (Post *post in posts) {
+            
+            for (Post *post in posts) {   // filter posts by current course
                 [self.postsToBeCached addObject:post];
                 if ([post.parent_post_id isEqualToString:@""] && [post.courses isEqualToString:course_id]) {
                     [self.postArray addObject:post];
                     numPosts++;
                 }
             }
-            NSLog(@"after for loop");
-            if (numPosts < 2) {  //[self.postArray count] - count
+
+            if (numPosts < 2) {   // not enough posts displayed
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
                 NSLog(@"Date = %@", [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date]);
                 [self fetchPostsRec:course_id endDate:lastDate startDate:nil numAdded:(count + numPosts) firstFetch:isFirst];
-            } else {
+            } else {   // enough posts: load posts to tableView
                 __weak typeof(self) weakSelf = self;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(self) strongSelf = weakSelf;
@@ -102,7 +102,6 @@
                         if (isFirst) {
                             [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                         }
-                        
                         self.isMoreDataLoading = NO;
                         [self.tableView reloadData];
                     }
@@ -146,21 +145,6 @@
         }
     }
 }
-
-/*
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row + 1 == [self.postArray count]) {
-        NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-        NSString *course_id = [saved stringForKey:@"currentCourse"];
-        
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
-        NSString *dateStr = [dateFormat stringFromDate:((Post *)self.postArray[indexPath.row]).post_date];
-        
-        [self fetchPostsRec:course_id endDate:dateStr startDate:nil originalCount:[self.postArray count] firstFetch:NO];
-    }
-}
- */
 
 - (void)didPost:(nonnull Post *)post {
     [self fetchPosts:YES];
