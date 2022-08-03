@@ -34,10 +34,11 @@
     self.postArray = [[NSMutableArray alloc] init];
     self._apiManager = [[APIManager alloc] init];
     self.postsToBeCached = [[NSMutableArray alloc] init];
+    self.isMoreDataLoading = NO;
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
@@ -53,43 +54,55 @@
     self.view.window.rootViewController = loginViewController; // substitute, less elegant
 }
 
-- (void)fetchPosts {
+- (void)fetchPosts:(BOOL)isFirst{
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_id = [saved stringForKey:@"currentCourse"];
     NSLog(@"course_id = %@", course_id);
     
-    [self.postArray removeAllObjects];
-    [self.postsToBeCached removeAllObjects];
-    [self fetchPostsRec:course_id endDate:nil startDate:nil];
+    if (isFirst) {
+        [self.postArray removeAllObjects];
+        [self.postsToBeCached removeAllObjects];
+    }
+    
+    [self fetchPostsRec:course_id endDate:nil startDate:nil numAdded:0 firstFetch:isFirst];
 }
 
-- (void)fetchPostsRec:(NSString *)course_id endDate:(NSString *)until startDate:(NSString *)since {
-    [self getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
+- (void)fetchPostsRec:(NSString *)course_id endDate:(NSString *)until startDate:(NSString *)since numAdded:(NSInteger)count firstFetch:(BOOL)isFirst {
+    __block NSInteger numPosts = 0;
+    [self._apiManager getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
         if (!error) {
-            if ([posts count] == 0) {
-                [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
+            if ([posts count] == 0) {   // no more posts left in Facebook Group: load posts to tableView
+                if (isFirst) {
+                    [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                }
+                self.isMoreDataLoading = NO;
                 [self.tableView reloadData];
                 return;
             }
-            for (Post *post in posts) {
+            
+            for (Post *post in posts) {   // filter posts by current course
                 [self.postsToBeCached addObject:post];
                 if ([post.parent_post_id isEqualToString:@""] && [post.courses isEqualToString:course_id]) {
                     [self.postArray addObject:post];
+                    numPosts++;
                 }
             }
-            NSLog(@"after for loop");
-            if ([self.postArray count] < 10) {
+
+            if (numPosts < 2) {   // not enough posts displayed
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
                 NSLog(@"Date = %@", [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date]);
-                [self fetchPostsRec:course_id endDate:lastDate startDate:nil];
-            } else {
+                [self fetchPostsRec:course_id endDate:lastDate startDate:nil numAdded:(count + numPosts) firstFetch:isFirst];
+            } else {   // enough posts: load posts to tableView
                 __weak typeof(self) weakSelf = self;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(self) strongSelf = weakSelf;
                     if (strongSelf) {
-                        [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                        if (isFirst) {
+                            [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                        }
+                        self.isMoreDataLoading = NO;
                         [self.tableView reloadData];
                     }
                 });
@@ -100,65 +113,6 @@
         }
     }];
 }
-
-- (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion {
-    
-    NSString *untilDateStr = until;
-    NSString *sinceDateStr = since;
-    
-    if (untilDateStr == nil) {
-        untilDateStr = @"now";
-    }
-    
-    if (sinceDateStr == nil) {   // set 'since' to two weeks before until
-        double daysinInterval = 7;  // number of days into the past to get posts up to
-        NSTimeInterval twoWeekInterval = (NSTimeInterval)(daysinInterval * -86400);
-        
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        
-        NSDate *startDate = [NSDate dateWithTimeInterval:twoWeekInterval sinceDate:[dateFormat dateFromString:untilDateStr]];
-        
-        sinceDateStr = [dateFormat stringFromDate:startDate];
-    }
-    
-    NSLog(@"untilDateStr = %@", untilDateStr);
-    NSLog(@"sinceDateStr = %@", sinceDateStr);
-    
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:@"/425184976239857/feed"
-                                  parameters:@{ @"fields": @"from,created_time,message",@"until": untilDateStr,@"since": sinceDateStr}
-                                  HTTPMethod:@"GET"];
-    
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSMutableArray *posts = [Post postsWithArray:result[@"data"]];
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
-            
-            completion(posts, [dateFormat stringFromDate:((Post *)[posts lastObject]).post_date], nil);
-        } else {
-            completion(nil, nil, error);
-        }
-    }];
-}
-
-- (void)getAllPostsWithCompletion:(void(^)(NSMutableArray *posts, NSError *error))completion {
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:@"/425184976239857/feed"
-                                  parameters:@{ @"fields": @"from, created_time, message"}
-                                  HTTPMethod:@"GET"];
-    
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSMutableArray *posts = [Post postsWithArray:result[@"data"]];
-            completion(posts, nil);
-        } else {
-            completion(nil, error);
-        }
-    }];
-}
-
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
@@ -172,13 +126,34 @@
     return self.postArray.count;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+            NSString *course_id = [saved stringForKey:@"currentCourse"];
+            
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+            NSString *dateStr = [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date];
+            [self fetchPostsRec:course_id endDate:dateStr startDate:nil numAdded:0 firstFetch:NO];
+        }
+    }
+}
+
 - (void)didPost:(nonnull Post *)post {
-    [self fetchPosts];
+    [self fetchPosts:YES];
     [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self fetchPosts];
+    NSLog(@"View will appear called!");
+    [self fetchPosts:YES];
     [self.tableView reloadData];
 }
 
