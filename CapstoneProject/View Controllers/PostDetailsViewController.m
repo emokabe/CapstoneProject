@@ -48,6 +48,7 @@
                 if (object != nil) {
                     NSLog(@"Duplicate object: %@", object);
                     [object incrementKey:@"times_viewed"];
+                    [object setValue:[NSDate date] forKey:@"read_date"];
                     [object saveInBackground];
                     [self fetchComments];
                 } else if (error == nil) {

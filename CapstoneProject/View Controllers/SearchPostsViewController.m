@@ -30,6 +30,10 @@
     self.postArray = [[NSMutableArray alloc] init];
     self._apiManager = [[APIManager alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
+    //[self fetchPostsViewed];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [self fetchPostsViewed];
 }
 
@@ -39,8 +43,7 @@
             self.postArray = [NSMutableArray arrayWithArray:result];
             self.filteredPostArray = self.postArray;
             [self.tableView reloadData];
-        } else if (!error) {
-            // no courses viewed
+        } else if (!error) {   // no courses viewed
             NSLog(@"No courses viewed yet!");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle: @ "No posts viewed!"
                                                                               message: @"View posts in your feed to search by keyword" preferredStyle: UIAlertControllerStyleAlert];
