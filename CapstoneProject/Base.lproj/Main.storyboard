@@ -179,8 +179,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Question Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-sR-0Ay">
-                                <rect key="frame" x="20" y="104" width="374" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Question Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-sR-0Ay">
+                                <rect key="frame" x="20" y="88" width="374" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="46" id="VXH-tm-SVw"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -277,6 +280,9 @@
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Answers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2Q-ad-h1I">
                                 <rect key="frame" x="20" y="439" width="82" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="uTO-Nu-csF"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -311,7 +317,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="8SL-sU-K9W" firstAttribute="top" secondItem="BEg-Qw-3QV" secondAttribute="bottom" constant="17" id="0Pb-UJ-1cz"/>
-                            <constraint firstItem="6ZA-sR-0Ay" firstAttribute="top" secondItem="bRU-Qa-uYY" secondAttribute="top" constant="16" id="0X7-yf-Yow"/>
+                            <constraint firstItem="6ZA-sR-0Ay" firstAttribute="top" secondItem="bRU-Qa-uYY" secondAttribute="top" id="0X7-yf-Yow"/>
                             <constraint firstItem="y5W-ns-RF6" firstAttribute="leading" secondItem="BEg-Qw-3QV" secondAttribute="trailing" constant="21" id="2Ao-jL-u9l"/>
                             <constraint firstItem="87f-VR-vJw" firstAttribute="top" secondItem="y5W-ns-RF6" secondAttribute="bottom" constant="7" id="32F-sj-ptz"/>
                             <constraint firstItem="6ZA-sR-0Ay" firstAttribute="leading" secondItem="bRU-Qa-uYY" secondAttribute="leading" constant="20" id="4JS-Ng-OAN"/>
