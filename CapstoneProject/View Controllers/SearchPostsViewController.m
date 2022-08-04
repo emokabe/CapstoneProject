@@ -30,11 +30,6 @@
     self.searchBar.delegate = self;
     self.postArray = [[NSMutableArray alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
-    
-    
-    //YourAppDelegateClass *appDelegate = (YourAppDelegateClass *)[[UIApplication sharedApplication] delegate];
-    //NSString *string = appDelegate.yourProperty;
-    
     self.sharedManager = [APIManager sharedManager];
     NSMutableArray *posts = [self.sharedManager.postCache objectForKey:@"posts"];
     NSLog(@"Posts here: %@", posts);
@@ -123,7 +118,7 @@
             PostDetailsViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"PostDetailsViewController"];
             Post *p = [[Post alloc] initWithDictionary:post];
             rootViewController.postInfo = p;
-            rootViewController.array = [self.sharedManager.postCache objectForKey:@"posts"];
+            rootViewController.sharedManager = self.sharedManager;
             [self.navigationController pushViewController:rootViewController animated:YES];
             
         } else if (!error) {
