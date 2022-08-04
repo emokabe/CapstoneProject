@@ -174,8 +174,9 @@ Finally, there will be a view for searching through posts that the user already 
     - In order to do this, I needed to share the same APIManager object so that I could share the same cache in the APIManager class among all view controllers in the tab bar
     - I created a singleton APIManager class for the above purpose
 - Added auto layout and other UI fixes
-    - Fixed autolayout of the details view controller, composing post view controller, and composing comment view controller
+    - Edited autolayout of the details view controller and composing comment view controller
     - Changed navigation title of the home feed so that the current course name is also displayed
+    - Blockers: getting the title of the post to show up in details, layout for composing post view controller
 
 
  
