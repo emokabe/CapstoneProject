@@ -485,10 +485,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btF-V8-ggi">
-                                <rect key="frame" x="310" y="437" width="84" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="84" id="d8X-ZX-PnP"/>
-                                </constraints>
+                                <rect key="frame" x="290" y="437" width="104" height="36"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Post">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
@@ -507,7 +504,7 @@
                             <constraint firstItem="axT-Pa-5g3" firstAttribute="leading" secondItem="1Zc-eU-7Mw" secondAttribute="leading" constant="20" id="VdE-W7-mEp"/>
                             <constraint firstItem="Z0y-oD-QlO" firstAttribute="top" secondItem="axT-Pa-5g3" secondAttribute="bottom" constant="21" id="WBz-op-cJ1"/>
                             <constraint firstItem="btF-V8-ggi" firstAttribute="top" secondItem="Z0y-oD-QlO" secondAttribute="bottom" constant="22" id="ezO-Bm-Wcx"/>
-                            <constraint firstItem="btF-V8-ggi" firstAttribute="leading" secondItem="1Zc-eU-7Mw" secondAttribute="leading" constant="310" id="p61-hn-ag9"/>
+                            <constraint firstItem="btF-V8-ggi" firstAttribute="leading" secondItem="1Zc-eU-7Mw" secondAttribute="leading" constant="290" id="p61-hn-ag9"/>
                             <constraint firstItem="Z0y-oD-QlO" firstAttribute="trailing" secondItem="axT-Pa-5g3" secondAttribute="trailing" id="wuK-L3-fNy"/>
                             <constraint firstItem="1Zc-eU-7Mw" firstAttribute="trailing" secondItem="btF-V8-ggi" secondAttribute="trailing" constant="20" id="ygA-tY-YOg"/>
                             <constraint firstItem="1Zc-eU-7Mw" firstAttribute="bottom" secondItem="btF-V8-ggi" secondAttribute="bottom" constant="369" id="zLK-Il-Wle"/>
