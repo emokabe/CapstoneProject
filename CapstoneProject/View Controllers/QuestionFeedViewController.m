@@ -36,6 +36,8 @@
     self.postsToBeCached = [[NSMutableArray alloc] init];
     self.isMoreDataLoading = NO;
     
+    //self.sharedManager = [APIManager sharedManager];
+    
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
@@ -88,7 +90,7 @@
                 }
             }
 
-            if (numPosts < 2) {   // not enough posts displayed
+            if (numPosts < 10) {   // not enough posts displayed
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
@@ -101,6 +103,7 @@
                     if (strongSelf) {
                         if (isFirst) {
                             [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                            //[self.sharedManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                         }
                         self.isMoreDataLoading = NO;
                         [self.tableView reloadData];

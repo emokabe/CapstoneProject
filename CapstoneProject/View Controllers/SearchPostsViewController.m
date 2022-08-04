@@ -12,6 +12,7 @@
 #import "SearchPostCell.h"
 #import "Post.h"
 #import "PostDetailsViewController.h"
+#import "APIManager.h"
 
 @interface SearchPostsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -28,8 +29,16 @@
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     self.postArray = [[NSMutableArray alloc] init];
-    self._apiManager = [[APIManager alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
+    
+    
+    //YourAppDelegateClass *appDelegate = (YourAppDelegateClass *)[[UIApplication sharedApplication] delegate];
+    //NSString *string = appDelegate.yourProperty;
+    
+    self.sharedManager = [APIManager sharedManager];
+    NSMutableArray *posts = [self.sharedManager.postCache objectForKey:@"posts"];
+    NSLog(@"Posts here: %@", posts);
+    
     [self fetchPostsViewed];
 }
 
@@ -106,7 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
-    [self._apiManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
+    [self.sharedManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (post) {
             NSLog(@"Hello, World!");
             
@@ -114,6 +123,7 @@
             PostDetailsViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"PostDetailsViewController"];
             Post *p = [[Post alloc] initWithDictionary:post];
             rootViewController.postInfo = p;
+            rootViewController.array = [self.sharedManager.postCache objectForKey:@"posts"];
             [self.navigationController pushViewController:rootViewController animated:YES];
             
         } else if (!error) {

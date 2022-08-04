@@ -88,7 +88,7 @@
 }
 
 - (void)fetchComments {
-    NSMutableArray *posts = [self.apiManagerFromFeed.postCache objectForKey:@"posts"];
+    NSMutableArray *posts = self.array; //[self.apiManagerFromFeed.postCache objectForKey:@"posts"];
     
     NSDate *lastCachedDate = ((Post *)[posts lastObject]).post_date;
     NSDate *thisPostDate = self.postInfo.post_date;
