@@ -36,6 +36,10 @@
     self.postsToBeCached = [[NSMutableArray alloc] init];
     self.isMoreDataLoading = NO;
     
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
+    
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
