@@ -138,7 +138,6 @@ Finally, there will be a view for searching through posts that the user already 
         - e.g. for a user with user-id = 12345, the post will be stored as an object called "user12345"
         - This makes mapping users to viewed posts easier, because we won't have to save posts and map each post to a user, then query all posts with a particular user-id field
 
-
  
 ## Credits
 
