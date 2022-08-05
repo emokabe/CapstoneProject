@@ -18,6 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIButton *sortButton;
+
 
 @end
 
@@ -34,6 +36,8 @@
     
     UIContextMenuInteraction *interaction = [[UIContextMenuInteraction alloc] initWithDelegate:self];
     [self.searchBar addInteraction:interaction];
+    
+    [self setSortButtonMenu];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,7 +53,7 @@
         if ([result count] != 0) {
             self.postArray = [NSMutableArray arrayWithArray:result];
             self.filteredPostArray = self.postArray;
-            [self.tableView reloadData];
+            [self sortByReadDateDefault];   // [self.tableView reloadData] called here
         } else if (!error) {   // no courses viewed
             NSLog(@"No courses viewed yet!");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle: @ "No posts viewed!"
@@ -93,6 +97,24 @@
     [cell setSearchPostCell:self.filteredPostArray[indexPath.row]];
     
     return cell;
+}
+
+- (void)sortByReadDateDefault {
+    self.filteredPostArray = [NSMutableArray arrayWithArray:[self.filteredPostArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj2[@"read_date"] compare:obj1[@"read_date"]];
+    }]];
+    [self.tableView reloadData];
+}
+
+- (void)setSortButtonMenu {
+    [self.sortButton setShowsMenuAsPrimaryAction:YES];
+    UIAction *readDateSort = [UIAction actionWithTitle:@"Read date (default)" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self sortByReadDateDefault];
+    }];
+    UIAction *customizedSort = [UIAction actionWithTitle:@"Customized" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self sortByReadDateDefault];
+    }];
+    self.sortButton.menu = [UIMenu menuWithTitle:@"Sort by: " children:@[readDateSort, customizedSort]];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
@@ -147,7 +169,7 @@
 
 
 - (nullable UIContextMenuConfiguration *)contextMenuInteraction:(nonnull UIContextMenuInteraction *)interaction configurationForMenuAtLocation:(CGPoint)location {
-    
+
     UIContextMenuConfiguration *config = [UIContextMenuConfiguration configurationWithIdentifier:nil previewProvider:nil actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> * _Nonnull suggestedActions) {
         
         UIAction *defaultFilter = [UIAction actionWithTitle:@"All text (default)" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {

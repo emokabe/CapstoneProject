@@ -627,7 +627,7 @@
             </objects>
             <point key="canvasLocation" x="2793" y="873"/>
         </scene>
-        <!--Search Recent History-->
+        <!--Search History-->
         <scene sceneID="wO1-tf-LAY">
             <objects>
                 <viewController id="S2i-p9-Ogb" customClass="SearchPostsViewController" sceneMemberID="viewController">
@@ -716,9 +716,19 @@
                             <constraint firstItem="18t-my-UA0" firstAttribute="top" secondItem="xXY-kr-knt" secondAttribute="top" constant="88" id="v0J-Px-CYy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Search Recent History" id="WoV-Rr-g9F"/>
+                    <navigationItem key="navigationItem" title="Search History" id="WoV-Rr-g9F">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="cC3-co-g8W">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="IuM-ir-xJD">
+                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="shuffle" catalog="system"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="av8-r1-NkD" id="64a-yt-miq"/>
+                        <outlet property="sortButton" destination="IuM-ir-xJD" id="afr-fL-i9s"/>
                         <outlet property="tableView" destination="xXY-kr-knt" id="TEJ-1S-2v3"/>
                     </connections>
                 </viewController>
@@ -886,6 +896,7 @@
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
+        <image name="shuffle" catalog="system" width="128" height="95"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
