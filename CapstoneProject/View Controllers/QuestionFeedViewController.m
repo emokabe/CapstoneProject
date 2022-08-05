@@ -35,13 +35,12 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.postArray = [[NSMutableArray alloc] init];
     self.postsToBeCached = [[NSMutableArray alloc] init];
+    self.sharedManager = [APIManager sharedManager];
     self.isMoreDataLoading = NO;
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
-
-    self.sharedManager = [APIManager sharedManager];
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
