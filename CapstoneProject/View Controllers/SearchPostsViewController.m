@@ -12,6 +12,7 @@
 #import "SearchPostCell.h"
 #import "Post.h"
 #import "PostDetailsViewController.h"
+#import "APIManager.h"
 
 @interface SearchPostsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIContextMenuInteractionDelegate>
 
@@ -28,7 +29,6 @@
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     self.postArray = [[NSMutableArray alloc] init];
-    self._apiManager = [[APIManager alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
     self.filter_string = @"DEFAULT";
     
@@ -37,6 +37,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.sharedManager = [APIManager sharedManager];
+    NSMutableArray *posts = [self.sharedManager.postCache objectForKey:@"posts"];
+    NSLog(@"Posts here: %@", posts);
     [self fetchPostsViewed];
     NSLog(@"Filter: %@", self.filter_string);
 }
@@ -125,12 +128,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
-    [self._apiManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
+    [self.sharedManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (post) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             PostDetailsViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"PostDetailsViewController"];
             Post *p = [[Post alloc] initWithDictionary:post];
             rootViewController.postInfo = p;
+            rootViewController.sharedManager = self.sharedManager;
             [self.navigationController pushViewController:rootViewController animated:YES];
             
         } else if (!error) {

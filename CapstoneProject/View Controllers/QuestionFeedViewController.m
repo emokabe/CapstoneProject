@@ -32,9 +32,10 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.postArray = [[NSMutableArray alloc] init];
-    self._apiManager = [[APIManager alloc] init];
     self.postsToBeCached = [[NSMutableArray alloc] init];
     self.isMoreDataLoading = NO;
+    
+    self.sharedManager = [APIManager sharedManager];
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -69,11 +70,11 @@
 
 - (void)fetchPostsRec:(NSString *)course_id endDate:(NSString *)until startDate:(NSString *)since numAdded:(NSInteger)count firstFetch:(BOOL)isFirst {
     __block NSInteger numPosts = 0;
-    [self._apiManager getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
+    [self.sharedManager getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
         if (!error) {
             if ([posts count] == 0) {   // no more posts left in Facebook Group: load posts to tableView
                 if (isFirst) {
-                    [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                    [self.sharedManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                 }
                 self.isMoreDataLoading = NO;
                 [self.tableView reloadData];
@@ -88,7 +89,7 @@
                 }
             }
 
-            if (numPosts < 2) {   // not enough posts displayed
+            if (numPosts < 10) {   // not enough posts displayed
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
@@ -100,7 +101,7 @@
                     __strong typeof(self) strongSelf = weakSelf;
                     if (strongSelf) {
                         if (isFirst) {
-                            [self._apiManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                            [self.sharedManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                         }
                         self.isMoreDataLoading = NO;
                         [self.tableView reloadData];
@@ -171,14 +172,14 @@
         
         // 2 Get post and API manager to pass
         Post *postToPass = self.postArray[indexPath.row];
-        APIManager *apiManagerToPass = self._apiManager;
+        APIManager *apiManagerToPass = self.sharedManager;
         
         // 3 Get reference to destination controller
         PostDetailsViewController *detailsVC = [segue destinationViewController];
         
         // 4 Pass the local dictionary to the view controller property
         detailsVC.postInfo = postToPass;
-        detailsVC.apiManagerFromFeed = apiManagerToPass;
+        detailsVC.sharedManager = apiManagerToPass;
     }
 }
 

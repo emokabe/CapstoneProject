@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic) NSPredicate *selected_predicate;
 
-@property (nonatomic, strong) APIManager *_apiManager;
+@property (nonatomic, strong) APIManager *sharedManager;
 
 @end
 
