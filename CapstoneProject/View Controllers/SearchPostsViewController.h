@@ -14,8 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *postArray;
 @property (nonatomic, strong) NSMutableArray *filteredPostArray;
+@property (assign, nonatomic) NSString *filter_string;
 
-@property (nonatomic, strong) APIManager *_apiManager;
+@property (assign, nonatomic) NSPredicate *selected_predicate;
+
+@property (nonatomic, strong) APIManager *sharedManager;
 
 @end
 
