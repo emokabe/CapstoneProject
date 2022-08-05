@@ -13,7 +13,7 @@
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *postText;
-@property (strong, nonatomic) IBOutlet UIButton *postButton;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
 
 @end
 
@@ -25,6 +25,7 @@
     self.titleText.layer.borderColor = [[UIColor blackColor] CGColor];
     self.postText.layer.borderWidth = 1.0;
     self.postText.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.postButton.translatesAutoresizingMaskIntoConstraints = YES;
 }
 
 - (IBAction)didTapCancel:(id)sender {
