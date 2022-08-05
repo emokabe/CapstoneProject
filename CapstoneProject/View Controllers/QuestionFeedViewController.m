@@ -32,7 +32,6 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.postArray = [[NSMutableArray alloc] init];
-    //self._apiManager = [[APIManager alloc] init];
     self.postsToBeCached = [[NSMutableArray alloc] init];
     self.isMoreDataLoading = NO;
     
