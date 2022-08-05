@@ -10,7 +10,7 @@ The user is able to switch between viewing different courses on their app, and t
 
 The user is able to compose a post in the selected course. Composing a post will cause a new post to pop up on the feed, and will also publish the post on the common Facebook group mentioned previously. The new post's id will be mapped to the course id.
 
-Finally, there will be a view for searching through posts that the user already read using a search bar. Before searching, the user will see a list of "recommended" posts, where more frequently or recently viewed posts will appear higher in the table. Clicking on a post in this search view will take the user to the details view for the post.
+Finally, there will be a view for searching through posts that the user already read using a search bar. Before searching, the user will see a list of "recommended" posts, where posts that the user is most likely to choose will appear higher in the table. The sorting order of this initial set of posts will be determined by factors such as the author whose posts the user is most likely to read, or the time frame from which the user is likely to read posts. When searching, the user is able to filter their posts by choosing a category (title, message, etc.) to filter by. Clicking on a post in this search view will take the user to the details view for the post.
 
 
 ## Wireframe
@@ -31,7 +31,8 @@ Finally, there will be a view for searching through posts that the user already 
 - [X] Comment on posts by mapping answers to post-id by posting them in the same Facebook post with delimiters
 - [X] Dynamically fetch posts by date range to prevent fetching too many posts at a time
 - [X] Cache posts to decrease number of fetches and increase efficiency
-- [ ] Search through already-read posts using a search bar, and click any post to view its details
+- [X] Search through already-read posts using a search bar, and click any post to view its details
+- [ ] Sort posts in search view by order of how likely the user is to read each post
 
 
 ## Possible Stretch Features
@@ -137,6 +138,46 @@ Finally, there will be a view for searching through posts that the user already 
     - The post and its information is saved as a object with a name that contains its user-id 
         - e.g. for a user with user-id = 12345, the post will be stored as an object called "user12345"
         - This makes mapping users to viewed posts easier, because we won't have to save posts and map each post to a user, then query all posts with a particular user-id field
+
+
+----- Monday, August 1 -----
+- Added searching for posts using the search bar
+    - Before searching, the table under the search bar shows all posts that have been recently viewed
+    - When the user types a keyword into the search bar, the posts in the table filter so that only posts with messages containing the keyword remain
+    - Pressing the cancel button at the top right removes the filter and makes the cancel button disappear
+    - See [this PR](https://github.com/emokabe/CapstoneProject/pull/30)
+- Added symbols to tab bar controller and other buttons
+    - Used SFSymbols to find symbols for buttons that enhance user experience
+    - See [this PR](https://github.com/emokabe/CapstoneProject/pull/31)
+
+
+----- Tuesday, August 2 -----
+- Added infinite scroll for post feed
+    - If the user scrolls to the bottom of the feed, fetch more posts, if available, to fill up the bottom of the feed
+    - This strategy ensures that the number of times we need to fetch from the Facebook API is limited
+    - Only posts that were loaded in the first batch are cached, so there is a limit to how many posts can be cached at once
+    - For comments in details view
+        - If the creation date of the selected post is earlier than the earliest cached post date, fetch posts within this time interval to get comments
+    - See [this PR](https://github.com/emokabe/CapstoneProject/pull/32)
+- Added switch to details
+    - Tapping on a post in the search view automatically leads the user to the details view for the post
+    - Comments are not correctly displayed yet in the details view -- see [this status update](https://fb.workplace.com/permalink.php?story_fbid=pfbid037hfiSYPLYGPS5jAwa1h2RkyJ9ZdaC3953dqMbBbKXx4ta12As8tQzjQDosJ6u5msl&id=100081792760931) for blockers that I faced while implementing this functionality
+    - See [this PR](https://github.com/emokabe/CapstoneProject/pull/33)
+
+
+----- Wednesday, August 3 -----
+- Added filtering posts in the search view by category
+    - When the user tap-and-holds on the search bar, a context menu pops up for the user to select categories: all text (default), message, title, name, and course.
+    - Once a category is selected (if not, the default filter is used), typing a keyword into the search bar will filter by the selected category
+- Fixed comments for switch to details
+    - As before, whenever the user taps a post in the search view, the user is lead to its details -- now, the post's comments are correctly displayed
+    - In order to do this, I needed to share the same APIManager object so that I could share the same cache in the APIManager class among all view controllers in the tab bar
+    - I created a singleton APIManager class for the above purpose
+- Added auto layout and other UI fixes
+    - Edited autolayout of the details view controller and composing comment view controller
+    - Changed navigation title of the home feed so that the current course name is also displayed
+    - Blockers: getting the title of the post to show up in details, layout for composing post view controller
+
 
  
 ## Credits
