@@ -19,6 +19,15 @@
     return self;
 }
 
++ (instancetype)sharedManager {
+    static id sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
+}
+
 - (void)getPostDictFromIDWithCompletion:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion {
     
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
@@ -45,7 +54,7 @@
     }
     
     if (sinceDateStr == nil) {   // set 'since' to two weeks before until
-        double daysinInterval = 2;  // number of days into the past to get posts up to
+        double daysinInterval = 3;  // number of days into the past to get posts up to
         NSTimeInterval twoWeekInterval = (NSTimeInterval)(daysinInterval * -86400);
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];

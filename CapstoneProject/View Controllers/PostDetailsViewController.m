@@ -88,7 +88,7 @@
 }
 
 - (void)fetchComments {
-    NSMutableArray *posts = [self.apiManagerFromFeed.postCache objectForKey:@"posts"];
+    NSMutableArray *posts = [self.sharedManager.postCache objectForKey:@"posts"];
     
     NSDate *lastCachedDate = ((Post *)[posts lastObject]).post_date;
     NSDate *thisPostDate = self.postInfo.post_date;
@@ -100,7 +100,7 @@
     NSString *endDate = [dateFormat stringFromDate:lastCachedDate];
     
     if ([thisPostDate compare:lastCachedDate] == NSOrderedAscending) {   // Fetch more posts
-        [self.apiManagerFromFeed getNextSetOfPostsWithCompletion:endDate startDate:startDate completion:^(NSMutableArray * _Nonnull result, NSString * _Nonnull lastDate, NSError * _Nonnull error) {
+        [self.sharedManager getNextSetOfPostsWithCompletion:endDate startDate:startDate completion:^(NSMutableArray * _Nonnull result, NSString * _Nonnull lastDate, NSError * _Nonnull error) {
             [posts addObjectsFromArray:result];
             [self addCommentsToArray:posts];
         }];

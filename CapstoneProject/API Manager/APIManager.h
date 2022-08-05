@@ -11,6 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface APIManager : NSObject
 
+@property (class, strong, readonly) APIManager *sharedManager;
+
+@property (nonatomic, copy, nullable) NSString *myString;
+
 @property (nonatomic, strong) NSCache *postCache;
 
 - (void)getPostDictFromIDWithCompletion:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion;
