@@ -15,11 +15,13 @@
 #import "SelectCourseViewController.h"
 #import "Parse/Parse.h"
 #import "PostDetailsViewController.h"
+#import "Activity/Activity.h"
 
 @interface QuestionFeedViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) Activity *loading;
 
 @end
 
@@ -33,13 +35,12 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.postArray = [[NSMutableArray alloc] init];
     self.postsToBeCached = [[NSMutableArray alloc] init];
+    self.sharedManager = [APIManager sharedManager];
     self.isMoreDataLoading = NO;
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
-
-    self.sharedManager = [APIManager sharedManager];
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -82,6 +83,8 @@
                 }
                 self.isMoreDataLoading = NO;
                 [self.tableView reloadData];
+                [self stopLoadingView];
+                [self.refreshControl endRefreshing];
                 return;
             }
             
@@ -109,6 +112,8 @@
                         }
                         self.isMoreDataLoading = NO;
                         [self.tableView reloadData];
+                        [self stopLoadingView];
+                        [self.refreshControl endRefreshing];
                     }
                 });
             }
@@ -117,6 +122,11 @@
             // TODO: get posts from cache instead
         }
     }];
+}
+
+- (void)stopLoadingView {
+    [self.loading stopAnimating];
+    [self.loading setHidden:YES];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -157,7 +167,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"View will appear called!");
+    self.loading = [[Activity alloc] initWithStyle:ActivityStyleAppStoreBlue];
+    self.loading.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);
+    self.loading.ringSize = 100;
+    self.loading.ringThickness = 3;
+    [self.view addSubview:self.loading];
+    [self.loading startAnimating];
+    
     [self fetchPosts:YES];
     [self.tableView reloadData];
 }
