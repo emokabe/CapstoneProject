@@ -35,6 +35,10 @@
     self.postsToBeCached = [[NSMutableArray alloc] init];
     self.isMoreDataLoading = NO;
     
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
+
     self.sharedManager = [APIManager sharedManager];
     
     // Initialize a UIRefreshControl
