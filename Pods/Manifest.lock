@@ -1,6 +1,8 @@
 PODS:
+  - Activity (1.0)
   - Bolts/Tasks (1.9.1)
   - DateTools (2.0.0)
+  - ESTabBarController (0.2)
   - FBAEMKit (14.1.0):
     - FBSDKCoreKit_Basics (= 14.1.0)
   - FBSDKCoreKit (14.1.0):
@@ -9,35 +11,47 @@ PODS:
   - FBSDKCoreKit_Basics (14.1.0)
   - FBSDKLoginKit (14.1.0):
     - FBSDKCoreKit (= 14.1.0)
+  - HTPressableButton (1.3.3):
+    - HTPressableButton/All (= 1.3.3)
+  - HTPressableButton/All (1.3.3)
   - Parse (1.19.3):
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
     - Bolts/Tasks (= 1.9.1)
 
 DEPENDENCIES:
+  - Activity
   - DateTools
+  - ESTabBarController
   - FBSDKLoginKit
+  - HTPressableButton
   - Parse
 
 SPEC REPOS:
   trunk:
+    - Activity
     - Bolts
     - DateTools
+    - ESTabBarController
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
     - FBSDKLoginKit
+    - HTPressableButton
     - Parse
 
 SPEC CHECKSUMS:
+  Activity: 53b6846b8b4bbf5859d9582b27d0f38fa9df4297
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  ESTabBarController: e82ac0b135bec16fb646ac1da4ac8953fcd927da
   FBAEMKit: a899515e45476027f73aef377b5cffadcd56ca3a
   FBSDKCoreKit: 24f8bc8d3b5b2a8c5c656a1329492a12e8efa792
   FBSDKCoreKit_Basics: 6e578c9bdc7aa1365dbbbde633c9ebb536bcaa98
   FBSDKLoginKit: 787de205d524c3a4b17d527916f1d066e4361660
+  HTPressableButton: 3109ba7972247ddbd387c8a22b0341b02369b31e
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
 
-PODFILE CHECKSUM: 1236f316fcdbd961aa55398aaa83c256cb02cb52
+PODFILE CHECKSUM: d7d3b2d53c83503d248757f7f204fc2265059456
 
 COCOAPODS: 1.11.3

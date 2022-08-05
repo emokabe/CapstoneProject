@@ -9,10 +9,13 @@
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "Post.h"
 #import "Parse/Parse.h"
+#import "HTPressableButton.h"
+#import "UIColor+HTColor.h"
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *postText;
+@property (strong, nonatomic) IBOutlet HTPressableButton *postButton;
 
 @end
 
@@ -24,6 +27,12 @@
     self.titleText.layer.borderColor = [[UIColor blackColor] CGColor];
     self.postText.layer.borderWidth = 1.0;
     self.postText.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+    self.postButton = [[HTPressableButton alloc] initWithFrame:self.postButton.frame buttonStyle:HTPressableButtonStyleRounded];
+    self.postButton.buttonColor = [UIColor ht_wetAsphaltColor];
+    self.postButton.shadowColor = [UIColor ht_midnightBlueColor];
+    [self.postButton setTitle:@"Post" forState:UIControlStateNormal];
+    [self.view addSubview:self.postButton];
 }
 
 - (IBAction)didTapCancel:(id)sender {

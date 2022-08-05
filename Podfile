@@ -9,6 +9,10 @@ target 'CapstoneProject' do
   pod 'FBSDKLoginKit'
   pod 'DateTools'
   pod 'Parse'
+  pod 'ESTabBarController'
+  pod 'HTPressableButton'
+  pod 'Activity'
+  
 
   target 'CapstoneProjectTests' do
     inherit! :search_paths
