@@ -175,10 +175,10 @@
     self.loading.ringSize = 100;
     self.loading.ringThickness = 3;
     [self.view addSubview:self.loading];
-    //[self.loading startAnimating];
+    [self.loading startAnimating];
     
-    //[self fetchPosts:YES];
-    //[self.tableView reloadData];
+    [self fetchPosts:YES];
+    [self.tableView reloadData];
 }
 
 
