@@ -53,7 +53,7 @@
         if ([result count] != 0) {
             self.postArray = [NSMutableArray arrayWithArray:result];
             self.filteredPostArray = self.postArray;
-            [self sortByReadDateDefault];   // [self.tableView reloadData] called here
+            [self sortBy:@"read_date"];   // [self.tableView reloadData] called here
         } else if (!error) {   // no courses viewed
             NSLog(@"No courses viewed yet!");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle: @ "No posts viewed!"
@@ -99,9 +99,9 @@
     return cell;
 }
 
-- (void)sortByReadDateDefault {
+- (void)sortBy:(NSString *)field {
     self.filteredPostArray = [NSMutableArray arrayWithArray:[self.filteredPostArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        return [obj2[@"read_date"] compare:obj1[@"read_date"]];
+        return [obj2[field] compare:obj1[field]];
     }]];
     [self.tableView reloadData];
 }
@@ -109,12 +109,18 @@
 - (void)setSortButtonMenu {
     [self.sortButton setShowsMenuAsPrimaryAction:YES];
     UIAction *readDateSort = [UIAction actionWithTitle:@"Read date (default)" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-        [self sortByReadDateDefault];
+        [self sortBy:@"read_date"];
+    }];
+    UIAction *postDateSort = [UIAction actionWithTitle:@"Post Date" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self sortBy:@"createdAt"];
+    }];
+    UIAction *timesViewedSort = [UIAction actionWithTitle:@"Times You Viewed" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self sortBy:@"times_viewed"];
     }];
     UIAction *customizedSort = [UIAction actionWithTitle:@"Customized" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-        [self sortByReadDateDefault];
+        // TODO: implement customized sorting algorithm
     }];
-    self.sortButton.menu = [UIMenu menuWithTitle:@"Sort by: " children:@[readDateSort, customizedSort]];
+    self.sortButton.menu = [UIMenu menuWithTitle:@"Sort by: " children:@[readDateSort, postDateSort, timesViewedSort, customizedSort]];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
