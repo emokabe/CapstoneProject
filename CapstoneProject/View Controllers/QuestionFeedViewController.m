@@ -42,9 +42,6 @@
     self.sharedManager = [APIManager sharedManager];
     self.isMoreDataLoading = NO;
     
-    //self.topBackground.backgroundColor = [UIColor ht_blueJeansColor];
-    //self.bottomBackground.backgroundColor = [UIColor ht_blueJeansColor];
-    
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
