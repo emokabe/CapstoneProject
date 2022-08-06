@@ -16,12 +16,16 @@
 #import "Parse/Parse.h"
 #import "PostDetailsViewController.h"
 #import "Activity/Activity.h"
+#import "UIColor+HTColor.h"
 
 @interface QuestionFeedViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) Activity *loading;
+@property (weak, nonatomic) IBOutlet UIView *topBackground;
+@property (weak, nonatomic) IBOutlet UIView *bottomBackground;
+
 
 @end
 
@@ -37,6 +41,9 @@
     self.postsToBeCached = [[NSMutableArray alloc] init];
     self.sharedManager = [APIManager sharedManager];
     self.isMoreDataLoading = NO;
+    
+    //self.topBackground.backgroundColor = [UIColor ht_blueJeansColor];
+    //self.bottomBackground.backgroundColor = [UIColor ht_blueJeansColor];
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];

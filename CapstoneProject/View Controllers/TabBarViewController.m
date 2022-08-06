@@ -6,6 +6,7 @@
 //
 
 #import "TabBarViewController.h"
+#import "UIColor+HTColor.h"
 
 @interface TabBarViewController ()
 
@@ -16,7 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    self.tabBar.barTintColor = UIColor.whiteColor;
+    //self.tabBar.barTintColor = [UIColor ht_wetAsphaltColor];
+    //self.tabBar.translucent = NO;
+    //self.tabBar.tintColor = [UIColor ht_jayColor];
+    //self.tabBar.unselectedItemTintColor = [UIColor ht_ashColor];
 }
 
 @end

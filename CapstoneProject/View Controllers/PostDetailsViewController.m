@@ -11,6 +11,9 @@
 #import "Post.h"
 #import "Parse/Parse.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "HTPressableButton.h"
+#import "UIColor+HTColor.h"
+
 
 @interface PostDetailsViewController () <AnsweringViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
