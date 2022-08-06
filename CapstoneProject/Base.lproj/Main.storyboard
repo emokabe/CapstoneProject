@@ -232,7 +232,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cLz-zM-xIt">
-                                <rect key="frame" x="0.0" y="481" width="414" height="332"/>
+                                <rect key="frame" x="0.0" y="481" width="414" height="415"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" red="0.87929017549999999" green="0.92362233910000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -343,7 +343,7 @@
                             <constraint firstItem="bRU-Qa-uYY" firstAttribute="trailing" secondItem="33p-eE-T9X" secondAttribute="trailing" constant="40.5" id="jbO-9N-U23"/>
                             <constraint firstItem="VwJ-Dz-ude" firstAttribute="top" secondItem="I2Q-ad-h1I" secondAttribute="bottom" constant="11.5" id="mfb-ot-BAJ"/>
                             <constraint firstItem="87f-VR-vJw" firstAttribute="trailing" secondItem="y5W-ns-RF6" secondAttribute="trailing" id="nog-af-8BG"/>
-                            <constraint firstItem="cLz-zM-xIt" firstAttribute="bottom" secondItem="bRU-Qa-uYY" secondAttribute="bottom" id="qeK-Xc-Z7O"/>
+                            <constraint firstItem="cLz-zM-xIt" firstAttribute="bottom" secondItem="bRU-Qa-uYY" secondAttribute="bottom" constant="83" id="qeK-Xc-Z7O"/>
                             <constraint firstItem="BEg-Qw-3QV" firstAttribute="leading" secondItem="6ZA-sR-0Ay" secondAttribute="leading" id="ssT-W4-YgH"/>
                             <constraint firstItem="8SL-sU-K9W" firstAttribute="width" secondItem="Quh-TJ-bpF" secondAttribute="width" id="uI0-lk-ucb"/>
                             <constraint firstItem="VwJ-Dz-ude" firstAttribute="leading" secondItem="bRU-Qa-uYY" secondAttribute="leading" constant="20" id="uZa-LY-M4r"/>
@@ -469,7 +469,7 @@
                                 <rect key="frame" x="20" y="154" width="350" height="365"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -595,7 +595,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dc-Kw-83v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2793" y="873"/>
+            <point key="canvasLocation" x="2792.753623188406" y="872.54464285714278"/>
         </scene>
         <!--Search Recent History-->
         <scene sceneID="wO1-tf-LAY">

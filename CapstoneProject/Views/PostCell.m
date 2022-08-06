@@ -8,6 +8,7 @@
 #import "PostCell.h"
 #import "DateTools.h"
 #import "NSDate+DateTools.h"
+#import "UIColor+HTColor.h"
 
 @implementation PostCell
 
@@ -24,9 +25,12 @@
     
     self.titleLabel.text = post.titleContent;
     self.nameLabel.text = post.user_name;
+    self.nameLabel.textColor = [UIColor ht_wetAsphaltColor];
     self.postText.text = post.textContent;
     self.dateLabel.text = post.post_createdAt;
+    self.dateLabel.textColor = [UIColor ht_wetAsphaltColor];
     self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
+    self.timestampLabel.textColor = [UIColor ht_wetAsphaltColor];
 }
 
 @end

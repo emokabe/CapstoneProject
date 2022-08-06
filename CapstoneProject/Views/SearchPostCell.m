@@ -8,6 +8,7 @@
 #import "SearchPostCell.h"
 #import "DateTools.h"
 #import "NSDate+DateTools.h"
+#import "UIColor+HTColor.h"
 
 @implementation SearchPostCell
 
@@ -27,6 +28,7 @@
     self.bodyText.text = post[@"message"];
     self.courseLabel.text = post[@"course"];
     self.viewTimeLabel.text = [NSString stringWithFormat:@"%@%@%@", @"Viewed ", ((NSDate *)post[@"read_date"]).shortTimeAgoSinceNow, @" ago"];
+    self.viewTimeLabel.textColor = [UIColor ht_lavenderDarkColor];
 }
 
 @end

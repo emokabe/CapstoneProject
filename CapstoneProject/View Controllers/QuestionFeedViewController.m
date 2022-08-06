@@ -16,7 +16,6 @@
 #import "Parse/Parse.h"
 #import "PostDetailsViewController.h"
 #import "Activity/Activity.h"
-#import "UIColor+HTColor.h"
 
 @interface QuestionFeedViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -171,15 +170,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.loading = [[Activity alloc] initWithStyle:ActivityStyleAppStoreBlue];
+    self.loading = [[Activity alloc] initWithStyle:ActivityStyleAmethyst];
     self.loading.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);
     self.loading.ringSize = 100;
     self.loading.ringThickness = 3;
     [self.view addSubview:self.loading];
-    [self.loading startAnimating];
+    //[self.loading startAnimating];
     
-    [self fetchPosts:YES];
-    [self.tableView reloadData];
+    //[self fetchPosts:YES];
+    //[self.tableView reloadData];
 }
 
 
