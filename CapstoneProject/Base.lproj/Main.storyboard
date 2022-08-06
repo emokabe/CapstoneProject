@@ -302,13 +302,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33p-eE-T9X">
-                                <rect key="frame" x="236" y="380" width="158" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33p-eE-T9X" customClass="HTPressableButton">
+                                <rect key="frame" x="271" y="380" width="102.5" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="UR0-Pg-wpM"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="pencil.and.ellipsis.rectangle" catalog="system" title="Answer"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Answer"/>
                                 <connections>
                                     <segue destination="z7o-os-hQ5" kind="presentation" identifier="answerSegue" id="Q7C-pp-3Tv"/>
                                 </connections>
@@ -320,13 +320,12 @@
                         <constraints>
                             <constraint firstItem="8SL-sU-K9W" firstAttribute="top" secondItem="BEg-Qw-3QV" secondAttribute="bottom" constant="16" id="0Pb-UJ-1cz"/>
                             <constraint firstItem="6ZA-sR-0Ay" firstAttribute="top" secondItem="bRU-Qa-uYY" secondAttribute="top" id="0X7-yf-Yow"/>
-                            <constraint firstItem="33p-eE-T9X" firstAttribute="trailing" secondItem="VwJ-Dz-ude" secondAttribute="trailing" id="0ua-NH-GXk"/>
                             <constraint firstItem="y5W-ns-RF6" firstAttribute="leading" secondItem="BEg-Qw-3QV" secondAttribute="trailing" constant="17" id="2Ao-jL-u9l"/>
                             <constraint firstItem="87f-VR-vJw" firstAttribute="top" secondItem="y5W-ns-RF6" secondAttribute="bottom" constant="7" id="32F-sj-ptz"/>
                             <constraint firstItem="6ZA-sR-0Ay" firstAttribute="leading" secondItem="bRU-Qa-uYY" secondAttribute="leading" constant="20" id="4JS-Ng-OAN"/>
                             <constraint firstItem="y5W-ns-RF6" firstAttribute="top" secondItem="BEg-Qw-3QV" secondAttribute="top" id="4pi-CQ-07j"/>
                             <constraint firstItem="bRU-Qa-uYY" firstAttribute="trailing" secondItem="6ZA-sR-0Ay" secondAttribute="trailing" constant="20" id="Bzv-ur-pAU"/>
-                            <constraint firstItem="33p-eE-T9X" firstAttribute="leading" secondItem="bRU-Qa-uYY" secondAttribute="leading" constant="236" id="Hi4-HS-K6U"/>
+                            <constraint firstItem="33p-eE-T9X" firstAttribute="leading" secondItem="bRU-Qa-uYY" secondAttribute="leading" constant="271" id="Hi4-HS-K6U"/>
                             <constraint firstItem="cLz-zM-xIt" firstAttribute="leading" secondItem="bRU-Qa-uYY" secondAttribute="leading" id="Inc-Tn-Y0m"/>
                             <constraint firstItem="I2Q-ad-h1I" firstAttribute="top" secondItem="8SL-sU-K9W" secondAttribute="bottom" constant="60.5" id="JfK-le-TCt"/>
                             <constraint firstItem="87f-VR-vJw" firstAttribute="leading" secondItem="y5W-ns-RF6" secondAttribute="leading" id="QM8-Zm-bha"/>
@@ -341,6 +340,7 @@
                             <constraint firstItem="bRU-Qa-uYY" firstAttribute="trailing" secondItem="VwJ-Dz-ude" secondAttribute="trailing" constant="20" id="cF9-6t-36J"/>
                             <constraint firstItem="I2Q-ad-h1I" firstAttribute="leading" secondItem="bRU-Qa-uYY" secondAttribute="leading" constant="20" id="eQx-Mn-Zwb"/>
                             <constraint firstItem="bRU-Qa-uYY" firstAttribute="trailing" secondItem="8SL-sU-K9W" secondAttribute="trailing" id="hTe-JI-bVU"/>
+                            <constraint firstItem="bRU-Qa-uYY" firstAttribute="trailing" secondItem="33p-eE-T9X" secondAttribute="trailing" constant="40.5" id="jbO-9N-U23"/>
                             <constraint firstItem="VwJ-Dz-ude" firstAttribute="top" secondItem="I2Q-ad-h1I" secondAttribute="bottom" constant="11.5" id="mfb-ot-BAJ"/>
                             <constraint firstItem="87f-VR-vJw" firstAttribute="trailing" secondItem="y5W-ns-RF6" secondAttribute="trailing" id="nog-af-8BG"/>
                             <constraint firstItem="cLz-zM-xIt" firstAttribute="bottom" secondItem="bRU-Qa-uYY" secondAttribute="bottom" id="qeK-Xc-Z7O"/>
@@ -355,7 +355,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Czr-1w-inP"/>
                     <connections>
-                        <outlet property="answerButton" destination="33p-eE-T9X" id="qiK-jE-5bW"/>
+                        <outlet property="answerButton" destination="33p-eE-T9X" id="8ep-uo-39h"/>
                         <outlet property="dateLabel" destination="87f-VR-vJw" id="Ic2-of-52j"/>
                         <outlet property="descriptionLabel" destination="C7U-GX-NSk" id="gF8-52-Ub3"/>
                         <outlet property="nameLabel" destination="y5W-ns-RF6" id="Qqg-sC-HpF"/>
@@ -853,7 +853,6 @@
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
