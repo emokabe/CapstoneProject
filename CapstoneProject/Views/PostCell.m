@@ -8,6 +8,7 @@
 #import "PostCell.h"
 #import "DateTools.h"
 #import "NSDate+DateTools.h"
+#import "AppColors.h"
 
 @implementation PostCell
 
@@ -27,6 +28,18 @@
     self.postText.text = post.textContent;
     self.dateLabel.text = post.post_createdAt;
     self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
+    [self setRandomColor];
+}
+
+- (void)setRandomColor {
+    NSArray *colors = @[[AppColors lightPink],
+                        [AppColors lightLime],
+                        [AppColors lightOrange],
+                        [AppColors lightSeaFoam],
+                        [AppColors paleBlue]
+    ];
+    NSInteger randIndex = arc4random_uniform([colors count]);
+    self.colorBar.backgroundColor = colors[randIndex];
 }
 
 @end
