@@ -21,6 +21,7 @@
 		BE53E12A2888AD6C00744F3A /* AnsweringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE53E1292888AD6C00744F3A /* AnsweringViewController.m */; };
 		BE8277D7287C8DDD0059B509 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8277D6287C8DDD0059B509 /* PostCell.m */; };
 		BE8277DB287C91230059B509 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8277DA287C91230059B509 /* Post.m */; };
+		BE880456289F295A00CAB4F3 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE880455289F295A00CAB4F3 /* InfiniteScrollActivityView.m */; };
 		BEA4666B28781C1F00D57C23 /* FBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA4666A28781C1F00D57C23 /* FBLoginViewController.m */; };
 		BEA4666E2878CF2500D57C23 /* QuestionFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA4666D2878CF2500D57C23 /* QuestionFeedViewController.m */; };
 		BEB9214A2884FC33004FA147 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB921492884FC33004FA147 /* GameViewController.m */; };
@@ -86,6 +87,8 @@
 		BE8277D6287C8DDD0059B509 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		BE8277D9287C91230059B509 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		BE8277DA287C91230059B509 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		BE880454289F295A00CAB4F3 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
+		BE880455289F295A00CAB4F3 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 		BEA4666728781ADB00D57C23 /* CapstoneProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CapstoneProject.entitlements; sourceTree = "<group>"; };
 		BEA4666928781C1F00D57C23 /* FBLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBLoginViewController.h; sourceTree = "<group>"; };
 		BEA4666A28781C1F00D57C23 /* FBLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController.m; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 				BE166FEE289307240062D0CF /* CommentCell.m */,
 				BE166FFC28986EDA0062D0CF /* SearchPostCell.h */,
 				BE166FFD28986EDA0062D0CF /* SearchPostCell.m */,
+				BE880454289F295A00CAB4F3 /* InfiniteScrollActivityView.h */,
+				BE880455289F295A00CAB4F3 /* InfiniteScrollActivityView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 				BE8277D7287C8DDD0059B509 /* PostCell.m in Sources */,
 				BE8277DB287C91230059B509 /* Post.m in Sources */,
 				BE166FFE28986EDA0062D0CF /* SearchPostCell.m in Sources */,
+				BE880456289F295A00CAB4F3 /* InfiniteScrollActivityView.m in Sources */,
 				BEDF11522874FA0A00B080A4 /* SceneDelegate.m in Sources */,
 				BE1762E3287BDE0300B7DD03 /* ComposeViewController.m in Sources */,
 				BE05CF3628820F4400899BE9 /* CourseCell.m in Sources */,

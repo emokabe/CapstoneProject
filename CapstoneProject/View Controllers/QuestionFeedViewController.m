@@ -16,6 +16,7 @@
 #import "Parse/Parse.h"
 #import "PostDetailsViewController.h"
 #import "Activity/Activity.h"
+#import "InfiniteScrollActivityView.h"
 
 @interface QuestionFeedViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -26,6 +27,8 @@
 @end
 
 @implementation QuestionFeedViewController
+
+InfiniteScrollActivityView* loadingMoreView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,9 +41,14 @@
     self.sharedManager = [APIManager sharedManager];
     self.isMoreDataLoading = NO;
     
-    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    loadingMoreView.hidden = true;
+    [self.tableView addSubview:loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
     
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -82,6 +90,7 @@
                     [self.sharedManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                 }
                 self.isMoreDataLoading = NO;
+                [loadingMoreView stopAnimating];
                 [self.tableView reloadData];
                 [self stopLoadingView];
                 [self.refreshControl endRefreshing];
@@ -96,7 +105,7 @@
                 }
             }
 
-            if (numPosts < 10) {   // not enough posts displayed
+            if (numPosts < 2) {   // not enough posts displayed
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
@@ -111,6 +120,7 @@
                             [self.sharedManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
                         }
                         self.isMoreDataLoading = NO;
+                        [loadingMoreView stopAnimating];
                         [self.tableView reloadData];
                         [self stopLoadingView];
                         [self.refreshControl endRefreshing];
@@ -149,7 +159,13 @@
         
         // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
-            self.isMoreDataLoading = true;
+            self.isMoreDataLoading = YES;
+            
+            // Update position of loadingMoreView, and start loading indicator
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            loadingMoreView.frame = frame;
+            [loadingMoreView startAnimating];
+            
             NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
             NSString *course_id = [saved stringForKey:@"currentCourse"];
             
@@ -176,6 +192,10 @@
     
     [self fetchPosts:YES];
     [self.tableView reloadData];
+    
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
 }
 
 

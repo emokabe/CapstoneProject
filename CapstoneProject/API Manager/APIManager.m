@@ -54,7 +54,7 @@
     }
     
     if (sinceDateStr == nil) {   // set 'since' to two weeks before until
-        double daysinInterval = 3;  // number of days into the past to get posts up to
+        double daysinInterval = 7;  // number of days into the past to get posts up to
         NSTimeInterval twoWeekInterval = (NSTimeInterval)(daysinInterval * -86400);
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
