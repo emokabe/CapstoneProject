@@ -32,14 +32,7 @@
 }
 
 - (void)setRandomColor {
-    NSArray *colors = @[[AppColors lightPink],
-                        [AppColors lightLime],
-                        [AppColors lightOrange],
-                        [AppColors lightSeaFoam],
-                        [AppColors paleBlue]
-    ];
-    NSInteger randIndex = arc4random_uniform([colors count]);
-    self.colorBar.backgroundColor = colors[randIndex];
+    self.colorBar.backgroundColor = [AppColors randomColor];
 }
 
 @end

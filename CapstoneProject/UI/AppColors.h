@@ -17,9 +17,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *) lightOrange;
 
-+ (UIColor *) lightLime;
++ (UIColor *) lightMint;
 
 + (UIColor *) lightSeaFoam;
+
++ (UIColor *) lavender;
+
++ (UIColor *) lightMarigold;
+
++ (UIColor *) randomColor;
 
 @end
 
