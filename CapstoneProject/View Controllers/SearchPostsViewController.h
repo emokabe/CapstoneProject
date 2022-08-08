@@ -23,8 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableDictionary *wordCountDict;
 
-- (void)countWordsForSearchedPosts:(NSString *)postRead;
-
 @end
 
 NS_ASSUME_NONNULL_END

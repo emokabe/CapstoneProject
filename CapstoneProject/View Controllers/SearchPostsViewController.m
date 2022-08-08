@@ -171,13 +171,12 @@
     [self.tableView reloadData];
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
     NSString *allText = [NSString stringWithFormat:@"%@%@%@",
                          self.filteredPostArray[indexPath.row][@"title"], @" ",
                          self.filteredPostArray[indexPath.row][@"message"]];
-    [self.sharedManager updateSearchedWordProbabilities:allText];
+    [self.sharedManager updateSearchedWordFrequencies:allText];
     [self.sharedManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (post) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

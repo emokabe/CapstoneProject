@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Parse/Parse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,13 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion;
 
-- (NSMutableDictionary *)getWordMappingFromText;
+- (NSArray *)getWordMappingFromText:(NSString *)text;
 
-- (void)createNewWordMappingForCurrentUser:(NSMutableDictionary *)dict;
+- (void)createNewWordMappingForCurrentUser:(NSMutableDictionary *)dict incrementBy:(NSNumber *)count;
 
 - (void)updateSearchedWordFrequencies:(NSString *)text;
 
 - (void)getSearchedWordFrequenciesWithCompletion:(void(^)(NSMutableDictionary *wordCounts, NSError *error))completion;
+
+- (void)getSearchDataWithCompletion:(void(^)(PFObject *data, NSError *error))completion;
 
 @end
 
