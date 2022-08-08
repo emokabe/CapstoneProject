@@ -8,6 +8,7 @@
 #import "APIManager.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "Post.h"
+#import "Parse/Parse.h"
 
 @implementation APIManager
 
@@ -82,6 +83,25 @@
             completion(posts, [dateFormat stringFromDate:((Post *)[posts lastObject]).post_date], nil);
         } else {
             completion(nil, nil, error);
+        }
+    }];
+}
+
+- (void)updateSearchedWordProbabilities:(NSString *)text {
+    
+}
+
+- (void *)getSearchedWordProbabilitiesWithCompletioncompletion:(void(^)(NSMutableDictionary *wordCounts, NSError *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"SearchedPosts"];
+    [query whereKey:@"user_id" equalTo:[FBSDKAccessToken currentAccessToken].userID];
+    query.limit = 1;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+        if (result != nil) {
+            return 
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
         }
     }];
 }

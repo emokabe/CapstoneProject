@@ -14,11 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *postArray;
 @property (nonatomic, strong) NSMutableArray *filteredPostArray;
+@property (nonatomic, strong) NSMutableArray *recommendedArray;
 @property (assign, nonatomic) NSString *filter_string;
 
 @property (assign, nonatomic) NSPredicate *selected_predicate;
 
 @property (nonatomic, strong) APIManager *sharedManager;
+
+@property (nonatomic, strong) NSMutableDictionary *wordCountDict;
+
+- (void)countWordsForSearchedPosts:(NSString *)postRead;
 
 @end
 
