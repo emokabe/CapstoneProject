@@ -21,6 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion;
 
+- (NSMutableDictionary *)getWordMappingFromText;
+
+- (void)createNewWordMappingForCurrentUser:(NSMutableDictionary *)dict;
+
+- (void)updateSearchedWordProbabilities:(NSString *)text;
+
+- (void)getSearchedWordProbabilitiesWithCompletion:(void(^)(NSMutableDictionary *wordCounts, NSError *error))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

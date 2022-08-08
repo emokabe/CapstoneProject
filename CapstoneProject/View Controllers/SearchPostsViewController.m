@@ -39,7 +39,6 @@
     [self.searchBar addInteraction:interaction];
     
     [self setSortButtonMenu];
-    [self getCoursesWithCompletion];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -99,39 +98,6 @@
     [cell setSearchPostCell:self.filteredPostArray[indexPath.row]];
     
     return cell;
-}
-
-- (void)countWordsForSearchedPosts:(NSString *)postRead {
-    NSArray *words = [postRead componentsSeparatedByString:@" "];
-    for (NSString* word in words) {
-        if (![word isEqualToString:@""]) {
-            if ([self.wordCountDict objectForKey:word]) {
-                NSInteger count = (NSInteger)[self.wordCountDict valueForKey:word] + 1;
-                [self.wordCountDict setObject:[NSNumber numberWithInt:(int)count] forKey:word];
-            } else {
-                [self.wordCountDict setObject:@1 forKey:word];
-            }
-        }
-    }
-    [self createNewReadPost:self.wordCountDict];
-    NSLog(@"Word Count: %@", self.wordCountDict);
-}
-
-- (void)getCoursesWithCompletion {
-    PFQuery *query = [PFQuery queryWithClassName:@"SearchedPosts"];
-    query.limit = 20;
-
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
-        if (result != nil) {
-            NSLog(@"Word counts: %@", result[0][@"word_counts"]);
-            NSLog(@"One word count: %@", result[0][@"word_counts"][@"this"]);
-            //completion(courses, nil);
-        } else {
-            //completion(nil, error);
-            NSLog(@"Error");
-        }
-    }];
 }
 
 - (void)createNewReadPost:(NSMutableDictionary *)dict {
@@ -211,7 +177,7 @@
     NSString *allText = [NSString stringWithFormat:@"%@%@%@",
                          self.filteredPostArray[indexPath.row][@"title"], @" ",
                          self.filteredPostArray[indexPath.row][@"message"]];
-    [self countWordsForSearchedPosts:allText];
+    [self.sharedManager updateSearchedWordProbabilities:allText];
     [self.sharedManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (post) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

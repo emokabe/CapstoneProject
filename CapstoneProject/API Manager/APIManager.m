@@ -124,16 +124,28 @@
     NSMutableDictionary *wordCountDict = [self getWordMappingFromText:text];
     
     PFQuery *query = [PFQuery queryWithClassName:@"SearchedPosts"];
-    [query whereKey:@"post_id" equalTo:[FBSDKAccessToken currentAccessToken].userID];
+    [query whereKey:@"user_id" equalTo:[FBSDKAccessToken currentAccessToken].userID];
     query.limit = 1;
     [query findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
         if ([users count] != 0) {
+            NSLog(@"User found!");
             NSString *objectId = ((PFObject *)users[0]).objectId;
             
             [query getObjectInBackgroundWithId:objectId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
                 if (object != nil) {
+                    
+                    NSDictionary *originalCounts = object[@"word_counts"];
+                    for (NSString* key in wordCountDict) {
+                        if ([originalCounts objectForKey:key]) {
+                            NSInteger updatedCount = [originalCounts[key] intValue] + [wordCountDict[key] intValue];
+                            [object setValue:[NSNumber numberWithInt:(int)updatedCount] forKey:@"word_counts"];
+                        }
+                    }
+                    
                     [object setValue:wordCountDict forKey:@"word_counts"];
                     [object saveInBackground];
+                    
+                    
                 } else if (error == nil) {
                     NSLog(@"Error: No matching object found");
                 } else {
