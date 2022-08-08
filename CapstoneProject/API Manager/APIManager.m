@@ -90,8 +90,11 @@
 - (NSMutableDictionary *)getWordMappingFromText:(NSString *)text {
     NSMutableDictionary *wordCountDict = [[NSMutableDictionary alloc] init];
     NSArray *words = [text componentsSeparatedByString:@" "];
-    for (NSString* word in words) {
-        if (![word isEqualToString:@""]) {
+    for (NSString* substr in words) {
+        if (![substr isEqualToString:@""]) {
+            NSCharacterSet *toRemove = [NSCharacterSet characterSetWithCharactersInString:@".,?!$&#"];
+            NSString *word = [[substr componentsSeparatedByCharactersInSet:toRemove] componentsJoinedByString:@""];
+            
             if ([wordCountDict objectForKey:word]) {
                 NSInteger count = (NSInteger)[wordCountDict valueForKey:word] + 1;
                 [wordCountDict setObject:[NSNumber numberWithInt:(int)count] forKey:word];
@@ -110,6 +113,7 @@
     //NSString *course_abbr = [saved stringForKey:@"currentCourseAbbr"];
     searchedPost[@"user_id"] = [FBSDKAccessToken currentAccessToken].userID;
     searchedPost[@"word_counts"] = dict;
+    searchedPost[@"total_wordcount"] = [NSNumber numberWithInteger:[dict count]];
     
     [searchedPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -120,7 +124,7 @@
     }];
 }
 
-- (void)updateSearchedWordProbabilities:(NSString *)text {
+- (void)updateSearchedWordFrequencies:(NSString *)text {
     NSMutableDictionary *wordCountDict = [self getWordMappingFromText:text];
     
     PFQuery *query = [PFQuery queryWithClassName:@"SearchedPosts"];
@@ -129,30 +133,23 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
         if ([users count] != 0) {
             NSLog(@"User found!");
-            NSString *objectId = ((PFObject *)users[0]).objectId;
+            PFObject *userMapping = (PFObject *)users[0];
             
-            [query getObjectInBackgroundWithId:objectId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                if (object != nil) {
-                    
-                    NSDictionary *originalCounts = object[@"word_counts"];
-                    for (NSString* key in wordCountDict) {
-                        if ([originalCounts objectForKey:key]) {
-                            NSInteger updatedCount = [originalCounts[key] intValue] + [wordCountDict[key] intValue];
-                            [object setValue:[NSNumber numberWithInt:(int)updatedCount] forKey:@"word_counts"];
-                        }
-                    }
-                    
-                    [object setValue:wordCountDict forKey:@"word_counts"];
-                    [object saveInBackground];
-                    
-                    
-                } else if (error == nil) {
-                    NSLog(@"Error: No matching object found");
+            NSDictionary *originalCounts = userMapping[@"word_counts"];
+            for (NSString* key in wordCountDict) {
+                if ([originalCounts objectForKey:key]) {
+                    NSInteger updatedCount = [originalCounts[key] intValue] + [wordCountDict[key] intValue];
+                    [originalCounts setValue:[NSNumber numberWithInteger:updatedCount] forKey:key];
                 } else {
-                    NSLog(@"Error: %@", error.description);
+                    [originalCounts setValue:@1 forKey:key];
                 }
-            }];
+            }
+            
+            NSLog(@"Original counts: %@", originalCounts);
+            [userMapping setValue:originalCounts forKey:@"word_counts"];
+            [userMapping saveInBackground];
         } else if (!error) {
+            NSLog(@"New user map!");
             [self createNewWordMappingForCurrentUser:wordCountDict];
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -160,7 +157,7 @@
     }];
 }
 
-- (void)getSearchedWordProbabilitiesWithCompletion:(void(^)(NSMutableDictionary *wordCounts, NSError *error))completion {
+- (void)getSearchedWordFrequenciesWithCompletion:(void(^)(NSMutableDictionary *wordCounts, NSError *error))completion {
     PFQuery *query = [PFQuery queryWithClassName:@"SearchedPosts"];
     [query whereKey:@"user_id" equalTo:[FBSDKAccessToken currentAccessToken].userID];
     query.limit = 1;
