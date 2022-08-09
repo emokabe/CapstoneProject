@@ -34,6 +34,7 @@
     self.filteredPostArray = [[NSMutableArray alloc] init];
     self.filter_string = @"DEFAULT";
     self.wordCountDict = [[NSMutableDictionary alloc] init];
+    self.toSort = [[NSMutableDictionary alloc] init];
     
     UIContextMenuInteraction *interaction = [[UIContextMenuInteraction alloc] initWithDelegate:self];
     [self.searchBar addInteraction:interaction];
@@ -54,7 +55,17 @@
         if ([result count] != 0) {
             self.postArray = [NSMutableArray arrayWithArray:result];
             self.filteredPostArray = self.postArray;
-            [self sortBy:@"read_date"];   // [self.tableView reloadData] called here
+            [self sortByRecommendation];
+            
+            NSArray *dictKeys = [self.toSort allKeys];
+            NSArray *sortedKeys = [dictKeys sortedArrayUsingComparator:^NSComparisonResult(id dict1, id dict2) {
+                NSString *first = [self.toSort objectForKey:dict1];
+                NSString *second = [self.toSort objectForKey:dict2];
+                return [@([second floatValue]) compare:@([first floatValue])];
+            }];
+            self.filteredPostArray = [NSMutableArray arrayWithArray:sortedKeys];
+            [self.tableView reloadData];
+            //[self sortBy:@"read_date"];   [self.tableView reloadData] called here
         } else if (!error) {   // no courses viewed
             NSLog(@"No courses viewed yet!");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle: @ "No posts viewed!"
@@ -101,18 +112,6 @@
     return cell;
 }
 
-- (NSArray *)findHighestPriorityPosts {
-    NSMutableArray *finalPosts = self.filteredPostArray;
-    
-    return finalPosts;
-}
-
-- (void)calculateProbabilities {
-    for (PFObject* post in self.filteredPostArray) {
-        
-    }
-}
-
 - (void)createNewReadPost:(NSMutableDictionary *)dict {
     PFObject *searchedPost = [[PFObject alloc] initWithClassName:@"SearchedPosts"];
     
@@ -143,9 +142,9 @@
 }
 
 // Instead of sortBy in fetchPostsViewed
-- (NSArray *)sortByRecommendation {
-    NSMutableDictionary *toSort = [[NSMutableDictionary alloc] init];
-    NSInteger finalCount = [self.filteredPostArray count];
+- (void)sortByRecommendation {
+    //NSMutableDictionary *toSort = [[NSMutableDictionary alloc] init];
+    //NSInteger finalCount = [self.filteredPostArray count];
     for (PFObject* post in self.filteredPostArray) {
         NSString *allText = [NSString stringWithFormat:@"%@%@%@",
                              post[@"title"], @" ",
@@ -161,26 +160,13 @@
                 
                 float scoreForPost = [self getWordMatchScore:viewedWordMappings firstCount:viewedCount secondDictionary:searchedWordMappings secondCount:searchedCount];
                 
-                [toSort setValue:post forKey:[NSString stringWithFormat:@"%f", scoreForPost]];
-                
-                if ([toSort count] == finalCount) {
-                    NSArray *dictKeys = [toSort allKeys];
-                    NSArray *sortedKeys = [dictKeys sortedArrayUsingComparator:^NSComparisonResult(id dict1, id dict2) {
-                        NSString *first = [toSort objectForKey:dict1];
-                        NSString *second = [toSort objectForKey:dict2];
-                        return [@([second floatValue]) compare:@([first floatValue])];
-                    }];
-                    return sortedKeys;
-                }
-                
+                [self.toSort setValue:post forKey:[NSString stringWithFormat:@"%f", scoreForPost]];
+
             } else {
                 NSLog(@"Error: %@", error.localizedDescription);
-                return nil;
             }
         }];
     }
-    
-    return nil;
 }
 
 

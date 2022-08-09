@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableDictionary *wordCountDict;
 
+@property (nonatomic, strong) NSMutableDictionary *toSort;
+
 @end
 
 NS_ASSUME_NONNULL_END
