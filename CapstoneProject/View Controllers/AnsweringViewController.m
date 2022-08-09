@@ -9,7 +9,9 @@
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "PostDetailsViewController.h"
 
-@interface AnsweringViewController ()
+@interface AnsweringViewController () <UITextViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *answerPlaceholder;
 
 @end
 
@@ -24,6 +26,19 @@
     
     self.answerText.layer.borderWidth = 1.0;
     self.answerText.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.answerText.delegate = self;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if (textView == self.answerText) {
+        [self.answerPlaceholder setHidden:YES];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (textView == self.answerText) {
+        [self.answerPlaceholder setHidden:NO];
+    }
 }
 
 - (IBAction)didTapCancel:(id)sender {

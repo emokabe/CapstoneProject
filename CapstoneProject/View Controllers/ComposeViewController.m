@@ -30,19 +30,12 @@
     self.titleText.delegate = self;
     self.postText.delegate = self;
     self.postButton.translatesAutoresizingMaskIntoConstraints = YES;
-    
-    //self.titlePlaceholder.frame = self.titleText.frame;
-    
-    //self.postPlaceholder.frame = self.postText.frame;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    NSLog(@"Yo!");
     if (textView == self.titleText) {
-        NSLog(@"Hello!");
         [self.titlePlaceholder setHidden:YES];
     } else if (textView == self.postText) {
-        NSLog(@"Howdy!");
         [self.postPlaceholder setHidden:YES];
     }
 }

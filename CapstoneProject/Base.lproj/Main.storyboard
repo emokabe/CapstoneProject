@@ -452,6 +452,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="answerPlaceholder" destination="LJb-EN-qor" id="KmP-Tw-IWb"/>
                         <outlet property="answerText" destination="yPG-bq-hBs" id="wqc-Jk-bMl"/>
                         <outlet property="answeringToLabel" destination="Vif-YW-0bH" id="sKi-Du-dEK"/>
                         <outlet property="descriptionLabel" destination="3Px-Zj-XRE" id="wVM-7o-MBn"/>
