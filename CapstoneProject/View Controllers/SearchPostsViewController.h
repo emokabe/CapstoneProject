@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) APIManager *sharedManager;
 
-@property (nonatomic, strong) NSMutableDictionary *wordCountDict;
-
 @property (nonatomic, strong) NSMutableDictionary *toSort;
 
 @end

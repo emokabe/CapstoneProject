@@ -33,7 +33,6 @@
     self.postArray = [[NSMutableArray alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
     self.filter_string = @"DEFAULT";
-    self.wordCountDict = [[NSMutableDictionary alloc] init];
     self.toSort = [[NSMutableDictionary alloc] init];
     
     UIContextMenuInteraction *interaction = [[UIContextMenuInteraction alloc] initWithDelegate:self];
@@ -65,7 +64,6 @@
             }];
             self.filteredPostArray = [NSMutableArray arrayWithArray:sortedKeys];
             [self.tableView reloadData];
-            //[self sortBy:@"read_date"];   [self.tableView reloadData] called here
         } else if (!error) {   // no courses viewed
             NSLog(@"No courses viewed yet!");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle: @ "No posts viewed!"
@@ -115,8 +113,6 @@
 - (void)createNewReadPost:(NSMutableDictionary *)dict {
     PFObject *searchedPost = [[PFObject alloc] initWithClassName:@"SearchedPosts"];
     
-    //NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    //NSString *course_abbr = [saved stringForKey:@"currentCourseAbbr"];
     searchedPost[@"user_id"] = [FBSDKAccessToken currentAccessToken].userID;
     searchedPost[@"word_counts"] = dict;
     
@@ -141,10 +137,7 @@
     return score;
 }
 
-// Instead of sortBy in fetchPostsViewed
 - (void)sortByRecommendation {
-    //NSMutableDictionary *toSort = [[NSMutableDictionary alloc] init];
-    //NSInteger finalCount = [self.filteredPostArray count];
     for (PFObject* post in self.filteredPostArray) {
         NSString *allText = [NSString stringWithFormat:@"%@%@%@",
                              post[@"title"], @" ",
@@ -161,7 +154,6 @@
                 float scoreForPost = [self getWordMatchScore:viewedWordMappings firstCount:viewedCount secondDictionary:searchedWordMappings secondCount:searchedCount];
                 
                 [self.toSort setValue:post forKey:[NSString stringWithFormat:@"%f", scoreForPost]];
-
             } else {
                 NSLog(@"Error: %@", error.localizedDescription);
             }
