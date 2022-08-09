@@ -203,6 +203,11 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		BE88045E28A07C5A00CAB4F3 /* Sorting Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Sorting Algorithms";
 		BE880457289F7A7400CAB4F3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +282,7 @@
 				BEDF114E2874FA0A00B080A4 /* AppDelegate.m */,
 				BEDF11502874FA0A00B080A4 /* SceneDelegate.h */,
 				BEDF11512874FA0A00B080A4 /* SceneDelegate.m */,
+				BE88045E28A07C5A00CAB4F3 /* Sorting Algorithms */,
 				BE880457289F7A7400CAB4F3 /* UI */,
 				BE166FE3289254270062D0CF /* API Manager */,
 				BEB9214E28850834004FA147 /* SpriteKit Scenes */,
