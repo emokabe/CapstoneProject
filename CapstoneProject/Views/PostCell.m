@@ -8,7 +8,9 @@
 #import "PostCell.h"
 #import "DateTools.h"
 #import "NSDate+DateTools.h"
+#import "AppColors.h"
 #import "UIColor+HTColor.h"
+
 
 @implementation PostCell
 
@@ -31,6 +33,11 @@
     self.dateLabel.textColor = [UIColor ht_lavenderDarkColor];
     self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
     self.timestampLabel.textColor = [UIColor ht_lavenderDarkColor];
+    [self setRandomColor];
+}
+
+- (void)setRandomColor {
+    self.colorBar.backgroundColor = [AppColors randomColor];
 }
 
 @end
