@@ -36,7 +36,8 @@
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    if (textView == self.answerText) {
+    if (textView == self.answerText &&
+        [self.answerText.text isEqualToString:@""]) {
         [self.answerPlaceholder setHidden:NO];
     }
 }

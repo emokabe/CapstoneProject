@@ -41,9 +41,11 @@
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    if (textView == self.titleText) {
+    if (textView == self.titleText &&
+        [self.titleText.text isEqualToString:@""]) {
         [self.titlePlaceholder setHidden:NO];
-    } else if (textView == self.postText) {
+    } else if (textView == self.postText &&
+               [self.postText.text isEqualToString:@""]) {
         [self.postPlaceholder setHidden:NO];
     }
 }
