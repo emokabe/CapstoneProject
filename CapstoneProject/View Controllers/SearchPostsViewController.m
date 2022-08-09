@@ -130,54 +130,57 @@
     }];
 }
 
-- (NSInteger)getWordMatchScore:(NSDictionary *)dict1 firstCount:(NSInteger)count1 secondDictionary:(NSDictionary *)dict2 secondCount:(NSDictionary *)count2 {
-    NSInteger score = 0;
+- (float)getWordMatchScore:(NSDictionary *)dict1 firstCount:(float)count1 secondDictionary:(NSDictionary *)dict2 secondCount:(float)count2 {
+    float score = 0;
     for (NSString* word in dict2) {
-        
-        
-        /*
-         
-         if (![word isEqualToString:@""]) {
-             if ([wordCountDict objectForKey:word]) {
-                 NSInteger count = (NSInteger)[wordCountDict valueForKey:word] + 1;
-                 [wordCountDict setObject:[NSNumber numberWithInt:(int)count] forKey:word];
-             } else {
-                 [wordCountDict setObject:@1 forKey:word];
-             }
-         }
-         
-         */
+        if ([dict1 objectForKey:word]) {   // found matching word in first dictionary
+            float pointVal = ([dict1[word] floatValue]/count1) * ([dict2[word] floatValue]/count2);  // P(word | dict1) * P(word | dict2)
+            score += pointVal;
+        }
     }
+    NSLog(@"Score = %f", score);
     return score;
 }
 
 // Instead of sortBy in fetchPostsViewed
-- (void)sortByRecommendation {
+- (NSArray *)sortByRecommendation {
+    NSMutableDictionary *toSort = [[NSMutableDictionary alloc] init];
+    NSInteger finalCount = [self.filteredPostArray count];
     for (PFObject* post in self.filteredPostArray) {
         NSString *allText = [NSString stringWithFormat:@"%@%@%@",
                              post[@"title"], @" ",
                              post[@"message"]];
         NSArray *viewedPostWords = [self.sharedManager getWordMappingFromText:allText];
         NSDictionary *viewedWordMappings = viewedPostWords[0];
-        NSNumber *viewedCount = viewedPostWords[1];
+        float viewedCount = [viewedPostWords[1] floatValue];
         
         [self.sharedManager getSearchDataWithCompletion:^(PFObject * _Nonnull data, NSError * _Nonnull error) {
             if (!error) {
                 NSDictionary *searchedWordMappings = data[@"word_counts"];
-                NSNumber *count = data[@"total_wordcount"];
+                float searchedCount = [data[@"total_wordcount"] floatValue];
                 
+                float scoreForPost = [self getWordMatchScore:viewedWordMappings firstCount:viewedCount secondDictionary:searchedWordMappings secondCount:searchedCount];
                 
+                [toSort setValue:post forKey:[NSString stringWithFormat:@"%f", scoreForPost]];
+                
+                if ([toSort count] == finalCount) {
+                    NSArray *dictKeys = [toSort allKeys];
+                    NSArray *sortedKeys = [dictKeys sortedArrayUsingComparator:^NSComparisonResult(id dict1, id dict2) {
+                        NSString *first = [toSort objectForKey:dict1];
+                        NSString *second = [toSort objectForKey:dict2];
+                        return [@([second floatValue]) compare:@([first floatValue])];
+                    }];
+                    return sortedKeys;
+                }
                 
             } else {
-                
+                NSLog(@"Error: %@", error.localizedDescription);
+                return nil;
             }
         }];
     }
-    // for every post in filteredArray
-    //    put all unique words into array
-    //       for every word in array
-    //           if str is in searched words
-    //               multiply
+    
+    return nil;
 }
 
 
