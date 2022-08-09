@@ -74,7 +74,8 @@
     NSString *userInParse = [NSString stringWithFormat:@"%@%@", @"user", current_user_id];
     
     PFQuery *query = [PFQuery queryWithClassName:userInParse];
-    query.limit = 20;
+    [query orderByDescending:@"read_date"];
+    query.limit = 10;
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
@@ -94,10 +95,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SearchPostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchPostCell"
-                                                                 forIndexPath:indexPath];
+                                                                forIndexPath:indexPath];
     [cell setSearchPostCell:self.filteredPostArray[indexPath.row]];
     
     return cell;
+}
+
+- (NSArray *)findHighestPriorityPosts {
+    NSMutableArray *finalPosts = self.filteredPostArray;
+    
+    return finalPosts;
+}
+
+- (void)calculateProbabilities {
+    for (PFObject* post in self.filteredPostArray) {
+        
+    }
 }
 
 - (void)createNewReadPost:(NSMutableDictionary *)dict {
@@ -116,6 +129,57 @@
         }
     }];
 }
+
+- (NSInteger)getWordMatchScore:(NSDictionary *)dict1 firstCount:(NSInteger)count1 secondDictionary:(NSDictionary *)dict2 secondCount:(NSDictionary *)count2 {
+    NSInteger score = 0;
+    for (NSString* word in dict2) {
+        
+        
+        /*
+         
+         if (![word isEqualToString:@""]) {
+             if ([wordCountDict objectForKey:word]) {
+                 NSInteger count = (NSInteger)[wordCountDict valueForKey:word] + 1;
+                 [wordCountDict setObject:[NSNumber numberWithInt:(int)count] forKey:word];
+             } else {
+                 [wordCountDict setObject:@1 forKey:word];
+             }
+         }
+         
+         */
+    }
+    return score;
+}
+
+// Instead of sortBy in fetchPostsViewed
+- (void)sortByRecommendation {
+    for (PFObject* post in self.filteredPostArray) {
+        NSString *allText = [NSString stringWithFormat:@"%@%@%@",
+                             post[@"title"], @" ",
+                             post[@"message"]];
+        NSArray *viewedPostWords = [self.sharedManager getWordMappingFromText:allText];
+        NSDictionary *viewedWordMappings = viewedPostWords[0];
+        NSNumber *viewedCount = viewedPostWords[1];
+        
+        [self.sharedManager getSearchDataWithCompletion:^(PFObject * _Nonnull data, NSError * _Nonnull error) {
+            if (!error) {
+                NSDictionary *searchedWordMappings = data[@"word_counts"];
+                NSNumber *count = data[@"total_wordcount"];
+                
+                
+                
+            } else {
+                
+            }
+        }];
+    }
+    // for every post in filteredArray
+    //    put all unique words into array
+    //       for every word in array
+    //           if str is in searched words
+    //               multiply
+}
+
 
 - (void)sortBy:(NSString *)field {
     self.filteredPostArray = [NSMutableArray arrayWithArray:[self.filteredPostArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
