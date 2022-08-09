@@ -8,6 +8,7 @@
 #import "SelectCourseViewController.h"
 #import "CourseCell.h"
 #import "QuestionFeedViewController.h"
+#import "UIColor+HTColor.h"
 
 @interface SelectCourseViewController () <UITableViewDelegate, UITableViewDataSource>
 

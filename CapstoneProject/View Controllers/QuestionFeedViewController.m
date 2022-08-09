@@ -22,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) Activity *loading;
+@property (weak, nonatomic) IBOutlet UIView *topBackground;
+@property (weak, nonatomic) IBOutlet UIView *bottomBackground;
+
 
 @end
 
@@ -167,7 +170,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.loading = [[Activity alloc] initWithStyle:ActivityStyleAppStoreBlue];
+    self.loading = [[Activity alloc] initWithStyle:ActivityStyleAmethyst];
     self.loading.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);
     self.loading.ringSize = 100;
     self.loading.ringThickness = 3;

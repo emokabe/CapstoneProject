@@ -8,8 +8,12 @@
 #import "AnsweringViewController.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "PostDetailsViewController.h"
+#import "HTPressableButton.h"
+#import "UIColor+HTColor.h"
 
 @interface AnsweringViewController ()
+
+@property (strong, nonatomic) HTPressableButton *answerButton;
 
 @end
 
@@ -24,6 +28,14 @@
     
     self.answerText.layer.borderWidth = 1.0;
     self.answerText.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+    self.answerButton.translatesAutoresizingMaskIntoConstraints = YES;
+    self.answerButton = [[HTPressableButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 175, 500, 350, 40) buttonStyle:HTPressableButtonStyleRounded];
+        self.answerButton.buttonColor = [UIColor ht_wetAsphaltColor];
+        self.answerButton.shadowColor = [UIColor ht_midnightBlueColor];
+        [self.answerButton setTitle:@"Post" forState:UIControlStateNormal];
+    [self.answerButton addTarget:self action:@selector(didTapRespond:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.answerButton];
 }
 
 - (IBAction)didTapCancel:(id)sender {

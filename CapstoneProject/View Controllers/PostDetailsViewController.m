@@ -11,10 +11,14 @@
 #import "Post.h"
 #import "Parse/Parse.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "HTPressableButton.h"
+#import "UIColor+HTColor.h"
+
 
 @interface PostDetailsViewController () <AnsweringViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet HTPressableButton *answerButton;
 
 @end
 
@@ -32,6 +36,14 @@
     self.nameLabel.text = self.postInfo.user_name;
     self.dateLabel.text = self.postInfo.post_date_detailed;
     self.descriptionLabel.text = self.postInfo.textContent;
+    
+    self.answerButton.translatesAutoresizingMaskIntoConstraints = YES;
+    self.answerButton = [[HTPressableButton alloc] initWithFrame:self.answerButton.frame buttonStyle:HTPressableButtonStyleRounded];
+        self.answerButton.buttonColor = [UIColor ht_wetAsphaltColor];
+        self.answerButton.shadowColor = [UIColor ht_midnightBlueColor];
+        [self.answerButton setTitle:@"Answer" forState:UIControlStateNormal];
+    [self.answerButton addTarget:self action:@selector(didTapAnswer:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.answerButton];
     
     NSString *current_user_id = [NSString stringWithFormat:@"%@%@", @"user", [FBSDKAccessToken currentAccessToken].userID];
     
@@ -108,6 +120,10 @@
     } else {
         [self addCommentsToArray:posts];
     }
+}
+
+- (IBAction)didTapAnswer:(id)sender {
+    [self performSegueWithIdentifier:@"answerSegue" sender:sender];
 }
 
 - (void)addCommentsToArray:(NSMutableArray *)posts {
