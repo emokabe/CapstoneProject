@@ -179,6 +179,18 @@ Finally, there will be a view for searching through posts that the user already 
     - Blockers: getting the title of the post to show up in details, layout for composing post view controller
 
 
+----- Thursday, August 4 -----
+- 
+
+
+----- Friday, August 5 -----
+- 
+
+
+----- Monday, August 8 -----
+- 
+
+
  
 ## Credits
 
