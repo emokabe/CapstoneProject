@@ -10,10 +10,12 @@
 #import "Post.h"
 #import "Parse/Parse.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *postText;
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property (weak, nonatomic) IBOutlet UILabel *titlePlaceholder;
+@property (weak, nonatomic) IBOutlet UILabel *postPlaceholder;
 
 @end
 
@@ -25,7 +27,32 @@
     self.titleText.layer.borderColor = [[UIColor blackColor] CGColor];
     self.postText.layer.borderWidth = 1.0;
     self.postText.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.titleText.delegate = self;
+    self.postText.delegate = self;
     self.postButton.translatesAutoresizingMaskIntoConstraints = YES;
+    
+    //self.titlePlaceholder.frame = self.titleText.frame;
+    
+    //self.postPlaceholder.frame = self.postText.frame;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    NSLog(@"Yo!");
+    if (textView == self.titleText) {
+        NSLog(@"Hello!");
+        [self.titlePlaceholder setHidden:YES];
+    } else if (textView == self.postText) {
+        NSLog(@"Howdy!");
+        [self.postPlaceholder setHidden:YES];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (textView == self.titleText) {
+        [self.titlePlaceholder setHidden:NO];
+    } else if (textView == self.postText) {
+        [self.postPlaceholder setHidden:NO];
+    }
 }
 
 - (IBAction)didTapCancel:(id)sender {
