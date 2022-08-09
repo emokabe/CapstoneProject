@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFObject *course;
 @property (weak, nonatomic) IBOutlet UILabel *courseName;
 @property (weak, nonatomic) IBOutlet UILabel *courseAbbr;
+@property (weak, nonatomic) IBOutlet UIImageView *courseImage;
 
 - (void)setCourseCell:(PFObject *)course;
 

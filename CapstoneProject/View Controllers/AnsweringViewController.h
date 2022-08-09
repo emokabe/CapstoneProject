@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UITextView *answerText;
-@property (weak, nonatomic) IBOutlet UIButton *postButton;
 @property (strong, nonatomic) Post *postToAnswerInfo;
 
 @end

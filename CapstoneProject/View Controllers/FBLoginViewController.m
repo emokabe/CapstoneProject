@@ -9,6 +9,7 @@
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 #import "FBSDKLoginKit/FBSDKLoginKit.h"
 #import "QuestionFeedViewController.h"
+#import "UIColor+HTColor.h"
 
 @interface FBLoginViewController () <FBSDKLoginButtonDelegate>
 
@@ -21,6 +22,7 @@
     
     self.loginButton.delegate = self;
     self.loginButton.permissions = @[@"public_profile", @"email", @"user_friends"];
+    self.loginButton.backgroundColor = [UIColor ht_wetAsphaltColor];
 }
 
 
