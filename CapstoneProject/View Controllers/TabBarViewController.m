@@ -25,6 +25,13 @@
     [[UINavigationBar appearance] setStandardAppearance:navigationBarAppearance];
     [[UINavigationBar appearance] setCompactAppearance:navigationBarAppearance];
     [[UINavigationBar appearance] setScrollEdgeAppearance:navigationBarAppearance];
+    
+    UITabBarAppearance *appearance = [[UITabBarAppearance alloc] init];
+    [appearance configureWithOpaqueBackground];
+    appearance.backgroundColor = [UIColor ht_cloudsColor];
+    self.tabBar.standardAppearance = appearance;
+    self.tabBar.scrollEdgeAppearance = self.tabBar.standardAppearance;
+    self.tabBar.tintColor = [UIColor ht_wetAsphaltColor];
 }
 
 @end
