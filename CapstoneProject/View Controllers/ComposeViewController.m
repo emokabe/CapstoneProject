@@ -12,9 +12,12 @@
 #import "HTPressableButton.h"
 #import "UIColor+HTColor.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *postText;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property (weak, nonatomic) IBOutlet UILabel *titlePlaceholder;
+@property (weak, nonatomic) IBOutlet UILabel *postPlaceholder;
 @property (strong, nonatomic) IBOutlet HTPressableButton *postButton;
 
 @end
@@ -27,6 +30,8 @@
     self.titleText.layer.borderColor = [[UIColor blackColor] CGColor];
     self.postText.layer.borderWidth = 1.0;
     self.postText.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.titleText.delegate = self;
+    self.postText.delegate = self;
 
     self.postButton.translatesAutoresizingMaskIntoConstraints = YES;
     self.postButton = [[HTPressableButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 175, 550, 350, 40) buttonStyle:HTPressableButtonStyleRounded];
@@ -35,6 +40,24 @@
         [self.postButton setTitle:@"Post" forState:UIControlStateNormal];
     [self.postButton addTarget:self action:@selector(didTapPost:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.postButton];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if (textView == self.titleText) {
+        [self.titlePlaceholder setHidden:YES];
+    } else if (textView == self.postText) {
+        [self.postPlaceholder setHidden:YES];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (textView == self.titleText &&
+        [self.titleText.text isEqualToString:@""]) {
+        [self.titlePlaceholder setHidden:NO];
+    } else if (textView == self.postText &&
+               [self.postText.text isEqualToString:@""]) {
+        [self.postPlaceholder setHidden:NO];
+    }
 }
 
 - (IBAction)didTapCancel:(id)sender {
