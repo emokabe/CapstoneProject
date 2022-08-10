@@ -44,23 +44,6 @@
     }];
 }
 
-- (void)getProfilePicURLFromIDWithCompletion:(NSString *)user_id completion:(void(^)(NSString *profilePic, NSError *error))completion {
-    
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:[NSString stringWithFormat:@"/%@/picture", user_id]
-                                  parameters:@{}
-                                  HTTPMethod:@"GET"];
-                                  
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSString *pictureURL = result[@"data"][@"url"];
-            completion(pictureURL, nil);
-        } else {
-            completion(nil, error);
-        }
-    }];
-}
-
 - (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion {
     
     NSString *untilDateStr = until;

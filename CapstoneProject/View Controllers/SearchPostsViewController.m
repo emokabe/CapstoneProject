@@ -120,7 +120,7 @@
     float score = 0;
     for (NSString* word in searched) {
         if ([viewed objectForKey:word]) {   // found matching word in first dictionary
-            float pointVal = [viewed[word] floatValue] * ([searched[word] floatValue]/searchCount);  // P(word | dict1) * P(word | dict2)
+            float pointVal = [viewed[word] floatValue] * ([searched[word] floatValue]/searchCount);  // P(word | viewed dictionary) * P(word | searched dictionary)
             score += pointVal;
         }
     }
