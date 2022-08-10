@@ -10,6 +10,7 @@
 #import "NSDate+DateTools.h"
 #import "AppColors.h"
 #import "UIColor+HTColor.h"
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
 
 
 @implementation PostCell
@@ -33,6 +34,12 @@
     self.dateLabel.textColor = [UIColor ht_lavenderDarkColor];
     self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
     self.timestampLabel.textColor = [UIColor ht_lavenderDarkColor];
+    
+    NSLog(@"profile picture: %@", post.profilePic_url);
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:post.profilePic_url]];
+    self.profilePic.image = [UIImage imageWithData: imageData];
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.height/2;
+    
     [self setRandomColor];
 }
 

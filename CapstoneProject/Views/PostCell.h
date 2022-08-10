@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
 @property (weak, nonatomic) IBOutlet UIView *colorBar;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 
 -(void)setPost:(Post *)post;
 

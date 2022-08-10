@@ -45,6 +45,11 @@
     NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadFeed:)
+                                                 name:@"ReloadFeed"
+                                               object:nil];
+    
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
@@ -111,12 +116,12 @@
                     __strong typeof(self) strongSelf = weakSelf;
                     if (strongSelf) {
                         if (isFirst) {
-                            [self.sharedManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                            [strongSelf.sharedManager.postCache setObject:strongSelf.postsToBeCached forKey:@"posts"];
                         }
-                        self.isMoreDataLoading = NO;
-                        [self.tableView reloadData];
-                        [self stopLoadingView];
-                        [self.refreshControl endRefreshing];
+                        strongSelf.isMoreDataLoading = NO;
+                        [strongSelf.tableView reloadData];
+                        [strongSelf stopLoadingView];
+                        [strongSelf.refreshControl endRefreshing];
                     }
                 });
             }
@@ -125,6 +130,18 @@
             // TODO: get posts from cache instead
         }
     }];
+}
+
+- (void)reloadFeed:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"ReloadFeed"]) {
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(self) strongSelf = weakSelf;
+            if (strongSelf) {
+                [strongSelf.tableView reloadData];
+            }
+        });
+    }
 }
 
 - (void)stopLoadingView {

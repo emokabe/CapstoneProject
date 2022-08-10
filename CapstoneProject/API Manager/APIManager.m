@@ -207,19 +207,25 @@
 
 - (void)getProfilePicURLFromIDWithCompletion:(NSString *)user_id completion:(void(^)(NSString *profilePic, NSError *error))completion {
 
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:[NSString stringWithFormat:@"/%@/picture", user_id]
-                                  parameters:@{}
-                                  HTTPMethod:@"GET"];
+    NSString *picUrlInCache = [self.postCache objectForKey:user_id];
+    if (picUrlInCache == nil) {
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                      initWithGraphPath:[NSString stringWithFormat:@"/%@", user_id]
+                                      parameters:@{ @"fields": @"picture",}
+                                      HTTPMethod:@"GET"];
 
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSString *pictureURL = result[@"data"][@"url"];
-            completion(pictureURL, nil);
-        } else {
-            completion(nil, error);
-        }
-    }];
+        [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+            if (!error) {
+                NSString *pictureURL = result[@"picture"][@"data"][@"url"];
+                [self.postCache setObject:pictureURL forKey:user_id];
+                completion(pictureURL, nil);
+            } else {
+                completion(nil, error);
+            }
+        }];
+    } else {
+        completion(picUrlInCache, nil);
+    }
 }
 
 @end

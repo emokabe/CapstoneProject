@@ -51,21 +51,19 @@
         formatter.dateStyle = NSDateFormatterMediumStyle;     // Configure output format
         formatter.timeStyle = NSDateFormatterShortStyle;
         self.post_date_detailed = [formatter stringFromDate:date];     // Convert Date to String
-        
+
         // set profile image url for user who posted
-        NSString *picUrlInCache = [self.sharedManager.postCache objectForKey:self.user_id];
-        if (picUrlInCache == nil) {
-            [self.sharedManager getProfilePicURLFromIDWithCompletion:self.user_id completion:^(NSString * _Nonnull profilePic, NSError * _Nonnull error) {
-                if (!error) {
-                    [self.sharedManager.postCache setObject:profilePic forKey:self.user_id];
-                    self.profilePic_url = profilePic;
-                } else {
-                    NSLog(@"Error: %@", error.localizedDescription);
-                }
-            }];
-        } else {
-            self.profilePic_url = picUrlInCache;
-        }
+        [self.sharedManager getProfilePicURLFromIDWithCompletion:self.user_id completion:^(NSString * _Nonnull profilePic, NSError * _Nonnull error) {
+            if (!error) {
+                self.profilePic_url = profilePic;
+                NSLog(@"Result: %@", self.profilePic_url);
+                [[NSNotificationCenter defaultCenter]
+                        postNotificationName:@"ReloadFeed"
+                        object:self];
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+        }];
     }
     return self;
 }
