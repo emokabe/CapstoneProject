@@ -42,7 +42,7 @@
             completion(nil, error);
         }
     }];
-}     
+}
 
 - (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion {
     
@@ -107,11 +107,21 @@
     return @[wordCountDict, [NSNumber numberWithInteger:count]];
 }
 
+- (NSDictionary *)getWordProbabilitiesFromText:(NSString *)text {
+    NSArray *arr = [self getWordMappingFromText:text];
+    NSMutableDictionary *wordsMap = arr[0];
+    float count = [arr[1] floatValue];
+    NSMutableDictionary *toReturn = [[NSMutableDictionary alloc] init];
+    
+    for (NSString* word in wordsMap) {
+        float probability = [wordsMap[word] floatValue] / count;
+        [toReturn setObject:[NSNumber numberWithFloat:probability] forKey:word];
+    }
+    return toReturn;
+}
+
 - (void)createNewWordMappingForCurrentUser:(NSMutableDictionary *)dict incrementBy:(NSNumber *)count {
     PFObject *searchedPost = [[PFObject alloc] initWithClassName:@"SearchedPosts"];
-    
-    //NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    //NSString *course_abbr = [saved stringForKey:@"currentCourseAbbr"];
     searchedPost[@"user_id"] = [FBSDKAccessToken currentAccessToken].userID;
     searchedPost[@"word_counts"] = dict;
     searchedPost[@"total_wordcount"] = count;

@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *)getWordMappingFromText:(NSString *)text;
 
+- (NSDictionary *)getWordProbabilitiesFromText:(NSString *)text;
+
 - (void)createNewWordMappingForCurrentUser:(NSMutableDictionary *)dict incrementBy:(NSNumber *)count;
 
 - (void)updateSearchedWordFrequencies:(NSString *)text;

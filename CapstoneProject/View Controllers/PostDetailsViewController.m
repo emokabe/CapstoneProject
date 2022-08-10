@@ -86,6 +86,7 @@
     postInParse[@"course"] = self.postInfo.courses;
     postInParse[@"read_date"] = [NSDate date];
     postInParse[@"times_viewed"] = [NSNumber numberWithInt:1];
+    postInParse[@"word_probabilities"] = [self.sharedManager getWordProbabilitiesFromText:[NSString stringWithFormat:@"%@%@%@", self.postInfo.titleContent, @" ", self.postInfo.textContent]];
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_abbr = [saved stringForKey:@"currentCourseAbbr"];
