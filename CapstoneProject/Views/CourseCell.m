@@ -25,6 +25,9 @@
     
     self.courseName.text = course[@"course_name"];
     self.courseAbbr.text = course[@"course_abbr"];
+    
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:course[@"imageURL"]]];
+    self.courseImage.image = [UIImage imageWithData: imageData];
 }
 
 

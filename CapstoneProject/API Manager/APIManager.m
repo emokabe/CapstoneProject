@@ -86,4 +86,123 @@
     }];
 }
 
+- (NSArray *)getWordMappingFromText:(NSString *)text {
+    NSMutableDictionary *wordCountDict = [[NSMutableDictionary alloc] init];
+    NSArray *words = [text componentsSeparatedByString:@" "];
+    NSInteger count = 0;
+    for (NSString* substr in words) {
+        NSCharacterSet *toRemove = [NSCharacterSet characterSetWithCharactersInString:@".,?!'$&#"];
+        NSString *word = [[substr componentsSeparatedByCharactersInSet:toRemove] componentsJoinedByString:@""];
+        
+        if (![word isEqualToString:@""]) {
+            if ([wordCountDict objectForKey:word]) {
+                NSInteger count = (NSInteger)[wordCountDict valueForKey:word] + 1;
+                [wordCountDict setObject:[NSNumber numberWithInt:(int)count] forKey:word];
+            } else {
+                [wordCountDict setObject:@1 forKey:word];
+            }
+        }
+        count++;
+    }
+    return @[wordCountDict, [NSNumber numberWithInteger:count]];
+}
+
+- (void)createNewWordMappingForCurrentUser:(NSMutableDictionary *)dict incrementBy:(NSNumber *)count {
+    PFObject *searchedPost = [[PFObject alloc] initWithClassName:@"SearchedPosts"];
+    
+    //NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    //NSString *course_abbr = [saved stringForKey:@"currentCourseAbbr"];
+    searchedPost[@"user_id"] = [FBSDKAccessToken currentAccessToken].userID;
+    searchedPost[@"word_counts"] = dict;
+    searchedPost[@"total_wordcount"] = count;
+    
+    [searchedPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Object saved!");
+        } else {
+            NSLog(@"Error: %@", error.description);
+        }
+    }];
+}
+
+- (void)updateSearchedWordFrequencies:(NSString *)text {
+    NSArray *mapInfo = [self getWordMappingFromText:text];
+    NSMutableDictionary *wordCountDict = mapInfo[0];
+    NSNumber *total_count = mapInfo[1];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"SearchedPosts"];
+    [query whereKey:@"user_id" equalTo:[FBSDKAccessToken currentAccessToken].userID];
+    query.limit = 1;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
+        if ([users count] != 0) {
+            NSLog(@"User found!");
+            PFObject *userMapping = (PFObject *)users[0];
+            
+            NSDictionary *originalCounts = userMapping[@"word_counts"];
+            for (NSString* key in wordCountDict) {
+                if ([originalCounts objectForKey:key]) {
+                    NSInteger updatedCount = [originalCounts[key] intValue] + [wordCountDict[key] intValue];
+                    [originalCounts setValue:[NSNumber numberWithInteger:updatedCount] forKey:key];
+                } else {
+                    [originalCounts setValue:@1 forKey:key];
+                }
+            }
+            
+            NSLog(@"Original counts: %@", originalCounts);
+            [userMapping setValue:originalCounts forKey:@"word_counts"];
+            [userMapping incrementKey:@"total_wordcount" byAmount:total_count];
+            [userMapping saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    NSLog(@"Success!");
+                } else {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+            }];
+        } else if (!error) {
+            NSLog(@"New user map!");
+            [self createNewWordMappingForCurrentUser:wordCountDict incrementBy:total_count];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)getSearchedWordFrequenciesWithCompletion:(void(^)(NSMutableDictionary *wordCounts, NSError *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"SearchedPosts"];
+    [query whereKey:@"user_id" equalTo:[FBSDKAccessToken currentAccessToken].userID];
+    query.limit = 1;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+        if (result != nil) {
+            completion(result[0][@"word_counts"], nil);
+        } else if (!error) {
+            NSLog(@"No posts searched yet!");
+            completion(nil, nil);
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)getSearchDataWithCompletion:(void(^)(PFObject *data, NSError *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"SearchedPosts"];
+    [query whereKey:@"user_id" equalTo:[FBSDKAccessToken currentAccessToken].userID];
+    query.limit = 1;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+        if (result != nil) {
+            completion(result[0], nil);
+        } else if (!error) {
+            NSLog(@"No posts searched yet!");
+            completion(nil, nil);
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
 @end

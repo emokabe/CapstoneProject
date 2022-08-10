@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "UIColor+HTColor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *postText;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
+@property (weak, nonatomic) IBOutlet UIView *colorBar;
 
 -(void)setPost:(Post *)post;
 

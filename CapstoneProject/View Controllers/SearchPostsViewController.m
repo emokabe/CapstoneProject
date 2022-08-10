@@ -33,6 +33,7 @@
     self.postArray = [[NSMutableArray alloc] init];
     self.filteredPostArray = [[NSMutableArray alloc] init];
     self.filter_string = @"DEFAULT";
+    self.toSort = [[NSMutableDictionary alloc] init];
     
     UIContextMenuInteraction *interaction = [[UIContextMenuInteraction alloc] initWithDelegate:self];
     [self.searchBar addInteraction:interaction];
@@ -53,7 +54,16 @@
         if ([result count] != 0) {
             self.postArray = [NSMutableArray arrayWithArray:result];
             self.filteredPostArray = self.postArray;
-            [self sortBy:@"read_date"];   // [self.tableView reloadData] called here
+            [self sortByRecommendation];
+            
+            NSArray *dictKeys = [self.toSort allKeys];
+            NSArray *sortedKeys = [dictKeys sortedArrayUsingComparator:^NSComparisonResult(id dict1, id dict2) {
+                NSString *first = [self.toSort objectForKey:dict1];
+                NSString *second = [self.toSort objectForKey:dict2];
+                return [@([second floatValue]) compare:@([first floatValue])];
+            }];
+            self.filteredPostArray = [NSMutableArray arrayWithArray:sortedKeys];
+            [self.tableView reloadData];
         } else if (!error) {   // no courses viewed
             NSLog(@"No courses viewed yet!");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle: @ "No posts viewed!"
@@ -73,7 +83,8 @@
     NSString *userInParse = [NSString stringWithFormat:@"%@%@", @"user", current_user_id];
     
     PFQuery *query = [PFQuery queryWithClassName:userInParse];
-    query.limit = 20;
+    [query orderByDescending:@"read_date"];
+    query.limit = 10;
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
@@ -93,11 +104,63 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SearchPostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchPostCell"
-                                                                 forIndexPath:indexPath];
+                                                                forIndexPath:indexPath];
     [cell setSearchPostCell:self.filteredPostArray[indexPath.row]];
     
     return cell;
 }
+
+- (void)createNewReadPost:(NSMutableDictionary *)dict {
+    PFObject *searchedPost = [[PFObject alloc] initWithClassName:@"SearchedPosts"];
+    
+    searchedPost[@"user_id"] = [FBSDKAccessToken currentAccessToken].userID;
+    searchedPost[@"word_counts"] = dict;
+    
+    [searchedPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Object saved!");
+        } else {
+            NSLog(@"Error: %@", error.description);
+        }
+    }];
+}
+
+- (float)getWordMatchScore:(NSDictionary *)dict1 firstCount:(float)count1 secondDictionary:(NSDictionary *)dict2 secondCount:(float)count2 {
+    float score = 0;
+    for (NSString* word in dict2) {
+        if ([dict1 objectForKey:word]) {   // found matching word in first dictionary
+            float pointVal = ([dict1[word] floatValue]/count1) * ([dict2[word] floatValue]/count2);  // P(word | dict1) * P(word | dict2)
+            score += pointVal;
+        }
+    }
+    NSLog(@"Score = %f", score);
+    return score;
+}
+
+- (void)sortByRecommendation {
+    for (PFObject* post in self.filteredPostArray) {
+        NSString *allText = [NSString stringWithFormat:@"%@%@%@",
+                             post[@"title"], @" ",
+                             post[@"message"]];
+        NSArray *viewedPostWords = [self.sharedManager getWordMappingFromText:allText];
+        NSDictionary *viewedWordMappings = viewedPostWords[0];
+        float viewedCount = [viewedPostWords[1] floatValue];
+        
+        [self.sharedManager getSearchDataWithCompletion:^(PFObject * _Nonnull data, NSError * _Nonnull error) {
+            if (!error) {
+                NSDictionary *searchedWordMappings = data[@"word_counts"];
+                float searchedCount = [data[@"total_wordcount"] floatValue];
+                
+                float scoreForPost = [self getWordMatchScore:viewedWordMappings firstCount:viewedCount secondDictionary:searchedWordMappings secondCount:searchedCount];
+                
+                [self.toSort setValue:post forKey:[NSString stringWithFormat:@"%f", scoreForPost]];
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+        }];
+    }
+}
+
 
 - (void)sortBy:(NSString *)field {
     self.filteredPostArray = [NSMutableArray arrayWithArray:[self.filteredPostArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -153,9 +216,12 @@
     [self.tableView reloadData];
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *post_id = self.filteredPostArray[indexPath.row][@"post_id"] ;
+    NSString *allText = [NSString stringWithFormat:@"%@%@%@",
+                         self.filteredPostArray[indexPath.row][@"title"], @" ",
+                         self.filteredPostArray[indexPath.row][@"message"]];
+    [self.sharedManager updateSearchedWordFrequencies:allText];
     [self.sharedManager getPostDictFromIDWithCompletion:post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (post) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
