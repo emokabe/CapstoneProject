@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "APIManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *post_date_detailed; // Detailed date of post for details view
 @property (nonatomic, strong) NSDate *post_date; // Date of post as NSDate
 @property (nonatomic, strong) NSString *profilePic_url; // URL of profile image
+
+@property (nonatomic, strong) APIManager *sharedManager;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)getSearchDataWithCompletion:(void(^)(PFObject *data, NSError *error))completion;
 
+- (void)getProfilePicURLFromIDWithCompletion:(NSString *)user_id completion:(void(^)(NSString *profilePic, NSError *error))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

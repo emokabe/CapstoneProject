@@ -37,6 +37,9 @@
     self.dateLabel.text = self.postInfo.post_date_detailed;
     self.descriptionLabel.text = self.postInfo.textContent;
     
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.postInfo.profilePic_url]];
+    self.profileImage.image = [UIImage imageWithData: imageData];
+    
     self.answerButton.translatesAutoresizingMaskIntoConstraints = YES;
     self.answerButton = [[HTPressableButton alloc] initWithFrame:self.answerButton.frame buttonStyle:HTPressableButtonStyleRounded];
         self.answerButton.buttonColor = [UIColor ht_wetAsphaltColor];
