@@ -55,15 +55,6 @@
             self.postArray = [NSMutableArray arrayWithArray:result];
             self.filteredPostArray = self.postArray;
             [self sortByRecommendation];
-            
-            NSArray *dictKeys = [self.toSort allKeys];
-            NSArray *sortedKeys = [dictKeys sortedArrayUsingComparator:^NSComparisonResult(id dict1, id dict2) {
-                NSString *first = [self.toSort objectForKey:dict1];
-                NSString *second = [self.toSort objectForKey:dict2];
-                return [@([second floatValue]) compare:@([first floatValue])];
-            }];
-            self.filteredPostArray = [NSMutableArray arrayWithArray:sortedKeys];
-            [self.tableView reloadData];
         } else if (!error) {   // no courses viewed
             NSLog(@"No courses viewed yet!");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle: @ "No posts viewed!"
@@ -125,40 +116,46 @@
     }];
 }
 
-- (float)getWordMatchScore:(NSDictionary *)dict1 firstCount:(float)count1 secondDictionary:(NSDictionary *)dict2 secondCount:(float)count2 {
+- (float)getWordMatchScore:(NSDictionary *)viewed searchDictionary:(NSDictionary *)searched searchCount:(float)searchCount {
     float score = 0;
-    for (NSString* word in dict2) {
-        if ([dict1 objectForKey:word]) {   // found matching word in first dictionary
-            float pointVal = ([dict1[word] floatValue]/count1) * ([dict2[word] floatValue]/count2);  // P(word | dict1) * P(word | dict2)
+    for (NSString* word in searched) {
+        if ([viewed objectForKey:word]) {   // found matching word in first dictionary
+            float pointVal = [viewed[word] floatValue] * ([searched[word] floatValue]/searchCount);  // P(word | dict1) * P(word | dict2)
             score += pointVal;
         }
     }
-    NSLog(@"Score = %f", score);
     return score;
 }
 
 - (void)sortByRecommendation {
-    for (PFObject* post in self.filteredPostArray) {
-        NSString *allText = [NSString stringWithFormat:@"%@%@%@",
-                             post[@"title"], @" ",
-                             post[@"message"]];
-        NSArray *viewedPostWords = [self.sharedManager getWordMappingFromText:allText];
-        NSDictionary *viewedWordMappings = viewedPostWords[0];
-        float viewedCount = [viewedPostWords[1] floatValue];
-        
-        [self.sharedManager getSearchDataWithCompletion:^(PFObject * _Nonnull data, NSError * _Nonnull error) {
-            if (!error) {
+    [self.sharedManager getSearchDataWithCompletion:^(PFObject * _Nonnull data, NSError * _Nonnull error) {
+        if (!error) {
+            NSMutableArray *postScorePairs = [[NSMutableArray alloc] init];
+            for (PFObject* post in self.filteredPostArray) {
+                NSDictionary *viewedProbs = post[@"word_probabilities"];
                 NSDictionary *searchedWordMappings = data[@"word_counts"];
                 float searchedCount = [data[@"total_wordcount"] floatValue];
+                float scoreForPost = [self getWordMatchScore:viewedProbs searchDictionary:searchedWordMappings searchCount:searchedCount];
                 
-                float scoreForPost = [self getWordMatchScore:viewedWordMappings firstCount:viewedCount secondDictionary:searchedWordMappings secondCount:searchedCount];
-                
-                [self.toSort setValue:post forKey:[NSString stringWithFormat:@"%f", scoreForPost]];
-            } else {
-                NSLog(@"Error: %@", error.localizedDescription);
+                NSArray *pair = @[post, [NSNumber numberWithFloat:scoreForPost]];
+                [postScorePairs addObject:pair];
             }
-        }];
-    }
+            
+            NSArray *sortedPosts = [postScorePairs sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                return [obj2[1] compare:obj1[1]];
+            }];
+            
+            NSMutableArray *finalSortedPosts = [[NSMutableArray alloc] init];
+            for (id elem in sortedPosts) {
+                [finalSortedPosts addObject:elem[0]];
+            }
+            
+            self.filteredPostArray = [NSMutableArray arrayWithArray:finalSortedPosts];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
 }
 
 
@@ -171,7 +168,10 @@
 
 - (void)setSortButtonMenu {
     [self.sortButton setShowsMenuAsPrimaryAction:YES];
-    UIAction *readDateSort = [UIAction actionWithTitle:@"Read date (default)" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *customizedSort = [UIAction actionWithTitle:@"Recommended (default)" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self sortByRecommendation];
+    }];
+    UIAction *readDateSort = [UIAction actionWithTitle:@"Read date" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
         [self sortBy:@"read_date"];
     }];
     UIAction *postDateSort = [UIAction actionWithTitle:@"Post Date" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
@@ -180,10 +180,7 @@
     UIAction *timesViewedSort = [UIAction actionWithTitle:@"Times You Viewed" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
         [self sortBy:@"times_viewed"];
     }];
-    UIAction *customizedSort = [UIAction actionWithTitle:@"Customized" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-        // TODO: implement customized sorting algorithm
-    }];
-    self.sortButton.menu = [UIMenu menuWithTitle:@"Sort by: " children:@[readDateSort, postDateSort, timesViewedSort, customizedSort]];
+    self.sortButton.menu = [UIMenu menuWithTitle:@"Sort by: " children:@[customizedSort, readDateSort, postDateSort, timesViewedSort]];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
