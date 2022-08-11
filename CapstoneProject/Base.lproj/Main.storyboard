@@ -495,40 +495,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" fixedFrame="YES" text="Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="axT-Pa-5g3">
-                                <rect key="frame" x="20" y="79" width="350" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="axT-Pa-5g3">
+                                <rect key="frame" x="20" y="79" width="374" height="40"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" fixedFrame="YES" text="Write something..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Z0y-oD-QlO">
-                                <rect key="frame" x="20" y="154" width="350" height="365"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Z0y-oD-QlO">
+                                <rect key="frame" x="20" y="135.5" width="374" height="384.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btF-V8-ggi">
-                                <rect key="frame" x="242" y="550" width="129" height="36"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="rectangle.and.pencil.and.ellipsis" catalog="system" title="Post">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="didTapPost:" destination="FuT-sU-6aw" eventType="touchUpInside" id="Xht-9v-Cjs"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoA-7G-mBI">
-                                <rect key="frame" x="25" y="79" width="108" height="38"/>
+                                <rect key="frame" x="25" y="79" width="55" height="38"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write something..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QoT-ae-fh7">
-                                <rect key="frame" x="25" y="164" width="122" height="33"/>
+                                <rect key="frame" x="25" y="135.5" width="134.5" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
@@ -539,21 +527,19 @@
                         <constraints>
                             <constraint firstItem="QoT-ae-fh7" firstAttribute="leading" secondItem="Z0y-oD-QlO" secondAttribute="leading" constant="5" id="0ba-Qy-cMR"/>
                             <constraint firstItem="QoT-ae-fh7" firstAttribute="top" secondItem="Z0y-oD-QlO" secondAttribute="top" id="3Ba-qi-HfO"/>
-                            <constraint firstItem="1Zc-eU-7Mw" firstAttribute="bottom" secondItem="btF-V8-ggi" secondAttribute="bottom" constant="256" id="Iw7-89-gOb"/>
+                            <constraint firstItem="1Zc-eU-7Mw" firstAttribute="bottom" secondItem="Z0y-oD-QlO" secondAttribute="bottom" constant="322" id="IwV-pP-ipJ"/>
                             <constraint firstItem="QoT-ae-fh7" firstAttribute="width" secondItem="Z0y-oD-QlO" secondAttribute="height" multiplier="122:349" id="J0t-sO-YsW"/>
-                            <constraint firstItem="HoA-7G-mBI" firstAttribute="width" secondItem="axT-Pa-5g3" secondAttribute="height" multiplier="113:61" constant="-5" id="NTZ-E7-uh5"/>
+                            <constraint firstItem="HoA-7G-mBI" firstAttribute="width" secondItem="axT-Pa-5g3" secondAttribute="height" multiplier="113:61" constant="-18.926229508196727" id="NTZ-E7-uh5"/>
                             <constraint firstItem="HoA-7G-mBI" firstAttribute="leading" secondItem="axT-Pa-5g3" secondAttribute="leading" constant="5" id="O9j-JT-oIP"/>
                             <constraint firstItem="Z0y-oD-QlO" firstAttribute="trailing" secondItem="axT-Pa-5g3" secondAttribute="trailing" id="Oxf-Zh-ofd"/>
                             <constraint firstItem="HoA-7G-mBI" firstAttribute="top" secondItem="axT-Pa-5g3" secondAttribute="top" id="P8U-6v-TYf"/>
-                            <constraint firstItem="btF-V8-ggi" firstAttribute="leading" secondItem="1Zc-eU-7Mw" secondAttribute="leading" constant="242" id="QfP-DD-W4q"/>
                             <constraint firstItem="axT-Pa-5g3" firstAttribute="top" secondItem="1Zc-eU-7Mw" secondAttribute="top" constant="23" id="Vlg-lq-6cv"/>
                             <constraint firstItem="1Zc-eU-7Mw" firstAttribute="trailing" secondItem="axT-Pa-5g3" secondAttribute="trailing" constant="20" id="W5i-Bi-lTF"/>
-                            <constraint firstItem="btF-V8-ggi" firstAttribute="top" secondItem="Z0y-oD-QlO" secondAttribute="bottom" constant="37" id="ZX3-JA-dqb"/>
                             <constraint firstItem="1Zc-eU-7Mw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QoT-ae-fh7" secondAttribute="trailing" symbolic="YES" id="bHt-at-k0Q"/>
                             <constraint firstItem="Z0y-oD-QlO" firstAttribute="leading" secondItem="axT-Pa-5g3" secondAttribute="leading" id="cLL-DW-2PR"/>
-                            <constraint firstItem="1Zc-eU-7Mw" firstAttribute="trailing" secondItem="btF-V8-ggi" secondAttribute="trailing" constant="43" id="gB8-bD-C3z"/>
-                            <constraint firstItem="Z0y-oD-QlO" firstAttribute="top" secondItem="axT-Pa-5g3" secondAttribute="bottom" constant="24" id="iPc-63-l3M"/>
+                            <constraint firstItem="Z0y-oD-QlO" firstAttribute="top" secondItem="axT-Pa-5g3" secondAttribute="bottom" constant="16.5" id="iPc-63-l3M"/>
                             <constraint firstItem="Z0y-oD-QlO" firstAttribute="top" secondItem="QoT-ae-fh7" secondAttribute="bottom" constant="-33" id="kDc-8b-jwO"/>
+                            <constraint firstItem="HoA-7G-mBI" firstAttribute="height" secondItem="axT-Pa-5g3" secondAttribute="height" multiplier="0.95" id="lTg-X4-tnh"/>
                             <constraint firstItem="1Zc-eU-7Mw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HoA-7G-mBI" secondAttribute="trailing" symbolic="YES" id="lb0-Iw-kTS"/>
                             <constraint firstItem="axT-Pa-5g3" firstAttribute="top" secondItem="HoA-7G-mBI" secondAttribute="bottom" constant="-38" id="pCz-dB-gm6"/>
                             <constraint firstItem="axT-Pa-5g3" firstAttribute="leading" secondItem="1Zc-eU-7Mw" secondAttribute="leading" constant="20" id="qTu-LK-6ch"/>
@@ -573,7 +559,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="postButton" destination="btF-V8-ggi" id="DZs-kA-cez"/>
                         <outlet property="postPlaceholder" destination="QoT-ae-fh7" id="JtJ-Hw-feA"/>
                         <outlet property="postText" destination="Z0y-oD-QlO" id="ROQ-h8-Bt6"/>
                         <outlet property="titlePlaceholder" destination="HoA-7G-mBI" id="dBP-ch-Ftx"/>
@@ -965,6 +950,7 @@
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
         <image name="shuffle" catalog="system" width="128" height="95"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
