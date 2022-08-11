@@ -203,13 +203,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		BE88045E28A07C5A00CAB4F3 /* Sorting Algorithms */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Sorting Algorithms";
-            sourceTree = "<group>";
-        };
 		BE880457289F7A7400CAB4F3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +210,13 @@
 				BE88045C289F7BD000CAB4F3 /* AppColors.m */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		BE88045E28A07C5A00CAB4F3 /* Sorting Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Sorting Algorithms";
 			sourceTree = "<group>";
 		};
 		BEA4666828781C0400D57C23 /* View Controllers */ = {

@@ -45,10 +45,30 @@
     NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didFetchPosts:)
+                                                 name:@"DidFetchNotification"
+                                               object:nil];
+    
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void) didFetchPosts:(NSNotification *) notification
+{
+    // [notification name] should always be @"TestNotification"
+    // unless you use this method for observation of other notifications
+    // as well.
+
+    if ([[notification name] isEqualToString:@"DidFetchNotification"]) {
+        self.postArray = self.sharedManager.postArray;
+        self.isMoreDataLoading = NO;
+        [self.tableView reloadData];
+        [self stopLoadingView];
+        [self.refreshControl endRefreshing];
+    }
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -61,70 +81,6 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FBLoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"FBLoginViewController"];
     self.view.window.rootViewController = loginViewController; // substitute, less elegant
-}
-
-- (void)fetchPosts:(BOOL)isFirst{
-    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    NSString *course_id = [saved stringForKey:@"currentCourse"];
-    NSLog(@"course_id = %@", course_id);
-    
-    if (isFirst) {
-        [self.postArray removeAllObjects];
-        [self.postsToBeCached removeAllObjects];
-    }
-    
-    [self fetchPostsRec:course_id endDate:nil startDate:nil numAdded:0 firstFetch:isFirst];
-}
-
-- (void)fetchPostsRec:(NSString *)course_id endDate:(NSString *)until startDate:(NSString *)since numAdded:(NSInteger)count firstFetch:(BOOL)isFirst {
-    __block NSInteger numPosts = 0;
-    [self.sharedManager getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
-        if (!error) {
-            if ([posts count] == 0) {   // no more posts left in Facebook Group: load posts to tableView
-                if (isFirst) {
-                    [self.sharedManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
-                }
-                self.isMoreDataLoading = NO;
-                [self.tableView reloadData];
-                [self stopLoadingView];
-                [self.refreshControl endRefreshing];
-                return;
-            }
-            
-            for (Post *post in posts) {   // filter posts by current course
-                [self.postsToBeCached addObject:post];
-                if ([post.parent_post_id isEqualToString:@""] && [post.courses isEqualToString:course_id]) {
-                    [self.postArray addObject:post];
-                    numPosts++;
-                }
-            }
-
-            if (numPosts < 10) {   // not enough posts displayed
-                NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
-                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-                [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
-                NSLog(@"Date = %@", [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date]);
-                [self fetchPostsRec:course_id endDate:lastDate startDate:nil numAdded:(count + numPosts) firstFetch:isFirst];
-            } else {   // enough posts: load posts to tableView
-                __weak typeof(self) weakSelf = self;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    __strong typeof(self) strongSelf = weakSelf;
-                    if (strongSelf) {
-                        if (isFirst) {
-                            [self.sharedManager.postCache setObject:self.postsToBeCached forKey:@"posts"];
-                        }
-                        self.isMoreDataLoading = NO;
-                        [self.tableView reloadData];
-                        [self stopLoadingView];
-                        [self.refreshControl endRefreshing];
-                    }
-                });
-            }
-        } else {
-            NSLog(@"Error: %@", error.localizedDescription);
-            // TODO: get posts from cache instead
-        }
-    }];
 }
 
 - (void)stopLoadingView {
@@ -153,20 +109,13 @@
         // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
             self.isMoreDataLoading = true;
-            NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-            NSString *course_id = [saved stringForKey:@"currentCourse"];
-            
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
-            NSString *dateStr = [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date];
-            [self fetchPostsRec:course_id endDate:dateStr startDate:nil numAdded:0 firstFetch:NO];
+            [self.sharedManager fetchMorePosts];
         }
     }
 }
 
 - (void)didPost:(nonnull Post *)post {
-    [self fetchPosts:YES];
-    [self.tableView reloadData];
+    [self.sharedManager fetchPosts:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -177,8 +126,7 @@
     [self.view addSubview:self.loading];
     [self.loading startAnimating];
     
-    [self fetchPosts:YES];
-    [self.tableView reloadData];
+    [self.sharedManager fetchPosts:YES];
 }
 
 

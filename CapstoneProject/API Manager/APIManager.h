@@ -14,9 +14,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (class, strong, readonly) APIManager *sharedManager;
 
-@property (nonatomic, copy, nullable) NSString *myString;
-
 @property (nonatomic, strong) NSCache *postCache;
+
+@property (nonatomic, strong) NSMutableArray *postsToBeCached;
+
+@property (nonatomic, strong) NSMutableArray *postArray;
+
+- (void)fetchPosts:(BOOL)isFirst;
+
+- (void)fetchPostsRec:(NSString *)course_id endDate:(nullable NSString *)until startDate:(nullable NSString *)since firstFetch:(BOOL)isFirst;
+
+- (void)fetchMorePosts;
 
 - (void)getPostDictFromIDWithCompletion:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion;
 

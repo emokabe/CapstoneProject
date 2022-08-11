@@ -18,9 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *postArray;
 
-@property (nonatomic, strong) APIManager *sharedManager;
-
 @property (nonatomic, strong) NSMutableArray *postsToBeCached;
+
+@property (nonatomic, strong) APIManager *sharedManager;
 
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 
