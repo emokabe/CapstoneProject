@@ -7,7 +7,6 @@
 
 #import "APIManager.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
-#import "Post.h"
 
 @implementation APIManager
 
@@ -116,6 +115,24 @@
         if (!error) {
             completion(result, nil);
         } else {
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)getPostObjectFromIDWithCompletion:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+            Post *post = [[Post alloc] initWithDictionary:result];
+            completion(post, nil);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
             completion(nil, error);
         }
     }];
@@ -287,6 +304,24 @@
             completion(nil, nil);
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)composeAnswerWithCompletion:(NSString *)text postToAnswer:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion {
+    NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@", text, @"/0\n\n", post_id];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"message": messageWithDelimiters}
+                                  HTTPMethod:@"POST"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Success!");
+            completion(result, nil);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
             completion(nil, error);
         }
     }];

@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Parse/Parse.h"
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)getPostDictFromIDWithCompletion:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion;
 
+- (void)getPostObjectFromIDWithCompletion:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion;
+
 - (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion;
 
 - (NSArray *)getWordMappingFromText:(NSString *)text;
@@ -41,6 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getSearchedWordFrequenciesWithCompletion:(void(^)(NSMutableDictionary *wordCounts, NSError *error))completion;
 
 - (void)getSearchDataWithCompletion:(void(^)(PFObject *data, NSError *error))completion;
+
+- (void)composeAnswerWithCompletion:(NSString *)text postToAnswer:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion;
 
 @end
 
