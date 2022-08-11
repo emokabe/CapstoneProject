@@ -36,6 +36,8 @@
     self.nameLabel.text = self.postInfo.user_name;
     self.dateLabel.text = self.postInfo.post_date_detailed;
     self.descriptionLabel.text = self.postInfo.textContent;
+    self.descriptionScrollView.contentSize = CGSizeMake(self.tableView.contentSize.width, 500);
+
     
     self.answerButton.translatesAutoresizingMaskIntoConstraints = YES;
     self.answerButton = [[HTPressableButton alloc] initWithFrame:self.answerButton.frame buttonStyle:HTPressableButtonStyleRounded];
