@@ -569,36 +569,6 @@
             </objects>
             <point key="canvasLocation" x="630.43478260869574" y="872.54464285714278"/>
         </scene>
-        <!--Game View Controller-->
-        <scene sceneID="HmM-Tu-y9p">
-            <objects>
-                <viewController id="DmC-ig-DKV" customClass="GameViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KxK-pt-BiT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <skView contentMode="scaleToFill" sceneName="ParticleScene.sks" translatesAutoresizingMaskIntoConstraints="NO" id="mB9-v3-JSL">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                            </skView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="5oJ-jG-cnT"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="5oJ-jG-cnT" firstAttribute="bottom" secondItem="mB9-v3-JSL" secondAttribute="bottom" id="3dZ-jg-a2f"/>
-                            <constraint firstItem="mB9-v3-JSL" firstAttribute="leading" secondItem="5oJ-jG-cnT" secondAttribute="leading" id="fid-aJ-YiI"/>
-                            <constraint firstItem="5oJ-jG-cnT" firstAttribute="top" secondItem="mB9-v3-JSL" secondAttribute="top" constant="88" id="wLe-Aj-WbG"/>
-                            <constraint firstItem="5oJ-jG-cnT" firstAttribute="trailing" secondItem="mB9-v3-JSL" secondAttribute="trailing" id="zPI-LC-V1B"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="wRV-af-sZO"/>
-                    <connections>
-                        <outlet property="ParticleView" destination="mB9-v3-JSL" id="g1R-W4-1fc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ak7-xR-3ma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7130" y="873"/>
-        </scene>
         <!--Select a Course-->
         <scene sceneID="EUZ-k0-GgN">
             <objects>
@@ -826,7 +796,6 @@
                         <segue destination="Wmf-FK-I7H" kind="relationship" relationship="viewControllers" destinationCreationSelector="homeSegue" id="VgY-0I-MZR"/>
                         <segue destination="21P-Wm-ohf" kind="relationship" relationship="viewControllers" destinationCreationSelector="testSegue" id="fAh-Ep-fpQ"/>
                         <segue destination="w0K-Uj-DuY" kind="relationship" relationship="viewControllers" id="nAK-IS-e9s"/>
-                        <segue destination="75U-3j-Yod" kind="relationship" relationship="viewControllers" id="Y6e-Qf-7FX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ArM-CH-OJ7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -887,25 +856,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4I-pB-KXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="97.767857142857139"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="nMK-QC-mMp">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="75U-3j-Yod" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="loB-Ok-Y3s"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aCD-gU-huv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="DmC-ig-DKV" kind="relationship" relationship="rootViewController" id="5bW-Wk-tGm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eHX-oG-B08" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6236" y="873"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x7s-fA-SQj">
