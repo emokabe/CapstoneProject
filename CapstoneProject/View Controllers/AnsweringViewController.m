@@ -31,7 +31,9 @@
     
     self.answerText.delegate = self;
     self.answerText.layer.borderWidth = 1.0;
-    self.answerText.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.answerText.layer.borderColor = [[UIColor ht_leadColor] CGColor];
+    self.answerText.layer.cornerRadius = 5;
+    self.answerText.clipsToBounds = YES;
   
     self.answerButton.translatesAutoresizingMaskIntoConstraints = YES;
     self.answerButton = [[HTPressableButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 175, 500, 350, 40) buttonStyle:HTPressableButtonStyleRounded];

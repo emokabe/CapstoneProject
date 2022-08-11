@@ -27,9 +27,13 @@
     [super viewDidLoad];
     self.sharedManager = [APIManager sharedManager];
     self.titleText.layer.borderWidth = 1.0;
-    self.titleText.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.titleText.layer.borderColor = [[UIColor ht_leadColor] CGColor];
     self.postText.layer.borderWidth = 1.0;
-    self.postText.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.postText.layer.borderColor = [[UIColor ht_leadColor] CGColor];
+    self.titleText.layer.cornerRadius = 5;
+    self.titleText.clipsToBounds = YES;
+    self.postText.layer.cornerRadius = 5;
+    self.postText.clipsToBounds = YES;
     self.titleText.delegate = self;
     self.postText.delegate = self;
 

@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Post *postInfo;
 @property (nonatomic, strong) APIManager *sharedManager;
 @property (nonatomic, strong) NSMutableArray *commentArray;
+@property (weak, nonatomic) IBOutlet UIScrollView *descriptionScrollView;
 
 @end
 
