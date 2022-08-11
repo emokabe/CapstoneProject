@@ -89,7 +89,6 @@
             }
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
-            // TODO: get posts from cache instead
         }
     }];
 }

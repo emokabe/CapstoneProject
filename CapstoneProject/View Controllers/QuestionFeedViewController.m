@@ -71,9 +71,6 @@
     FBSDKLoginManager *logoutManager = [[FBSDKLoginManager alloc] init];
     [logoutManager logOut];
     
-    NSLog(@"%@", [FBSDKAccessToken currentAccessToken]);
-    
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FBLoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"FBLoginViewController"];
     self.view.window.rootViewController = loginViewController; // substitute, less elegant

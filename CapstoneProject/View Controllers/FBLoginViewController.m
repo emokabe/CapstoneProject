@@ -46,10 +46,6 @@
     }
     
     if (result.token) {
-        // Get user access token
-        NSLog(@"Token = %@", [FBSDKAccessToken currentAccessToken].tokenString);
-        NSLog(@"User ID = %@", [FBSDKAccessToken currentAccessToken].userID);
-        
         [self goToTabOnLogin];
     }
 }

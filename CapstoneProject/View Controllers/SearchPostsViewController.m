@@ -43,10 +43,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.sharedManager = [APIManager sharedManager];
-    NSMutableArray *posts = [self.sharedManager.postCache objectForKey:@"posts"];
-    NSLog(@"Posts here: %@", posts);
     [self fetchPostsViewed];
-    NSLog(@"Filter: %@", self.filter_string);
 }
 
 - (void)fetchPostsViewed {
