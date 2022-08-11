@@ -22,7 +22,8 @@
     
     self.loginButton.delegate = self;
     self.loginButton.permissions = @[@"public_profile", @"email", @"user_friends"];
-    self.loginButton.backgroundColor = [UIColor ht_wetAsphaltColor];
+    self.loginButton.layer.cornerRadius = 5;
+    self.loginButton.clipsToBounds = YES;
 }
 
 
