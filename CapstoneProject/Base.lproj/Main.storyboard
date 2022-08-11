@@ -54,8 +54,10 @@
                             <constraint firstItem="OaU-dx-lnw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vTB-2W-0ew"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="wkC-Ym-4Ae"/>
+                    <navigationItem key="navigationItem" id="wkC-Ym-4Ae"/>
                     <connections>
+                        <outlet property="appLogo" destination="Grg-2R-Hke" id="xc7-lB-hRk"/>
+                        <outlet property="appName" destination="OaU-dx-lnw" id="1nL-1j-AqD"/>
                         <outlet property="loginButton" destination="shd-cg-G3l" id="Daf-aJ-NHm"/>
                         <segue destination="FFh-Lf-ndx" kind="show" id="jWY-Fw-W2i"/>
                     </connections>

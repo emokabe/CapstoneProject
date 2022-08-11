@@ -132,8 +132,8 @@
     self.loading.ringSize = 100;
     self.loading.ringThickness = 3;
     [self.view addSubview:self.loading];
-    //[self.loading startAnimating];
-    //[self.sharedManager fetchPosts:YES];
+    [self.loading startAnimating];
+    [self.sharedManager fetchPosts:YES];
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
