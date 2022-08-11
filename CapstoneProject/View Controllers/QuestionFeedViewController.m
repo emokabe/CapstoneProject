@@ -46,6 +46,11 @@
                                                  name:@"DidFetchNotification"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadFeed:)
+                                                 name:@"ReloadFeed"
+                                               object:nil];
+    
     // Initialize a UIRefreshControl
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts:) forControlEvents:UIControlEventValueChanged];
@@ -73,6 +78,18 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FBLoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"FBLoginViewController"];
     self.view.window.rootViewController = loginViewController; // substitute, less elegant
+}
+
+- (void)reloadFeed:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"ReloadFeed"]) {
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(self) strongSelf = weakSelf;
+            if (strongSelf) {
+                [strongSelf.tableView reloadData];
+            }
+        });
+    }
 }
 
 - (void)stopLoadingView {

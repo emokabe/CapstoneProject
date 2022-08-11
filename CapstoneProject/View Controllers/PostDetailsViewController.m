@@ -39,6 +39,10 @@
     self.descriptionScrollView.contentSize = CGSizeMake(self.tableView.contentSize.width, 500);
 
     
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.postInfo.profilePic_url]];
+    self.profileImage.image = [UIImage imageWithData: imageData];
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height/2;
+    
     self.answerButton.translatesAutoresizingMaskIntoConstraints = YES;
     self.answerButton = [[HTPressableButton alloc] initWithFrame:self.answerButton.frame buttonStyle:HTPressableButtonStyleRounded];
         self.answerButton.buttonColor = [UIColor ht_wetAsphaltColor];

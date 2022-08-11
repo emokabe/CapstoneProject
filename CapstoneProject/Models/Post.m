@@ -6,12 +6,14 @@
 //
 
 #import "Post.h"
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
 
 @implementation Post
 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
+    self.sharedManager = [APIManager sharedManager];
     
     if (self) {
         NSLog(@"%@", dictionary);
@@ -49,6 +51,19 @@
         formatter.dateStyle = NSDateFormatterMediumStyle;     // Configure output format
         formatter.timeStyle = NSDateFormatterShortStyle;
         self.post_date_detailed = [formatter stringFromDate:date];     // Convert Date to String
+
+        // set profile image url for user who posted
+        [self.sharedManager getProfilePicURLFromIDWithCompletion:self.user_id completion:^(NSString * _Nonnull profilePic, NSError * _Nonnull error) {
+            if (!error) {
+                self.profilePic_url = profilePic;
+                NSLog(@"Result: %@", self.profilePic_url);
+                [[NSNotificationCenter defaultCenter]
+                        postNotificationName:@"ReloadFeed"
+                        object:self];
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+        }];
     }
     return self;
 }

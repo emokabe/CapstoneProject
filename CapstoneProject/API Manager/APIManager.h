@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)getSearchDataWithCompletion:(void(^)(PFObject *data, NSError *error))completion;
 
+- (void)getProfilePicURLFromIDWithCompletion:(NSString *)user_id completion:(void(^)(NSString *profilePic, NSError *error))completion;
+
 - (void)composeAnswerWithCompletion:(NSString *)text postToAnswer:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion;
 
 - (void)composeQuestionWithCompletion:(NSString *)title bodyText:(NSString *)body completion:(void(^)(NSDictionary *post, NSError *error))completion;

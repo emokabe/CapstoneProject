@@ -309,6 +309,28 @@
     }];
 }
 
+- (void)getProfilePicURLFromIDWithCompletion:(NSString *)user_id completion:(void(^)(NSString *profilePic, NSError *error))completion {
+
+    NSString *picUrlInCache = [self.postCache objectForKey:user_id];
+    if (picUrlInCache == nil) {
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                      initWithGraphPath:[NSString stringWithFormat:@"/%@", user_id]
+                                      parameters:@{ @"fields": @"picture",}
+                                      HTTPMethod:@"GET"];
+
+        [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+            if (!error) {
+                NSString *pictureURL = result[@"picture"][@"data"][@"url"];
+                [self.postCache setObject:pictureURL forKey:user_id];
+                completion(pictureURL, nil);
+            } else {
+                completion(nil, error);
+            }
+        }];
+    } else {
+        completion(picUrlInCache, nil);
+    }
+
 - (void)composeAnswerWithCompletion:(NSString *)text postToAnswer:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion {
     NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@", text, @"/0\n\n", post_id];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
