@@ -47,6 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)composeAnswerWithCompletion:(NSString *)text postToAnswer:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion;
 
+- (void)composeQuestionWithCompletion:(NSString *)title bodyText:(NSString *)body completion:(void(^)(NSDictionary *post, NSError *error))completion;
+
+- (void)getPostsViewedWithCompletion:(void(^)(NSArray *posts, NSError *error))completion;
+
+- (void)getCoursesWithCompletion:(void(^)(NSArray *courses, NSError *error))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

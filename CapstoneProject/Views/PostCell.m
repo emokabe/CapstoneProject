@@ -30,9 +30,9 @@
     self.nameLabel.textColor = [UIColor ht_wetAsphaltColor];
     self.postText.text = post.textContent;
     self.dateLabel.text = post.post_createdAt;
-    self.dateLabel.textColor = [UIColor ht_lavenderDarkColor];
+    self.dateLabel.textColor = [UIColor ht_asbestosColor];
     self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
-    self.timestampLabel.textColor = [UIColor ht_lavenderDarkColor];
+    self.timestampLabel.textColor = [UIColor ht_asbestosColor];
     [self setRandomColor];
 }
 

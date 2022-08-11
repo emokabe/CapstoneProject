@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.sharedManager = [APIManager sharedManager];
     self.titleText.layer.borderWidth = 1.0;
     self.titleText.layer.borderColor = [[UIColor blackColor] CGColor];
     self.postText.layer.borderWidth = 1.0;
@@ -68,18 +69,9 @@
 }
 
 -(void)composePost {
-    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    NSString *courseId = [saved stringForKey:@"currentCourse"];
-    
-    NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@%@%@", self.titleText.text, @"/0\n\n", self.postText.text, @"/0\n\n", courseId];
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:@"/425184976239857/feed"
-                                  parameters:@{ @"message": messageWithDelimiters}
-                                  HTTPMethod:@"POST"];
-    
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+    [self.sharedManager composeQuestionWithCompletion:self.titleText.text bodyText:self.postText.text completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (!error) {
-            [self getPostWithID:result[@"id"] completion:^(Post *post, NSError *err) {
+            [self.sharedManager getPostObjectFromIDWithCompletion:post[@"id"] completion:^(Post *post, NSError *err) {
                 if (err) {
                     NSLog(@"Error getting post: %@", err.localizedDescription);
                 } else {
@@ -92,48 +84,6 @@
             NSLog(@"Error posting to feed: %@", error.localizedDescription);
         }
     }];
-    
 }
-
-- (Post *)createPostObject: (NSString* _Nullable)post_id {
-    
-    __block Post *newPost = nil;
-    
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
-                                  parameters:@{ @"fields": @"from, created_time, message"}
-                                  HTTPMethod:@"GET"];
-    
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"%@", result);
-            newPost = [[Post alloc] initWithDictionary:result];
-        } else {
-            NSLog(@"Error posting to feed: %@", error.localizedDescription);
-        }
-    }];
-    
-    NSLog(@"New post is %@", newPost);
-    return newPost;
-}
-
--(void)getPostWithID:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion {
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
-                                  parameters:@{ @"fields": @"from, created_time, message"}
-                                  HTTPMethod:@"GET"];
-    
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"%@", result);
-            Post *post = [[Post alloc] initWithDictionary:result];
-            completion(post, nil);
-        } else {
-            NSLog(@"Error posting to feed: %@", error.localizedDescription);
-            completion(nil, error);
-        }
-    }];
-}
-
 
 @end

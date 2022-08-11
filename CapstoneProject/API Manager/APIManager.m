@@ -327,4 +327,56 @@
     }];
 }
 
+- (void)composeQuestionWithCompletion:(NSString *)title bodyText:(NSString *)body completion:(void(^)(NSDictionary *post, NSError *error))completion {
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *courseId = [saved stringForKey:@"currentCourse"];
+    
+    NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@%@%@", title, @"/0\n\n", body, @"/0\n\n", courseId];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"message": messageWithDelimiters}
+                                  HTTPMethod:@"POST"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            completion(result, nil);
+        } else {
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)getPostsViewedWithCompletion:(void(^)(NSArray *posts, NSError *error))completion {
+    NSString *current_user_id = [FBSDKAccessToken currentAccessToken].userID;
+    NSString *userInParse = [NSString stringWithFormat:@"%@%@", @"user", current_user_id];
+    
+    PFQuery *query = [PFQuery queryWithClassName:userInParse];
+    [query orderByDescending:@"read_date"];
+    query.limit = 10;
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            completion(posts, nil);
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)getCoursesWithCompletion:(void(^)(NSArray *courses, NSError *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"Course"];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+        if (result != nil) {
+            NSMutableArray *courses = [NSMutableArray arrayWithArray:result];
+            completion(courses, nil);
+        } else {
+            completion(nil, error);
+        }
+    }];
+}
+
 @end

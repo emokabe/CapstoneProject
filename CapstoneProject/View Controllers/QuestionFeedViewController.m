@@ -41,10 +41,6 @@
     self.sharedManager = [APIManager sharedManager];
     self.isMoreDataLoading = NO;
     
-    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
-    NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didFetchPosts:)
                                                  name:@"DidFetchNotification"
@@ -58,10 +54,6 @@
 
 - (void) didFetchPosts:(NSNotification *) notification
 {
-    // [notification name] should always be @"TestNotification"
-    // unless you use this method for observation of other notifications
-    // as well.
-
     if ([[notification name] isEqualToString:@"DidFetchNotification"]) {
         self.postArray = self.sharedManager.postArray;
         self.isMoreDataLoading = NO;
@@ -125,8 +117,11 @@
     self.loading.ringThickness = 3;
     [self.view addSubview:self.loading];
     [self.loading startAnimating];
-    
     [self.sharedManager fetchPosts:YES];
+    
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *course_id = [saved stringForKey:@"currentCourseAbbr"];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ Home", course_id];
 }
 
 
