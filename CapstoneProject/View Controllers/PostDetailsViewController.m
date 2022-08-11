@@ -36,6 +36,8 @@
     self.nameLabel.text = self.postInfo.user_name;
     self.dateLabel.text = self.postInfo.post_date_detailed;
     self.descriptionLabel.text = self.postInfo.textContent;
+    self.descriptionScrollView.contentSize = CGSizeMake(self.tableView.contentSize.width, 500);
+
     
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.postInfo.profilePic_url]];
     self.profileImage.image = [UIImage imageWithData: imageData];
@@ -90,6 +92,7 @@
     postInParse[@"course"] = self.postInfo.courses;
     postInParse[@"read_date"] = [NSDate date];
     postInParse[@"times_viewed"] = [NSNumber numberWithInt:1];
+    postInParse[@"word_probabilities"] = [self.sharedManager getWordProbabilitiesFromText:[NSString stringWithFormat:@"%@%@%@", self.postInfo.titleContent, @" ", self.postInfo.textContent]];
     
     NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
     NSString *course_abbr = [saved stringForKey:@"currentCourseAbbr"];

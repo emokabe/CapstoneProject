@@ -31,11 +31,10 @@
     self.nameLabel.textColor = [UIColor ht_wetAsphaltColor];
     self.postText.text = post.textContent;
     self.dateLabel.text = post.post_createdAt;
-    self.dateLabel.textColor = [UIColor ht_lavenderDarkColor];
+    self.dateLabel.textColor = [UIColor ht_asbestosColor];
     self.timestampLabel.text = post.post_date.shortTimeAgoSinceNow;
-    self.timestampLabel.textColor = [UIColor ht_lavenderDarkColor];
-    
-    NSLog(@"profile picture: %@", post.profilePic_url);
+    self.timestampLabel.textColor = [UIColor ht_asbestosColor];
+  
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:post.profilePic_url]];
     self.profilePic.image = [UIImage imageWithData: imageData];
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.height/2;
