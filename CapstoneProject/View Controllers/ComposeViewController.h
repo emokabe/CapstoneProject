@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "APIManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ComposeViewController : UIViewController
 
 @property (nonatomic, weak) id<ComposeViewControllerDelegate> delegate;
+
+@property (nonatomic, strong) APIManager *sharedManager;
 
 @end
 

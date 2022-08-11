@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.sharedManager = [APIManager sharedManager];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -28,28 +29,12 @@
 }
 
 - (void)fetchCourses {
-    [self getCoursesWithCompletion:^(NSArray *courses, NSError *error) {
+    [self.sharedManager getCoursesWithCompletion:^(NSArray *courses, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
             self.courseArray = [NSMutableArray arrayWithArray:courses];
             [self.tableView reloadData];
-        }
-    }];
-}
-
-
-- (void)getCoursesWithCompletion:(void(^)(NSArray *courses, NSError *error))completion {
-    PFQuery *query = [PFQuery queryWithClassName:@"Course"];
-    query.limit = 20;
-
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
-        if (result != nil) {
-            NSMutableArray *courses = [NSMutableArray arrayWithArray:result];
-            completion(courses, nil);
-        } else {
-            completion(nil, error);
         }
     }];
 }

@@ -7,7 +7,6 @@
 
 #import "APIManager.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
-#import "Post.h"
 
 @implementation APIManager
 
@@ -15,6 +14,8 @@
     self = [super init];
     if (self) {
         self.postCache = [[NSCache alloc] init];
+        self.postArray = [[NSMutableArray alloc] init];
+        self.postsToBeCached = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -26,6 +27,81 @@
         sharedMyManager = [[self alloc] init];
     });
     return sharedMyManager;
+}
+
+- (void)fetchPosts:(BOOL)isFirst {
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *course_id = [saved stringForKey:@"currentCourse"];
+    NSLog(@"course_id = %@", course_id);
+    
+    if (isFirst) {
+        [self.postArray removeAllObjects];
+        [self.postsToBeCached removeAllObjects];
+    }
+    
+    [self fetchPostsRec:course_id endDate:nil startDate:nil firstFetch:isFirst];
+}
+
+- (void)fetchPostsRec:(NSString *)course_id endDate:(NSString *)until startDate:(NSString *)since firstFetch:(BOOL)isFirst {
+    __block NSInteger numPosts = 0;
+    [self getNextSetOfPostsWithCompletion:until startDate:since completion:^(NSMutableArray *posts, NSString *lastDate, NSError *error) {
+        if (!error) {
+            if ([posts count] == 0) {   // no more posts left in Facebook Group: load posts to tableView
+                if (isFirst) {
+                    [self.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                }
+                // Notify question feed
+                [[NSNotificationCenter defaultCenter]
+                        postNotificationName:@"DidFetchNotification"
+                        object:self];
+                return;
+            }
+            
+            for (Post *post in posts) {   // filter posts by current course
+                [self.postsToBeCached addObject:post];
+                if ([post.parent_post_id isEqualToString:@""] && [post.courses isEqualToString:course_id]) {
+                    [self.postArray addObject:post];
+                    numPosts++;
+                }
+            }
+
+            if (numPosts < 5) {   // not enough posts displayed
+                NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
+                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+                NSLog(@"Date = %@", [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date]);
+                [self fetchPostsRec:course_id endDate:lastDate startDate:nil firstFetch:isFirst];
+            } else {   // enough posts: load posts to tableView
+                __weak typeof(self) weakSelf = self;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(self) strongSelf = weakSelf;
+                    if (strongSelf) {
+                        if (isFirst) {
+                            [self.postCache setObject:self.postsToBeCached forKey:@"posts"];
+                        }
+                        // Notify question feed
+                        [[NSNotificationCenter defaultCenter]
+                                postNotificationName:@"DidFetchNotification"
+                                object:self];
+                        return;
+                    }
+                });
+            }
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+            // TODO: get posts from cache instead
+        }
+    }];
+}
+
+- (void)fetchMorePosts {
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *course_id = [saved stringForKey:@"currentCourse"];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+    NSString *dateStr = [dateFormat stringFromDate:((Post *)[self.postArray lastObject]).post_date];
+    [self fetchPostsRec:course_id endDate:dateStr startDate:nil firstFetch:NO];
 }
 
 - (void)getPostDictFromIDWithCompletion:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion {
@@ -44,6 +120,24 @@
     }];
 }
 
+- (void)getPostObjectFromIDWithCompletion:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
+                                  parameters:@{ @"fields": @"from, created_time, message"}
+                                  HTTPMethod:@"GET"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"%@", result);
+            Post *post = [[Post alloc] initWithDictionary:result];
+            completion(post, nil);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
 - (void)getNextSetOfPostsWithCompletion:(NSString *)until startDate:(NSString *)since completion:(void(^)(NSMutableArray *posts, NSString *lastDate, NSError *error))completion {
     
     NSString *untilDateStr = until;
@@ -54,7 +148,7 @@
     }
     
     if (sinceDateStr == nil) {   // set 'since' to two weeks before until
-        double daysinInterval = 3;  // number of days into the past to get posts up to
+        double daysinInterval = 7;  // number of days into the past to get posts up to
         NSTimeInterval twoWeekInterval = (NSTimeInterval)(daysinInterval * -86400);
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -210,6 +304,76 @@
             completion(nil, nil);
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)composeAnswerWithCompletion:(NSString *)text postToAnswer:(NSString *)post_id completion:(void(^)(NSDictionary *post, NSError *error))completion {
+    NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@", text, @"/0\n\n", post_id];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"message": messageWithDelimiters}
+                                  HTTPMethod:@"POST"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Success!");
+            completion(result, nil);
+        } else {
+            NSLog(@"Error posting to feed: %@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)composeQuestionWithCompletion:(NSString *)title bodyText:(NSString *)body completion:(void(^)(NSDictionary *post, NSError *error))completion {
+    NSUserDefaults *saved = [NSUserDefaults standardUserDefaults];
+    NSString *courseId = [saved stringForKey:@"currentCourse"];
+    
+    NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@%@%@", title, @"/0\n\n", body, @"/0\n\n", courseId];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/425184976239857/feed"
+                                  parameters:@{ @"message": messageWithDelimiters}
+                                  HTTPMethod:@"POST"];
+    
+    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+        if (!error) {
+            completion(result, nil);
+        } else {
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)getPostsViewedWithCompletion:(void(^)(NSArray *posts, NSError *error))completion {
+    NSString *current_user_id = [FBSDKAccessToken currentAccessToken].userID;
+    NSString *userInParse = [NSString stringWithFormat:@"%@%@", @"user", current_user_id];
+    
+    PFQuery *query = [PFQuery queryWithClassName:userInParse];
+    [query orderByDescending:@"read_date"];
+    query.limit = 10;
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            completion(posts, nil);
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)getCoursesWithCompletion:(void(^)(NSArray *courses, NSError *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"Course"];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+        if (result != nil) {
+            NSMutableArray *courses = [NSMutableArray arrayWithArray:result];
+            completion(courses, nil);
+        } else {
             completion(nil, error);
         }
     }];

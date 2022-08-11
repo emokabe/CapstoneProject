@@ -50,7 +50,7 @@
 }
 
 - (void)fetchPostsViewed {
-    [self getPostsViewedWithCompletion:^(NSArray *result, NSError *error) {
+    [self.sharedManager getPostsViewedWithCompletion:^(NSArray *result, NSError *error) {
         if ([result count] != 0) {
             self.postArray = [NSMutableArray arrayWithArray:result];
             self.filteredPostArray = self.postArray;
@@ -65,25 +65,6 @@
             [self presentViewController: alert animated: true completion: nil];
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
-        }
-    }];
-}
-
-- (void)getPostsViewedWithCompletion:(void(^)(NSArray *posts, NSError *error))completion {
-    NSString *current_user_id = [FBSDKAccessToken currentAccessToken].userID;
-    NSString *userInParse = [NSString stringWithFormat:@"%@%@", @"user", current_user_id];
-    
-    PFQuery *query = [PFQuery queryWithClassName:userInParse];
-    [query orderByDescending:@"read_date"];
-    query.limit = 10;
-
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            NSLog(@"Posts viewed: %@", posts);
-            completion(posts, nil);
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-            completion(nil, error);
         }
     }];
 }

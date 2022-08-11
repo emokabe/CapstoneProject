@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.sharedManager = [APIManager sharedManager];
     
     self.titleLabel.text = self.postToAnswerInfo.titleContent;
     self.answeringToLabel.text = [NSString stringWithFormat:@"Answering %@'s question:", self.postToAnswerInfo.user_name];
@@ -64,16 +65,10 @@
 
 
 - (void)composeAnswer {
-    NSString *messageWithDelimiters = [NSString stringWithFormat:@"%@%@%@", self.answerText.text, @"/0\n\n", self.postToAnswerInfo.post_id];
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:@"/425184976239857/feed"
-                                  parameters:@{ @"message": messageWithDelimiters}
-                                  HTTPMethod:@"POST"];
-    
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+    [self.sharedManager composeAnswerWithCompletion:self.answerText.text postToAnswer:self.postToAnswerInfo.post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (!error) {
             NSLog(@"Success!");
-            [self getPostWithID:result[@"id"] completion:^(Post *post, NSError *err) {
+            [self.sharedManager getPostObjectFromIDWithCompletion:post[@"id"] completion:^(Post *post, NSError *err) {
                 if (err) {
                     NSLog(@"Error getting post: %@", err.localizedDescription);
                 } else {
@@ -86,24 +81,5 @@
         }
     }];
 }
-
-- (void)getPostWithID:(NSString *)post_id completion:(void (^)(Post *, NSError *))completion {
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", post_id]
-                                  parameters:@{ @"fields": @"from, created_time, message"}
-                                  HTTPMethod:@"GET"];
-    
-    [request startWithCompletion:^(id<FBSDKGraphRequestConnecting>  _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"%@", result);
-            Post *post = [[Post alloc] initWithDictionary:result];
-            completion(post, nil);
-        } else {
-            NSLog(@"Error posting to feed: %@", error.localizedDescription);
-            completion(nil, error);
-        }
-    }];
-}
-
 
 @end
