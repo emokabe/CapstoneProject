@@ -75,13 +75,13 @@
 -(void)composePost {
     [self.sharedManager composeQuestionWithCompletion:self.titleText.text bodyText:self.postText.text completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (!error) {
-            [self.sharedManager getPostObjectFromIDWithCompletion:post[@"id"] completion:^(Post *post, NSError *err) {
-                if (err) {
-                    NSLog(@"Error getting post: %@", err.localizedDescription);
-                } else {
-                    NSLog(@"Success!");
+            [self.sharedManager getPostDictFromIDWithCompletion:post[@"id"] completion:^(NSDictionary * _Nonnull result, NSError * _Nonnull error) {
+                if (!error) {
+                    Post *post = [[Post alloc] initWithDictionary:result];
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self.delegate didPost:post];
+                } else {
+                    NSLog(@"Error getting post: %@", error.localizedDescription);
                 }
             }];
         } else {
