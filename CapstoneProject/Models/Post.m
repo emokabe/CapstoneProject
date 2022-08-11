@@ -13,7 +13,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
-    self.sharedManager = [APIManager sharedManager];
+    self.sharedCacheManager = [APIManagerForCache sharedCacheManager];
     
     if (self) {
         NSLog(@"%@", dictionary);
@@ -53,7 +53,7 @@
         self.post_date_detailed = [formatter stringFromDate:date];     // Convert Date to String
 
         // set profile image url for user who posted
-        [self.sharedManager getProfilePicURLFromIDWithCompletion:self.user_id completion:^(NSString * _Nonnull profilePic, NSError * _Nonnull error) {
+        [self.sharedCacheManager getProfilePicURLFromIDWithCompletion:self.user_id completion:^(NSString * _Nonnull profilePic, NSError * _Nonnull error) {
             if (!error) {
                 self.profilePic_url = profilePic;
                 NSLog(@"Result: %@", self.profilePic_url);

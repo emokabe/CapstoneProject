@@ -70,12 +70,13 @@
     [self.sharedManager composeAnswerWithCompletion:self.answerText.text postToAnswer:self.postToAnswerInfo.post_id completion:^(NSDictionary * _Nonnull post, NSError * _Nonnull error) {
         if (!error) {
             NSLog(@"Success!");
-            [self.sharedManager getPostObjectFromIDWithCompletion:post[@"id"] completion:^(Post *post, NSError *err) {
-                if (err) {
-                    NSLog(@"Error getting post: %@", err.localizedDescription);
-                } else {
+            [self.sharedManager getPostDictFromIDWithCompletion:post[@"id"] completion:^(NSDictionary * _Nonnull result, NSError * _Nonnull error) {
+                if (!error) {
+                    Post *post = [[Post alloc] initWithDictionary:result];
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self.delegate didComment:post];
+                } else {
+                    NSLog(@"Error posting answer: %@", error.localizedDescription);
                 }
             }];
         } else {
