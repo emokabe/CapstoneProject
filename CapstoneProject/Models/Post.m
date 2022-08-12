@@ -13,7 +13,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
-    self.sharedCacheManager = [APIManagerForCache sharedCacheManager];
+    self.sharedCacheManager = [APIManagerForPhotoCache sharedCacheManager];
     
     if (self) {
         NSLog(@"%@", dictionary);

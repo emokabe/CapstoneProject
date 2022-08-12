@@ -59,12 +59,10 @@
     query.limit = 1;
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if ([posts count] != 0) {
-            NSLog(@"Already viewed: %@", posts);
             NSString *objectId = ((PFObject *)posts[0]).objectId;
             
             [query getObjectInBackgroundWithId:objectId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
                 if (object != nil) {
-                    NSLog(@"Duplicate object: %@", object);
                     [object incrementKey:@"times_viewed"];
                     [object setValue:[NSDate date] forKey:@"read_date"];
                     [object saveInBackground];
@@ -149,7 +147,6 @@
 
 - (IBAction)pinchToZoom:(UIPinchGestureRecognizer*)sender {
     if ([sender state] == UIGestureRecognizerStateChanged) {
-        NSLog(@"%f", [sender scale]);
         CGFloat originalSize = self.descriptionLabel.font.pointSize;
         if (originalSize < 32 && [sender velocity] > 0) {
             [self.descriptionLabel setFont:[UIFont systemFontOfSize:self.descriptionLabel.font.pointSize + 1]];

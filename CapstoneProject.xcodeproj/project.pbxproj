@@ -33,7 +33,7 @@
 		BEDF116A2874FA0B00B080A4 /* CapstoneProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF11692874FA0B00B080A4 /* CapstoneProjectTests.m */; };
 		BEDF11742874FA0B00B080A4 /* CapstoneProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF11732874FA0B00B080A4 /* CapstoneProjectUITests.m */; };
 		BEDF11762874FA0B00B080A4 /* CapstoneProjectUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF11752874FA0B00B080A4 /* CapstoneProjectUITestsLaunchTests.m */; };
-		BEDF1B3B28A590C0001D44F4 /* APIManagerForCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF1B3A28A590C0001D44F4 /* APIManagerForCache.m */; };
+		BEDF1B3E28A5C2A3001D44F4 /* APIManagerForPhotoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDF1B3D28A5C2A3001D44F4 /* APIManagerForPhotoCache.m */; };
 		E5D724672053C346233AB583 /* Pods_CapstoneProject_CapstoneProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C8BB42D443404A01EF19AE /* Pods_CapstoneProject_CapstoneProjectUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,8 +107,8 @@
 		BEDF116F2874FA0B00B080A4 /* CapstoneProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDF11732874FA0B00B080A4 /* CapstoneProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CapstoneProjectUITests.m; sourceTree = "<group>"; };
 		BEDF11752874FA0B00B080A4 /* CapstoneProjectUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CapstoneProjectUITestsLaunchTests.m; sourceTree = "<group>"; };
-		BEDF1B3928A590C0001D44F4 /* APIManagerForCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManagerForCache.h; sourceTree = "<group>"; };
-		BEDF1B3A28A590C0001D44F4 /* APIManagerForCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManagerForCache.m; sourceTree = "<group>"; };
+		BEDF1B3C28A5C2A3001D44F4 /* APIManagerForPhotoCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManagerForPhotoCache.h; sourceTree = "<group>"; };
+		BEDF1B3D28A5C2A3001D44F4 /* APIManagerForPhotoCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManagerForPhotoCache.m; sourceTree = "<group>"; };
 		C76E1444D957C3582942E6D2 /* Pods_CapstoneProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapstoneProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8A8C9706924FC689158328 /* Pods-CapstoneProject-CapstoneProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapstoneProject-CapstoneProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-CapstoneProject-CapstoneProjectUITests/Pods-CapstoneProject-CapstoneProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F395E8B2D713DC5650D5B564 /* Pods-CapstoneProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapstoneProjectTests.release.xcconfig"; path = "Target Support Files/Pods-CapstoneProjectTests/Pods-CapstoneProjectTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,8 +170,8 @@
 			children = (
 				BE166FE7289254C70062D0CF /* APIManager.h */,
 				BE166FE8289254C70062D0CF /* APIManager.m */,
-				BEDF1B3928A590C0001D44F4 /* APIManagerForCache.h */,
-				BEDF1B3A28A590C0001D44F4 /* APIManagerForCache.m */,
+				BEDF1B3C28A5C2A3001D44F4 /* APIManagerForPhotoCache.h */,
+				BEDF1B3D28A5C2A3001D44F4 /* APIManagerForPhotoCache.m */,
 			);
 			path = "API Manager";
 			sourceTree = "<group>";
@@ -555,8 +555,8 @@
 				BE05CF3628820F4400899BE9 /* CourseCell.m in Sources */,
 				BEA4666E2878CF2500D57C23 /* QuestionFeedViewController.m in Sources */,
 				BEA4666B28781C1F00D57C23 /* FBLoginViewController.m in Sources */,
-				BEDF1B3B28A590C0001D44F4 /* APIManagerForCache.m in Sources */,
 				BE166FF22894855D0062D0CF /* SearchPostsViewController.m in Sources */,
+				BEDF1B3E28A5C2A3001D44F4 /* APIManagerForPhotoCache.m in Sources */,
 				BE05CF3328820E1500899BE9 /* SelectCourseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

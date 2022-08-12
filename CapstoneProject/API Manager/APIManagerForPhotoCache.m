@@ -1,14 +1,14 @@
 //
-//  APIManagerForCache.m
+//  APIManagerForPhotoCache.m
 //  CapstoneProject
 //
 //  Created by Emily Ito Okabe on 8/11/22.
 //
 
-#import "APIManagerForCache.h"
+#import "APIManagerForPhotoCache.h"
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 
-@implementation APIManagerForCache
+@implementation APIManagerForPhotoCache
 
 - (instancetype)init {
     self = [super init];
