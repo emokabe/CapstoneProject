@@ -16,9 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shd-cg-G3l" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="75" y="406" width="264" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coursily." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaU-dx-lnw">
+                                <rect key="frame" x="112" y="238" width="190" height="96"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="fJz-v3-fkQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="60"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Grg-2R-Hke">
+                                <rect key="frame" x="109" y="354" width="196" height="196"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="196" id="Lpc-Mc-Yce"/>
+                                    <constraint firstAttribute="height" constant="196" id="nW4-Js-Tvd"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shd-cg-G3l" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="90" y="591" width="234.5" height="50"/>
                                 <color key="backgroundColor" red="0.2153234607" green="0.45986725340000001" blue="0.98407297039999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -29,9 +44,20 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="shd-cg-G3l" firstAttribute="top" secondItem="Grg-2R-Hke" secondAttribute="bottom" constant="41" id="6Fj-Ao-aHI"/>
+                            <constraint firstItem="OaU-dx-lnw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="gHs-eU-oHF"/>
+                            <constraint firstItem="Grg-2R-Hke" firstAttribute="top" secondItem="OaU-dx-lnw" secondAttribute="bottom" constant="20" id="gsO-Ee-Wpx"/>
+                            <constraint firstItem="shd-cg-G3l" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hBu-PT-eLW"/>
+                            <constraint firstItem="Grg-2R-Hke" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kXI-sp-yNC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="shd-cg-G3l" secondAttribute="bottom" constant="221" id="kXK-rb-T76"/>
+                            <constraint firstItem="OaU-dx-lnw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vTB-2W-0ew"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="wkC-Ym-4Ae"/>
+                    <navigationItem key="navigationItem" id="wkC-Ym-4Ae"/>
                     <connections>
+                        <outlet property="appLogo" destination="Grg-2R-Hke" id="xc7-lB-hRk"/>
+                        <outlet property="appName" destination="OaU-dx-lnw" id="1nL-1j-AqD"/>
                         <outlet property="loginButton" destination="shd-cg-G3l" id="Daf-aJ-NHm"/>
                         <segue destination="FFh-Lf-ndx" kind="show" id="jWY-Fw-W2i"/>
                     </connections>
@@ -907,6 +933,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AppLogo" width="128" height="128"/>
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>

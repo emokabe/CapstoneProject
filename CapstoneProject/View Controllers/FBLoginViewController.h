@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FBLoginViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *appName;
+@property (weak, nonatomic) IBOutlet UIImageView *appLogo;
 @property (weak, nonatomic) IBOutlet FBSDKLoginButton *loginButton;
 
 
