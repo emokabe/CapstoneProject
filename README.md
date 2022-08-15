@@ -10,7 +10,7 @@ The user is able to switch between viewing different courses on their app, and t
 
 The user is able to compose a post in the selected course. Composing a post will cause a new post to pop up on the feed, and will also publish the post on the common Facebook group mentioned previously. The new post's id will be mapped to the course id.
 
-Finally, there will be a view for searching through posts that the user already read using a search bar. Before searching, the user will see a list of "recommended" posts, where posts that the user is most likely to choose will appear higher in the table. The sorting order of this initial set of posts will be determined by factors such as the author whose posts the user is most likely to read, or the time frame from which the user is likely to read posts. When searching, the user is able to filter their posts by choosing a category (title, message, etc.) to filter by. Clicking on a post in this search view will take the user to the details view for the post.
+Finally, there will be a view for searching through posts that the user most recently viewed using a search bar. Before searching, the user will see a list of "recommended" posts, where posts that the user is most likely to choose will appear higher in the table. The sorting order of this initial set of posts will be determined by how well the words in each viewed post match the words in the previously searched (i.e. posts that were clicked on in the search view controller) posts; the similarity will be calculated with a scoring system using word likeliness probabilites. When searching, the user is able to filter their posts by choosing a category (title, message, etc.) to filter by. Clicking on a post in this search view will take the user to the details view for the post.
 
 
 ## Wireframe
@@ -22,7 +22,7 @@ Finally, there will be a view for searching through posts that the user already 
 - [X] Sign up with a new user profile through Facebook
 - [X] Log in/out of app using Facebook credentials 
 - [X] Animations – fading in/out when switching views
-- [ ] An external library to polish UI
+- [X] An external library to polish UI
 - [X] Select a course from a list to view its feed
 - [X] Display the user feed
 - [X] Upon login, display the feed for course that was viewed last during previous login session
@@ -32,7 +32,7 @@ Finally, there will be a view for searching through posts that the user already 
 - [X] Dynamically fetch posts by date range to prevent fetching too many posts at a time
 - [X] Cache posts to decrease number of fetches and increase efficiency
 - [X] Search through already-read posts using a search bar, and click any post to view its details
-- [ ] Sort posts in search view by order of how likely the user is to read each post
+- [X] Sort posts in search view by order of how likely the user is to read each post
 
 
 ## Possible Stretch Features
@@ -177,6 +177,76 @@ Finally, there will be a view for searching through posts that the user already 
     - Edited autolayout of the details view controller and composing comment view controller
     - Changed navigation title of the home feed so that the current course name is also displayed
     - Blockers: getting the title of the post to show up in details, layout for composing post view controller
+    
+
+----- Thursday, August 4 -----
+- Added activity indicator when the feed is loading
+    - Used the [Activity](https://cocoapods.org/pods/Activity) cocoapod
+    - When the user is logged into the app or switches to the feed from a different view controller, the activity indicator is shown while the feed is loading
+- Fixed autolayout
+    - Title now shows up in post details view controller
+    - Post button in compose post view controller did not detect tap action when autolayout was added -- now detects tap action again
+        - [Status Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid0eVv8d7asa6rSaXe14ur7XTwfwNFndYh5buX5ck9pRhhTZSmUpRBd3fsb5kzSs7eel&id=100081792760931) for this blocker
+
+
+----- Friday, August 5 -----
+- Added sorting context menu and simple sorting methods
+    - Added button in search view controller; tapping on it reveals a context menu with options to sort by: read date, post date, and number of times viewed
+- Added button UI using HTPressableButton library
+    - Used the [HTPressableButton](https://github.com/Famolus/HTPressableButton) cocoapod to customize buttons
+    - [Status Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid021U5eyFxDjRNkLLee47KKnHqVz93t8qBo3NND7NPGwSmmVgQcSvHfScCieBa6Q2GEl&id=100081792760931) for blocker with implementing HTPressableButton in place of UIButton
+    - Used the HTColor class that comes with the above cocoapod to color buttons
+
+
+----- Monday, August 8 -----
+- Implemented post sorting using searched text matching (with some bugs)
+    - For all text in the posts that have been searched, the algorithm keeps track of the probability of each word showing up
+    - For each most recently viewed post, the app calculates the probability of each word showing up
+    - For each word in viewed post, calculate P(word | viewed) • P(word | searched) as score, order viewed posts by decreasing score
+    - What to fix: post scores are calculated correctly, but posts themselves are not showing up in the table
+- Added custom color class
+    - Could have used HTColor class from before, but wanted less bright colors that did not clash
+    - Used custom color class to add colored bars to the sides of the feed posts
+- Added images to course cells
+    - Stored image URLs in Course Parse objects, then fetched them along with the course name and abbreviation to display
+
+
+----- Tuesday, August 9 -----
+- Fixed and improved post sorting using text matching
+    - Instead of calculating word probabilites when loading search view, changed strategy to calculating probabilities upon clicking on a post in the feed to view its details, then storing the dictionary of probabilities in Parse
+    - The change in strategy simplified code and made bugs easier to find
+    - [Status Update](https://fb.workplace.com/permalink.php?story_fbid=pfbid0QMy5xig5DE34AZtSBoQZib4WmpSAcADg7Pk4NMYy7QNbZgfBoyDU8Y94kbPf92Ubl&id=100081792760931) for blocker while sorting posts based on score
+- Added placeholder toggling for text views
+    - User no longer needs to delete the placeholder before typing text when composing a post or comment
+    - Added a label with the placeholder above the text view, and added listener to text view such that clicking on the text view makes the label disappear
+
+
+----- Wednesday, August 10 -----
+- Display profile picture on feed posts and details
+    - If the user's profile photo URL is not cached, fetch URL from Facebook API, then cache
+    - If photo URL is already in cache, just user URL in cache without fetching
+- Moved API-related code to the API Manager for improved organization
+    - Improved feed loading
+- Fixed feed title change when switching courses
+    - Moved title changing code from viewDidLoad to viewWillAppear because only the latter is called when switching between tabs in a tab bar controller
+- Fixed autolayout and UI on multiple view controllers
+    - Post details VC: scroll view for text now scrolls vertically, title at the top is less squashed
+    - Course selection VC: all of the text in the course cells show
+    - Compose answer VC: shows placeholder text fully
+    - Rounded and lightened borders for text views for compose/answer
+- Deleted the last tab from the tab bar controller
+    - The last tab was from a previous PR where I planned to add some animations, but I decided to prioritize adding backend-related features instead.
+
+
+----- Thursday, August 11 -----
+- Added app icon with logo
+    - The logo was created using Google Slides and the [App Icon Generator](https://appicon.co/) online
+- Added UI for login view
+    - Added the app name (Coursily) and app logo, and added additional UI changes to login button
+- Added app logo to launch screen
+- Final code cleaning
+    - Deleted extranious comments and print statements
+    - Added a file for getting and caching post profile pictures from the Facebook API
 
 
  

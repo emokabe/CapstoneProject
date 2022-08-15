@@ -65,7 +65,7 @@
                 }
             }
 
-            if (numPosts < 5) {   // not enough posts displayed
+            if (numPosts < 3) {   // not enough posts displayed
                 NSLog(@"count = %lu", (unsigned long)[self.postArray count]);
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
                 [dateFormat setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
